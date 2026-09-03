@@ -8,7 +8,7 @@
   <p align="center">
     my programming language that will transpile to SRB2 Lua.
     <br />
-    It will include typing, various statements (e.g., `with`), and user-defined operators, and will generate valid, optimized SRB2 Lua code.
+    It will include typing, various statements (e.g., <code>with</code>), and user-defined operators, and will generate valid, optimized SRB2 Lua code.
     <br />
     <br />
     It might have a package manager in the future.
