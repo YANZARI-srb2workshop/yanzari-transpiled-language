@@ -5,6 +5,7 @@ local enum = require("src.libs.enum")
 
 -- Kinds of Tokens
 local TokenKinds = enum.new(
+    'StartOfFile',
     'String', -- "1"
     'Template', -- `1`
     'Integer', -- 1
@@ -23,7 +24,7 @@ local TokenKinds = enum.new(
     'Directive', -- //!
     'Property', -- //$
     'Documentation', -- //@
-    'EndOfLine' -- EOF
+    'EndOfFile' -- EOF
 )
 
 -- Commentary Sizes
