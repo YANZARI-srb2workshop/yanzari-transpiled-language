@@ -1,3 +1,8 @@
+-- Libarys
+--- Enum
+--- 
+--- This class creates enums.
+--- They map keys to values ​​and values ​​to keys.
 --> By Yanzari
 
 -- Enums
