@@ -1,4 +1,3 @@
-<br />
 <div align="center">
 
   <img src="imgs/logo.png" alt="Yanzari Transpiled Language">
