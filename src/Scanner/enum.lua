@@ -1,3 +1,10 @@
+-- Scanner
+--- Enums
+--- 
+--- The Scanner Enums include:
+--- Token Types,
+--- Comment Sizes,
+--- etc.
 --> By Yanzari
 
 -- Enum Module
@@ -94,8 +101,8 @@ local TokenDirection = enum.new(
 local Enums = {
     TokenKinds=TokenKinds, -- Kinds of Tokens
     MiscellaniousTokenKinds=MiscellaniousTokenKinds, -- Miscellanious Token Kinds
-    OperatorsTokenKinds=OperatorsTokenKinds,
-    CommentSize=CommentSize,
+    OperatorsTokenKinds=OperatorsTokenKinds, -- Operators Token Kinds
+    CommentSize=CommentSize, -- Commentary Sizes
     TokenDirection=TokenDirection -- Directions of Tokens (e.g. Left Parentesis, Left Curly Brackets)
 }
 return Enums

@@ -1,3 +1,8 @@
+-- Source Code
+--  Arrayizer
+---
+--- A module that can convert a string into a byte array
+--- and also a byte array into a string.
 --> By Yanzari
 
 -- Arrayizer Module
