@@ -42,4 +42,5 @@ function Enum:getkey(value)
     return self.key[value]
 end
 
+-- Export
 return Enum

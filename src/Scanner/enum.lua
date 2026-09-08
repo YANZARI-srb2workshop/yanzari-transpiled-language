@@ -105,4 +105,6 @@ local Enums = {
     CommentSize=CommentSize, -- Commentary Sizes
     TokenDirection=TokenDirection -- Directions of Tokens (e.g. Left Parentesis, Left Curly Brackets)
 }
+
+-- Export
 return Enums
