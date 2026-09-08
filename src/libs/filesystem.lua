@@ -13,3 +13,6 @@ FileSystem.__index = FileSystem
 
 function FileSystem.new()
 end
+
+-- Export
+return FileSystem
