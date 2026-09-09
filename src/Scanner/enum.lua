@@ -20,6 +20,7 @@ local TokenKinds = enum.new(
     'Exponent', -- 1e2
     'Hexadecimal', -- 0xAA 0xBB
     'Binary', -- 0b00110011
+    'Octal', -- 0o001
     'Identifier', -- Flower
     'BitString', -- b"hihi"
     'Keyword', -- is

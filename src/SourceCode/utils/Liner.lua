@@ -22,7 +22,7 @@ function Liner.ByteArrayTo2DByteArray(array)
     do
         local k = 1
         while true do
-            if k==#array then
+            if k>#array then
                 break
             end
             local v1 = array[k]
@@ -32,8 +32,10 @@ function Liner.ByteArrayTo2DByteArray(array)
                     k = k + 1
                 end
                 lines = lines + 1
+                output[lines] = {}
             elseif v1==LF then
                 lines = lines + 1
+                output[lines] = {}
             else
                 output[lines][#output+1] = v1
             end

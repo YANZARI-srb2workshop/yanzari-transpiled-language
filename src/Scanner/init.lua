@@ -54,9 +54,8 @@ function Scanner:advance(limit)
                 break
             end
             jumplines = 1
-        else
-            self.location = Span.new(self.location.line+jumplines,self.location.col+1)
         end
+        self.location = Span.new(self.location.line+jumplines,self.location.col+1)
         self.previous = self.source[self.location.line][self.location.col-1]
         self.current = self.source[self.location.line][self.location.col]
         self.next = self.source[self.location.line][self.location.col+1]
