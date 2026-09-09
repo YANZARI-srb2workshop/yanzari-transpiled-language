@@ -84,7 +84,7 @@ end
 
 -- Read Lines of a File
 ---@vararg number|'*n'|'*a'|'*l'|'*L'? the Mode for Reading
----@return fun():string|number? iterator
+---@return fun():string|number? iterator an iterator to iterate over the lines of the file.
 function File:lines(...)
     -- Typing Check
     local args = {...}
@@ -111,7 +111,7 @@ local AvailableSeekModes = {
 ---@param whence 'set'|'cur'|'end'? a Whence
 ---@param offset number? a Offset
 ---@return number offset a Offset
----@return string? error_message a Error Message
+---@return error? error_message a Error Message
 function File:seek(whence,offset)
     -- Typing Check
     if whence==nil then
@@ -133,23 +133,23 @@ end
 -- Write Content to a File
 ---@vararg string|number The Content to Write
 ---@return file*? file a new File
----@return string? error_message a Error Message
+---@return error? error_message a Error Message
 function File:write(...)
     return self.file:write(...)
 end
 
 -- Closing a File
 ---@return boolean? success Was the attempt to close the file successful?
----@return string? error_message a Error Message
----@return number? error_code a Error Code
+---@return error? error_message a Error Message
+---@return error_code? error_code a Error Code
 function File:close()
     return self.file:close()
 end
 
 -- Flushing a File
 ---@return boolean? success Was the attempt to flush the file successful?
----@return string? error_message a Error Message
----@return number? error_code a Error Code
+---@return error? error_message a Error Message
+---@return error_code? error_code a Error Code
 function File:flush()
     return self.file:flush()
 end
