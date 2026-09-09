@@ -40,7 +40,7 @@ local CommentSize = enum.new(
     'Long' -- /* */
 )
 
--- Miscellanious Token Kinds
+-- some extra types of tokens
 local MiscellaniousTokenKinds = enum.new(
     'Parentesis',
     'CurlyBrackets',
@@ -48,7 +48,7 @@ local MiscellaniousTokenKinds = enum.new(
     'Semicolon'
 )
 
--- Operators Token Kinds
+-- Types of Operators
 local OperatorsTokenKinds = enum.new(
     'Plus', -- +
     'Plus Plus', -- ++
@@ -100,8 +100,8 @@ local TokenDirection = enum.new(
 -- Module
 local Enums = {
     TokenKinds=TokenKinds, -- Kinds of Tokens
-    MiscellaniousTokenKinds=MiscellaniousTokenKinds, -- Miscellanious Token Kinds
-    OperatorsTokenKinds=OperatorsTokenKinds, -- Operators Token Kinds
+    MiscellaniousTokenKinds=MiscellaniousTokenKinds, -- some extra types of tokens
+    OperatorsTokenKinds=OperatorsTokenKinds, -- Types of Operators
     CommentSize=CommentSize, -- Commentary Sizes
     TokenDirection=TokenDirection -- Directions of Tokens (e.g. Left Parentesis, Left Curly Brackets)
 }
