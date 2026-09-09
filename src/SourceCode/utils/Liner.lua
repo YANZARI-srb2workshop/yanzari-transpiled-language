@@ -14,8 +14,8 @@ local CR = 13
 local LF = 10
 
 -- Byte Array To 2D Byte Array
----@param array string[]
----@return string[][] array
+---@param array byte[] the byte array
+---@return string[][] array a 2D array of byte arrays
 function Liner.ByteArrayTo2DByteArray(array)
     local output = {[1]={}}
     local lines = 1
@@ -44,8 +44,8 @@ function Liner.ByteArrayTo2DByteArray(array)
 end
 
 -- 2D Byte Array To Byte Array
----@param array string[][]
----@return string[] array
+---@param array string[][] the byte array
+---@return byte[] array a 2D array of byte arrays
 function Liner.ByteArrayFrom2DByteArray(array)
     local output = {}
     for k1,_ in ipairs(array) do

@@ -9,8 +9,8 @@
 local Module = {}
 
 -- String To Byte Array
----@param text string
----@return number[] array
+---@param text string a String to transform into a Byte Array
+---@return byte[] array the returned byte array
 function Module.StringToByteArray(text)
     local output = {}
     for i=1,#text do
@@ -20,8 +20,8 @@ function Module.StringToByteArray(text)
 end
 
 -- String To Byte Array
----@param array number[]
----@return string text
+---@param array byte[] a Byte Array to transform into a String
+---@return string text the returned String.
 function Module.ByteArrayToString(array)
     local output = {}
     for _,v in ipairs(array) do
