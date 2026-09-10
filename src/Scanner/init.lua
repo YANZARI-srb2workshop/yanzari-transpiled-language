@@ -62,5 +62,40 @@ function Scanner:advance(limit)
     end
 end
 
+-- Insert a char
+---@param char byte?
+function Scanner:insert(char)
+    -- Typing Check
+    if char~=nil then
+        assert(type(char)=='number','char is not a number')
+        assert(char < 255 and char > 0, "Invalid Byte")
+    end
+    ------
+
+    if char==nil then
+        char = self.current
+    end
+    table.insert(self.token,char)
+end
+
+-- Remove a char
+function Scanner:remove()
+    table.remove(self.token)
+end
+
+-- Get a char
+---@param offset number?
+function Scanner:get(offset)
+    -- Typing Check
+    if offset~=nil then
+        assert(type(offset)=='number','offset is not a number')
+    end
+    ------
+    if offset == nil then
+        return self.token
+    end
+    return self.token[offset]
+end
+
 -- Export
 return Scanner
