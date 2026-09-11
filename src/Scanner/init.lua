@@ -9,6 +9,9 @@
 -- A module that handles intervals.
 local Span = require('src.Scanner.span')
 
+-- A module that handles tokens.
+local Token = require('src.Scanner.token')
+
 -- Scanner
 ---@class Scanner
 ---@field source SourceCode The Source Code
@@ -63,8 +66,8 @@ function Scanner:advance(limit)
 end
 
 -- Insert a char
----@param char byte?
-function Scanner:insert(char)
+---@param char byte? the character to be inserted.
+function Scanner:insertChar(char)
     -- Typing Check
     if char~=nil then
         assert(type(char)=='number','char is not a number')
@@ -78,14 +81,14 @@ function Scanner:insert(char)
     table.insert(self.token,char)
 end
 
--- Remove a char
-function Scanner:remove()
+-- Remove a Inserted char
+function Scanner:removeInsertedChar()
     table.remove(self.token)
 end
 
--- Get a char
----@param offset number?
-function Scanner:get(offset)
+-- Get a Inserted char
+---@param offset number? the offset to get the character.
+function Scanner:getInsertedChar(offset)
     -- Typing Check
     if offset~=nil then
         assert(type(offset)=='number','offset is not a number')
@@ -95,6 +98,42 @@ function Scanner:get(offset)
         return self.token
     end
     return self.token[offset]
+end
+
+-- Emit a Token
+---@param kind TokenKind the Token Type.
+---@param start_location Span a Location Marker for the Start of Token Insertion
+---@param end_location Span a Location Marker for the End of Token Insertion
+---@param extra any? Content extendable to a token.
+function Scanner:emitTokens(kind,start_location,end_location,extra)
+    ---@type Token
+    local TokenNode = Token.new({
+        kind=kind,
+        token=self.token,
+        location={start=start_location,['end']=end_location},
+        extra=extra
+    })
+    table.insert(self.tokens,TokenNode)
+end
+
+-- Get a Inserted Token
+---@param offset number? the offset to get the Token.
+function Scanner:getInsertedToken(offset)
+    -- Typing Check
+    if offset~=nil then
+        assert(type(offset)=='number','offset is not a number')
+    end
+    ------
+    if offset == nil then
+        return self.tokens
+    end
+    return self.tokens[offset]
+end
+
+-- return the current location of the token.
+---@return Span currentLocation current location of the token.
+function Scanner:returnLocation()
+    return Span.new(self.location.line,self.location.col+1)
 end
 
 -- Export
