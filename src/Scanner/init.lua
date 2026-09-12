@@ -105,7 +105,7 @@ end
 ---@param start_location Span a Location Marker for the Start of Token Insertion
 ---@param end_location Span a Location Marker for the End of Token Insertion
 ---@param extra any? Content extendable to a token.
-function Scanner:emitTokens(kind,start_location,end_location,extra)
+function Scanner:emitToken(kind,start_location,end_location,extra)
     ---@type Token
     local TokenNode = Token.new({
         kind=kind,
