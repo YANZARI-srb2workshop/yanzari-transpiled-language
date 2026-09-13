@@ -136,5 +136,34 @@ function Scanner:returnLocation()
     return Span.new(self.location.line,self.location.col+1)
 end
 
+-- match a char
+---@param the_char_used_for_match byte  The Character Used For Matching
+---@param the_char_to_match byte The Character to Matching
+---@return boolean result the result of the match.
+function Scanner:matchAChar(the_char_used_for_match,the_char_to_match)
+    if the_char_used_for_match==nil then
+        the_char_used_for_match = self.current
+    end
+    -- Type Checking
+    assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=255),'the_char_to_match need to be a byte')
+    assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match need to be a byte')
+
+    return (the_char_to_match==the_char_used_for_match)
+end
+
+-- match (using range) a char
+---@param the_char_to_match byte The Character to match
+---@param start_range byte The start of the range
+---@param end_range byte The end of the range
+---@return boolean result the result of the match.
+function Scanner:matchRangeAChar(the_char_to_match,start_range,end_range)
+    -- Type Checking
+    assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=255),'the_char_to_match need to be a byte')
+    assert(type(start_range)=='number' and (start_range>=0 and start_range<=255),'start_range need to be a byte')
+    assert(type(end_range)=='number' and (end_range>=0 and end_range<=255),'end_range need to be a byte')
+
+    return (the_char_to_match>=start_range) and (the_char_to_match<=end_range)
+end
+
 -- Export
 return Scanner
