@@ -18,10 +18,10 @@ Span.__index = Span
 ---@param col number Text's Column
 ---@return Span self
 function Span.new(line,col)
-    local self = setmetatable({},Span)
-    self.line = line
-    self.col = col
-    return self
+	local self = setmetatable({},Span)
+	self.line = line
+	self.col = col
+	return self
 end
 
 -- Export

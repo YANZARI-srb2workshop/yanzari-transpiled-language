@@ -29,75 +29,75 @@ Scanner.__index = Scanner
 ---@param source SourceCode The Source Code
 ---@return Scanner self
 function Scanner.new(source)
-    local self = setmetatable({},Scanner)
-    self.source = source
-    self.tokens = {}
-    self.token = {}
-    self.location = Span.new(1,1)
-    if #source>=1 then
-        self.previous = self.source[self.location.line][self.location.col-1]
-        self.current = self.source[self.location.line][self.location.col]
-        self.next = self.source[self.location.line][self.location.col+1]
-    end
-    return self
+	local self = setmetatable({},Scanner)
+	self.source = source
+	self.tokens = {}
+	self.token = {}
+	self.location = Span.new(1,1)
+	if #source>=1 then
+		self.previous = self.source[self.location.line][self.location.col-1]
+		self.current = self.source[self.location.line][self.location.col]
+		self.next = self.source[self.location.line][self.location.col+1]
+	end
+	return self
 end
 
 -- Advance a Token
 ---@param limit number? the Advance Limit
 function Scanner:advance(limit)
-    if self.current==nil then
-        return nil
-    end
-    limit = limit or 1
-    for _=1,limit do
-        local cur = self.current
-        local jumplines = 0
-        if cur==nil then
-            if self.source[self.location.line+1]==nil then
-                break
-            end
-            jumplines = 1
-        end
-        self.location = Span.new(self.location.line+jumplines,self.location.col+1)
-        self.previous = self.source[self.location.line][self.location.col-1]
-        self.current = self.source[self.location.line][self.location.col]
-        self.next = self.source[self.location.line][self.location.col+1]
-    end
+	if self.current==nil then
+		return nil
+	end
+	limit = limit or 1
+	for _=1,limit do
+		local cur = self.current
+		local jumplines = 0
+		if cur==nil then
+			if self.source[self.location.line+1]==nil then
+				break
+			end
+			jumplines = 1
+		end
+		self.location = Span.new(self.location.line+jumplines,self.location.col+1)
+		self.previous = self.source[self.location.line][self.location.col-1]
+		self.current = self.source[self.location.line][self.location.col]
+		self.next = self.source[self.location.line][self.location.col+1]
+	end
 end
 
 -- Insert a char
 ---@param char byte? the character to be inserted.
 function Scanner:insertChar(char)
-    -- Typing Check
-    if char~=nil then
-        assert(type(char)=='number','char is not a number')
-        assert(char < 255 and char > 0, "Invalid Byte")
-    end
-    ------
+	-- Typing Check
+	if char~=nil then
+		assert(type(char)=='number','char is not a number')
+		assert(char < 255 and char > 0, "Invalid Byte")
+	end
+	------
 
-    if char==nil then
-        char = self.current
-    end
-    table.insert(self.token,char)
+	if char==nil then
+		char = self.current
+	end
+	table.insert(self.token,char)
 end
 
 -- Remove a Inserted char
 function Scanner:removeInsertedChar()
-    table.remove(self.token)
+	table.remove(self.token)
 end
 
 -- Get a Inserted char
 ---@param offset number? the offset to get the character.
 function Scanner:getInsertedChar(offset)
-    -- Typing Check
-    if offset~=nil then
-        assert(type(offset)=='number','offset is not a number')
-    end
-    ------
-    if offset == nil then
-        return self.token
-    end
-    return self.token[offset]
+	-- Typing Check
+	if offset~=nil then
+		assert(type(offset)=='number','offset is not a number')
+	end
+	------
+	if offset == nil then
+		return self.token
+	end
+	return self.token[offset]
 end
 
 -- Emit a Token
@@ -106,34 +106,34 @@ end
 ---@param end_location Span a Location Marker for the End of Token Insertion
 ---@param extra any? Content extendable to a token.
 function Scanner:emitToken(kind,start_location,end_location,extra)
-    ---@type Token
-    local TokenNode = Token.new({
-        kind=kind,
-        token=self.token,
-        location={start=start_location,['end']=end_location},
-        extra=extra
-    })
-    table.insert(self.tokens,TokenNode)
+	---@type Token
+	local TokenNode = Token.new({
+		kind=kind,
+		token=self.token,
+		location={start=start_location,['end']=end_location},
+		extra=extra
+	})
+	table.insert(self.tokens,TokenNode)
 end
 
 -- Get a Inserted Token
 ---@param offset number? the offset to get the Token.
 function Scanner:getInsertedToken(offset)
-    -- Typing Check
-    if offset~=nil then
-        assert(type(offset)=='number','offset is not a number')
-    end
-    ------
-    if offset == nil then
-        return self.tokens
-    end
-    return self.tokens[offset]
+	-- Typing Check
+	if offset~=nil then
+		assert(type(offset)=='number','offset is not a number')
+	end
+	------
+	if offset == nil then
+		return self.tokens
+	end
+	return self.tokens[offset]
 end
 
 -- return the current location of the token.
 ---@return Span currentLocation current location of the token.
 function Scanner:returnLocation()
-    return Span.new(self.location.line,self.location.col+1)
+	return Span.new(self.location.line,self.location.col+1)
 end
 
 -- match a char
@@ -141,14 +141,14 @@ end
 ---@param the_char_to_match byte The Character to Matching
 ---@return boolean result the result of the match.
 function Scanner:matchAChar(the_char_used_for_match,the_char_to_match)
-    if the_char_used_for_match==nil then
-        the_char_used_for_match = self.current
-    end
-    -- Type Checking
-    assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=255),'the_char_to_match need to be a byte')
-    assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match need to be a byte')
+	if the_char_used_for_match==nil then
+		the_char_used_for_match = self.current
+	end
+	-- Type Checking
+	assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=255),'the_char_to_match need to be a byte')
+	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match need to be a byte')
 
-    return (the_char_to_match==the_char_used_for_match)
+	return (the_char_to_match==the_char_used_for_match)
 end
 
 -- match (using range) a char
@@ -157,12 +157,12 @@ end
 ---@param end_range byte The end of the range
 ---@return boolean result the result of the match.
 function Scanner:matchRangeAChar(the_char_to_match,start_range,end_range)
-    -- Type Checking
-    assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=255),'the_char_to_match need to be a byte')
-    assert(type(start_range)=='number' and (start_range>=0 and start_range<=255),'start_range need to be a byte')
-    assert(type(end_range)=='number' and (end_range>=0 and end_range<=255),'end_range need to be a byte')
+	-- Type Checking
+	assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=255),'the_char_to_match need to be a byte')
+	assert(type(start_range)=='number' and (start_range>=0 and start_range<=255),'start_range need to be a byte')
+	assert(type(end_range)=='number' and (end_range>=0 and end_range<=255),'end_range need to be a byte')
 
-    return (the_char_to_match>=start_range) and (the_char_to_match<=end_range)
+	return (the_char_to_match>=start_range) and (the_char_to_match<=end_range)
 end
 
 -- Export

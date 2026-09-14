@@ -33,27 +33,27 @@ SourceCode.__index = SourceCode
 ---@param options SourceCodeInterface
 ---@return SourceCode self
 function SourceCode.new(options)
-    -- Typing Check
-    assert(type(options)=='table','Option\'s is not a Table')
-    assert(type(options.content)=='string','Option\'s content is not a string')
-    if options.filename~=nil then
-        assert(type(options.filename)=='string','Option\'s filename is not a string')
-    end
-    
-    local self = setmetatable({},SourceCode)
-    self.filename = options.filename
+	-- Typing Check
+	assert(type(options)=='table','Option\'s is not a Table')
+	assert(type(options.content)=='string','Option\'s content is not a string')
+	if options.filename~=nil then
+		assert(type(options.filename)=='string','Option\'s filename is not a string')
+	end
+	
+	local self = setmetatable({},SourceCode)
+	self.filename = options.filename
 
-    -- a byte array containing the file's content.
-    local ByteArray = Arrayizer.StringToByteArray(options.content)
+	-- a byte array containing the file's content.
+	local ByteArray = Arrayizer.StringToByteArray(options.content)
 
-    -- a 2D array containing byte arrays, derived from the byte array; this 2D array contains each line of the file.
-    local LineByteArray = Liner.ByteArrayTo2DByteArray(ByteArray)
+	-- a 2D array containing byte arrays, derived from the byte array; this 2D array contains each line of the file.
+	local LineByteArray = Liner.ByteArrayTo2DByteArray(ByteArray)
 
-    self.content = {
-        raw=options.content, -- the raw content of the file
-        normalized=LineByteArray -- the normalized content of the file
-    }
-    return self
+	self.content = {
+		raw=options.content, -- the raw content of the file
+		normalized=LineByteArray -- the normalized content of the file
+	}
+	return self
 end
 
 -- Export

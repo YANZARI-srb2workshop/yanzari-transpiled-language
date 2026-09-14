@@ -24,12 +24,12 @@ Token.__index = Token
 ---@param options Token
 ---@return Token self
 function Token.new(options)
-    local self = setmetatable({},Token)
-    self.kind = options.kind
-    self.token = options.token
-    self.location = options.location
-    self.extra = options.extra
-    return self
+	local self = setmetatable({},Token)
+	self.kind = options.kind
+	self.token = options.token
+	self.location = options.location
+	self.extra = options.extra
+	return self
 end
 
 -- Export
