@@ -37,7 +37,7 @@ function Liner.ByteArrayTo2DByteArray(array)
 				lines = lines + 1
 				output[lines] = {}
 			else
-				output[lines][#output+1] = v1
+				output[lines][#output[lines]+1] = v1
 			end
 			k = k + 1
 		end

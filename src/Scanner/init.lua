@@ -34,10 +34,10 @@ function Scanner.new(source)
 	self.tokens = {}
 	self.token = {}
 	self.location = Span.new(1,1)
-	if #source>=1 then
-		self.previous = self.source[self.location.line][self.location.col-1]
-		self.current = self.source[self.location.line][self.location.col]
-		self.next = self.source[self.location.line][self.location.col+1]
+	if #source.content.normalized>=1 then
+		self.previous = self.source.content.normalized[self.location.line][self.location.col-1]
+		self.current = self.source.content.normalized[self.location.line][self.location.col]
+		self.next = self.source.content.normalized[self.location.line][self.location.col+1]
 	end
 	return self
 end
@@ -53,15 +53,15 @@ function Scanner:advance(limit)
 		local cur = self.current
 		local jumplines = 0
 		if cur==nil then
-			if self.source[self.location.line+1]==nil then
+			if self.source.content.normalized[self.location.line+1]==nil then
 				break
 			end
 			jumplines = 1
 		end
 		self.location = Span.new(self.location.line+jumplines,self.location.col+1)
-		self.previous = self.source[self.location.line][self.location.col-1]
-		self.current = self.source[self.location.line][self.location.col]
-		self.next = self.source[self.location.line][self.location.col+1]
+		self.previous = self.source.content.normalized[self.location.line][self.location.col-1]
+		self.current = self.source.content.normalized[self.location.line][self.location.col]
+		self.next = self.source.content.normalized[self.location.line][self.location.col+1]
 	end
 end
 
@@ -137,7 +137,7 @@ function Scanner:returnLocation()
 end
 
 -- match a char
----@param the_char_used_for_match byte  The Character Used For Matching
+---@param the_char_used_for_match byte?  The Character Used For Matching
 ---@param the_char_to_match byte The Character to Matching
 ---@return boolean result the result of the match.
 function Scanner:matchAChar(the_char_used_for_match,the_char_to_match)
@@ -152,17 +152,39 @@ function Scanner:matchAChar(the_char_used_for_match,the_char_to_match)
 end
 
 -- match (using range) a char
----@param the_char_to_match byte The Character to match
+---@param the_char_used_for_match byte? The Character Used For match
 ---@param start_range byte The start of the range
 ---@param end_range byte The end of the range
 ---@return boolean result the result of the match.
-function Scanner:matchRangeAChar(the_char_to_match,start_range,end_range)
+function Scanner:matchRangeAChar(the_char_used_for_match,start_range,end_range)
 	-- Type Checking
-	assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=255),'the_char_to_match need to be a byte')
+	if the_char_used_for_match==nil then
+		the_char_used_for_match = self.current
+	end
+
+	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match need to be a byte')
 	assert(type(start_range)=='number' and (start_range>=0 and start_range<=255),'start_range need to be a byte')
 	assert(type(end_range)=='number' and (end_range>=0 and end_range<=255),'end_range need to be a byte')
 
-	return (the_char_to_match>=start_range) and (the_char_to_match<=end_range)
+	return (the_char_used_for_match>=start_range) and (the_char_used_for_match<=end_range)
+end
+
+-- match (using out of range) a char
+---@param the_char_used_for_match byte? The Character Used For match
+---@param start_range byte The start of the range
+---@param end_range byte The end of the range
+---@return boolean result the result of the match.
+function Scanner:matchOutOfRangeAChar(the_char_used_for_match,start_range,end_range)
+	-- Type Checking
+	if the_char_used_for_match==nil then
+		the_char_used_for_match = self.current
+	end
+
+	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match need to be a byte')
+	assert(type(start_range)=='number' and (start_range>=0 and start_range<=255),'start_range need to be a byte')
+	assert(type(end_range)=='number' and (end_range>=0 and end_range<=255),'end_range need to be a byte')
+
+	return (the_char_used_for_match<=start_range) or (the_char_used_for_match>=end_range)
 end
 
 -- Export
