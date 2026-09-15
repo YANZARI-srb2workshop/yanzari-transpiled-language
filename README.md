@@ -15,6 +15,9 @@
   <sup>By Yanzari</sup>
 </div>
 
+## Notes
+It must be run on Lua 5.4 to work as expected.
+
 ## CheckList
 - [ ] CLI
 - [ ] Formatter

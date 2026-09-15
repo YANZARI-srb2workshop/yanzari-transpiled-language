@@ -47,12 +47,58 @@ function Scanner.new(source)
 	self.token = {}
 	self.location = Span.new(1,1)
 	self.current_output_pos = 1
-	if #source.content.normalized>=1 then
+	if #self.source.content.normalized>=1 then
 		self.previous = self.source.content.normalized[self.location.line][self.location.col-1]
 		self.current = self.source.content.normalized[self.location.line][self.location.col]
 		self.next = self.source.content.normalized[self.location.line][self.location.col+1]
 	end
 	return self
+end
+
+-- Scanner's State
+---@alias ScannerState {tokens: Token[][], token: byte[]?, location: Span, current_output_pos: number, previous: byte?, current: byte?, next: byte?, extra: any?}
+
+-- Clear the Scanner
+---@return nil nothing returns nothing
+function Scanner:clearScanner()
+	self.tokens = {[1]={}}
+	self.token = {}
+	self.location = Span.new(1,1)
+	self.current_output_pos = 1
+	self.extra = nil
+	if #self.source.content.normalized>=1 then
+		self.previous = self.source.content.normalized[self.location.line][self.location.col-1]
+		self.current = self.source.content.normalized[self.location.line][self.location.col]
+		self.next = self.source.content.normalized[self.location.line][self.location.col+1]
+	end
+end
+
+-- Get the Scanner's State
+---@return ScannerState state the current state of the scanner
+function Scanner:getScannerState()
+	return {
+		tokens=self.tokens,
+		token=self.token,
+		location=self.location,
+		extra=self.extra,
+		current_output_pos=self.current_output_pos,
+		previous = self.source.content.normalized[self.location.line][self.location.col-1],
+		current = self.source.content.normalized[self.location.line][self.location.col],
+		next = self.source.content.normalized[self.location.line][self.location.col+1]
+	}
+end
+
+-- Set the Scanner's State
+---@param state ScannerState a scanner state
+---@return nil nothing returns nothing
+function Scanner:setScannerState(state)
+	self.tokens = state.tokens
+	self.token = state.token
+	self.extra = state.extra
+	self.location = state.location
+	self.previous = state.previous
+	self.current = state.current
+	self.next = state.next
 end
 
 -- Advance a Token

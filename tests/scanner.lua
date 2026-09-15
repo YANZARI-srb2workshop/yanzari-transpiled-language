@@ -34,11 +34,23 @@ return function()
     -- Byte 1
     ---@type byte
     local v1 = ScriptScanner.current
+
+    -- The Scanner's previous State
+    ---@type ScannerState
+    local statev1 = ScriptScanner:getScannerState()
     ScriptScanner:advance()
 
     -- Byte 2
     ---@type byte
     local v2 = ScriptScanner.current
+
+    -- The Scanner's New State
+    ---@type ScannerState
+    local statev2 = ScriptScanner:getScannerState()
+    if statev1.current==statev2.current then
+        print("- [Failed] The old character is a reference to the current character.")
+        return nil
+    end
     ScriptScanner:advance()
 
     -- Byte 3
