@@ -16,7 +16,7 @@
 </div>
 
 ## Notes
-It must be run on Lua 5.4 to work as expected.
+It must be run on Lua 5.5.1 to work as expected.
 
 ## CheckList
 - [ ] CLI
