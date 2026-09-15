@@ -21,13 +21,14 @@ local SourceCode = require('src.SourceCode')
 -- Scanner
 ---@class Scanner
 ---@field source SourceCode The Source Code
----@field tokens Token[] a buffer containing all the stored tokens
+---@field tokens Token[][] a buffer containing all the stored tokens
 ---@field token byte[]? The Token Content
 ---@field next byte? The Next Character
 ---@field current byte? The Current Character
 ---@field previous byte? The Previous Character
 ---@field location Span Cursor location
 ---@field extra any? Expandable content in the Scanner.
+---@field current_output_pos number the output buffer position.
 local Scanner = {}
 Scanner.__index = Scanner
 
@@ -36,15 +37,16 @@ Scanner.__index = Scanner
 ---@return Scanner self
 function Scanner.new(source)
 	-- Type Checking
-	
+
 	assert(getmetatable(source)==SourceCode,"The source is not a Source Code object.")
 	----------------------------------------------------------------------------------
 
 	local self = setmetatable({},Scanner)
 	self.source = source
-	self.tokens = {}
+	self.tokens = {[1]={}}
 	self.token = {}
 	self.location = Span.new(1,1)
+	self.current_output_pos = 1
 	if #source.content.normalized>=1 then
 		self.previous = self.source.content.normalized[self.location.line][self.location.col-1]
 		self.current = self.source.content.normalized[self.location.line][self.location.col]
@@ -131,6 +133,22 @@ function Scanner:getInsertedChar(offset)
 	return self.token[offset]
 end
 
+-- Skip to the Next Output Buffer
+function Scanner:skipToTheNextOutputBuffer()
+	self.current_output_pos = self.current_output_pos+1
+	if self.tokens[self.current_output_pos]==nil then
+		self.tokens[self.current_output_pos] = {}
+	end
+end
+
+-- Skip to the Previous Output Buffer
+function Scanner:skipToThePreviousOutputBuffer()
+	self.current_output_pos = self.current_output_pos-1
+	if self.tokens[self.current_output_pos]==nil then
+		self.tokens[self.current_output_pos] = {}
+	end
+end
+
 -- Emit a Token
 ---@param kind TokenKind the Token Type.
 ---@param start_location Span a Location Marker for the Start of Token Insertion
@@ -144,7 +162,7 @@ function Scanner:emitToken(kind,start_location,end_location,extra)
 		location={start=start_location,['end']=end_location},
 		extra=extra
 	})
-	table.insert(self.tokens,TokenNode)
+	table.insert(self.tokens[self.current_output_pos],TokenNode)
 end
 
 -- Get a Inserted Token
@@ -156,9 +174,9 @@ function Scanner:getInsertedToken(offset)
 	end
 	------
 	if offset == nil then
-		return self.tokens
+		return self.tokens[self.current_output_pos]
 	end
-	return self.tokens[offset]
+	return self.tokens[self.current_output_pos][offset]
 end
 
 -- return the current location of the token.
