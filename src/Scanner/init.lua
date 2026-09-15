@@ -12,6 +12,12 @@ local Span = require('src.Scanner.span')
 -- A module that handles tokens.
 local Token = require('src.Scanner.token')
 
+-- a module that handles markers.
+local Marker = require('src.Scanner.marker')
+
+-- the module containing the object representation of the source code.
+local SourceCode = require('src.SourceCode')
+
 -- Scanner
 ---@class Scanner
 ---@field source SourceCode The Source Code
@@ -29,6 +35,11 @@ Scanner.__index = Scanner
 ---@param source SourceCode The Source Code
 ---@return Scanner self
 function Scanner.new(source)
+	-- Type Checking
+	
+	assert(getmetatable(source)==SourceCode,"The source is not a Source Code object.")
+	----------------------------------------------------------------------------------
+
 	local self = setmetatable({},Scanner)
 	self.source = source
 	self.tokens = {}
@@ -63,6 +74,26 @@ function Scanner:advance(limit)
 		self.current = self.source.content.normalized[self.location.line][self.location.col]
 		self.next = self.source.content.normalized[self.location.line][self.location.col+1]
 	end
+end
+
+-- turn back
+---@param marker ScannerMarker a marker to be able to go back
+---@return byte char the current character before returning.
+function Scanner:back(marker)
+	-- Type Checking
+	assert(getmetatable(marker)==Marker,'marker is not a Marker')
+	-------------------------------------------------------------
+	
+	self.location = Span.new(marker.line,marker.col)
+
+	-- Old Token
+	---@type byte
+	local old = self.source.content.normalized[self.location.line][self.location.col]
+
+	self.previous = self.source.content.normalized[self.location.line][self.location.col-1]
+	self.current = self.source.content.normalized[self.location.line][self.location.col]
+	self.next = self.source.content.normalized[self.location.line][self.location.col+1]
+	return old
 end
 
 -- Insert a char
