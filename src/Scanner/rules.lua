@@ -30,7 +30,6 @@ end
 ---@return Token? token token that will be emitted to the output buffer, or nil.
 function Rules:run(base)
     local enter
-    local loop
     local token
     -----------
     
@@ -38,11 +37,13 @@ function Rules:run(base)
     if enter~=true then
         return nil
     end
-    loop,token = self.loop(base)
-    if loop~=true then
+    token = self.loop(base)
+    if token==nil then
         return nil
     end
-    self.exit(base)
+    if self.exit~=nil then
+        self.exit(base)
+    end
     return token
 end
 
