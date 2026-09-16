@@ -1,0 +1,50 @@
+-- Scanner
+--- Rules
+--- 
+--- a module that implements the Scanner's rule class
+--> By Yanzari
+
+-- Rule Class Interface
+---@class ScannerRuleInterface
+---@field enter fun(self: Scanner): boolean
+---@field loop fun(self: Scanner): Token?
+---@field exit? fun(self: Scanner): nil
+
+-- Rule Class
+---@class ScannerRule: ScannerRuleInterface
+local Rules = {}
+Rules.__index = Rules
+
+-- Create a new Rules
+---@param options ScannerRuleInterface
+function Rules.new(options)
+    local self = setmetatable({},Rules)
+    self.enter = options.enter
+    self.loop = options.loop
+    self.exit = options.exit
+    return self
+end
+
+-- Run the Rule
+---@param base Scanner an instance of the Scanner.
+---@return Token? token token that will be emitted to the output buffer, or nil.
+function Rules:run(base)
+    local enter
+    local loop
+    local token
+    -----------
+    
+    enter = self.enter(base)
+    if enter~=true then
+        return nil
+    end
+    loop,token = self.loop(base)
+    if loop~=true then
+        return nil
+    end
+    self.exit(base)
+    return token
+end
+
+-- Export
+return Rules
