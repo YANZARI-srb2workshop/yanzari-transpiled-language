@@ -17,6 +17,7 @@
 
 ## Notes
 It must be run on Lua 5.5.1 to work as expected.
+This repository contains no AI-generated code (or AI-generated text).
 
 ## CheckList
 - [ ] CLI
