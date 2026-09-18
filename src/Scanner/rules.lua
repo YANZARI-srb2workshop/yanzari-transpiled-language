@@ -6,9 +6,10 @@
 
 -- Rule Class Interface
 ---@class ScannerRuleInterface
----@field enter fun(self: Scanner): boolean
----@field loop fun(self: Scanner): Token?
----@field exit? fun(self: Scanner): nil
+---@field enter fun(base: Scanner): boolean when you call the rule's scanning function.
+---@field loop fun(base: Scanner): Token? when the rule scan was accepted.
+---@field exit? fun(base: Scanner): nil when the rule scan is complete.
+---@field exportable? table exportable content.
 
 -- Rule Class
 ---@class ScannerRule: ScannerRuleInterface
@@ -22,6 +23,7 @@ function Rules.new(options)
     self.enter = options.enter
     self.loop = options.loop
     self.exit = options.exit
+    self.exportable = options.exportable
     return self
 end
 

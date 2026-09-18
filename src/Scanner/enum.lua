@@ -25,6 +25,7 @@ local TokenKinds = enum.new(
 	'BitString', -- b"hihi"
 	'Keyword', -- is
 	'Operators', -- +
+	'JSXTag', -- <example> </example>
 	'Indent',
 	'Dedent',
 	'NewLine',

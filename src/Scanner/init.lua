@@ -29,7 +29,7 @@ local SourceCode = require('src.SourceCode')
 ---@field location Span Cursor location
 ---@field extra any? Expandable content in the Scanner.
 ---@field current_output_pos number the output buffer position.
----@field states {[number]: string} Scanner states
+---@field states {[number]: string|table} Scanner states
 local Scanner = {}
 Scanner.__index = Scanner
 
@@ -101,6 +101,11 @@ function Scanner:setScannerState(state)
 	self.previous = state.previous
 	self.current = state.current
 	self.next = state.next
+end
+
+-- A new Span based on the current position.
+function Scanner:newSpanBasedOnCurrentPosition()
+	return Span.new(self.location.line,self.location.col)
 end
 
 -- Advance a Token
@@ -225,6 +230,37 @@ function Scanner:getInsertedToken(offset)
 		return self.tokens[self.current_output_pos]
 	end
 	return self.tokens[self.current_output_pos][offset]
+end
+
+-- Return character based on the `line` and `column` parameters.
+---
+--- If the `line` parameter is greater than 1: returns the character in the column specified by
+--- the `column` parameter, where the line is relative to the current line.
+--- 
+--- If the `line` parameter is 0: returns the character in the column specified by
+--- the `column` parameter (the column is relative to the current column) and the line is the
+--- current line.
+---@param line number line relative to the current line.
+---@param column number column relative to the current column.
+---@return byte char the line-related character.
+function Scanner:getCharacter(line,column)
+	if line==nil then
+		line = 0
+	end
+	if column==nil then
+		column = 0
+	end
+
+	-- Type Checking
+	assert(type(line)=='number','line is not a number')
+	assert(type(column)=='number','column is not a number')
+	assert(line>=0,'line is negative')
+	assert(column>=0,'column is negative')
+	-------------------------------------------------------
+	if line>=1 then
+		return self.source.content.normalized[self.location.line+line][column+1]
+	end
+	return self.source.content.normalized[self.location.line][self.location.col+column]
 end
 
 -- return the current location of the token.
