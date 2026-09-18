@@ -346,6 +346,7 @@ Scanner.runRules = function(self)
 			return nil
 		end
 		while true do
+			local passed = false
 			for _,rule in ipairs(Scanner.rules) do
 				if self.current==nil then
 					break
@@ -362,8 +363,13 @@ Scanner.runRules = function(self)
 					self:insertChar(char)
 				end
 				self:emitToken(token.kind,token.location.start,token.location["end"],token.extra)
+				passed = true
+				break
 			end
 			if self.current==nil then
+				break
+			end
+			if passed==false then
 				break
 			end
 		end
