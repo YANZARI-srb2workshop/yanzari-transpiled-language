@@ -355,16 +355,15 @@ Scanner.runRules = function(self)
 				-- Token returned by the rule
 				---@type Token?
 				local token = rule:run(self)
-				if token==nil then
+				if token~=nil then
+					coroutine.yield(token)
+					for _,char in ipairs(token.token) do
+						self:insertChar(char)
+					end
+					self:emitToken(token.kind,token.location.start,token.location["end"],token.extra)
+					passed = true
 					break
 				end
-				coroutine.yield(token)
-				for _,char in ipairs(token.token) do
-					self:insertChar(char)
-				end
-				self:emitToken(token.kind,token.location.start,token.location["end"],token.extra)
-				passed = true
-				break
 			end
 			if self.current==nil then
 				break
