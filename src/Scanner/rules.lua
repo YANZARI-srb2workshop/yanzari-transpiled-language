@@ -19,6 +19,18 @@ Rules.__index = Rules
 -- Create a new Rules
 ---@param options ScannerRuleInterface
 function Rules.new(options)
+    -- Type Checking
+    assert(type(options)=='table','Options is not a Scanner Rule Interface.')
+    assert(type(options.enter)=='function','Options.enter is not a function.')
+    assert(type(options.loop)=='function','Options.loop is not a function.')
+    if options.exit~=nil then
+        assert(type(options.exit)=='function','Options.exit is not a function.')
+    end
+    if options.exportable~=nil then
+        assert(type(options.exportable)=='table','Options.exportable is not a table.')
+    end
+    ----------------------------------------------------------------------------------
+
     local self = setmetatable({},Rules)
     self.enter = options.enter
     self.loop = options.loop

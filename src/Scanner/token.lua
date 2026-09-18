@@ -4,6 +4,9 @@
 --- This module handles the tokens.
 --> By Yanzari
 
+-- A module that handles intervals.
+local Span = require('src.Scanner.span')
+
 -- Kind of a Token
 ---@class TokenKind
 ---@field category enum_value Token Category
@@ -24,6 +27,18 @@ Token.__index = Token
 ---@param options Token
 ---@return Token self
 function Token.new(options)
+	-- Type Checking
+	assert(type(options)=='table','Options is not a Token Interface')
+	assert(type(options.kind)=='table','Options.kind is not a TokenKind')
+	assert(type(options.kind.category)=='string','Options.kind.category is not a String')
+	assert(type(options.token)=='table','Options.token is not a byte array')
+	assert(type(options.location)=='table','Options.location is not a Span Group')
+	assert(type(options.location.start)=='table','Options.location.start is not a Span')
+	assert(type(options.location['end'])=='table','Options.location.end is not a Span')
+	assert(getmetatable(options.location.start)==Span,'Options.location.start is not a Span')
+	assert(getmetatable(options.location['end'])==Span,'Options.location.end is not a Span')
+	---------------------------------------------------------------------
+
 	local self = setmetatable({},Token)
 	self.kind = options.kind
 	self.token = options.token
