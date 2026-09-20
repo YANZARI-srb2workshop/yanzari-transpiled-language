@@ -162,6 +162,24 @@ function Scanner:advance(limit)
 	end
 end
 
+-- Is this the end of the line or not?
+---@return boolean EOL Is it the end of the line?
+function Scanner:isEOL()
+	if self.current==nil and self.source.content.normalized[self.location.line+1]~=nil then
+		return true
+	end
+	return false
+end
+
+-- Is this the end of the file or not?
+---@return boolean EOF Is it the end of the file?
+function Scanner:isEOF()
+	if self.current==nil and self.source.content.normalized[self.location.line+1]==nil then
+		return true
+	end
+	return false
+end
+
 -- turn back
 ---@param marker ScannerMarker a marker to be able to go back
 ---@return byte char the current character before returning.
