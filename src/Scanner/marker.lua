@@ -12,9 +12,9 @@ local Marker = {}
 Marker.__index = Marker
 
 -- Creates a marker so the scanner can backtrack.
----@param col number the column for the scanner to move backward
 ---@param line number the line for the scanner to move backward
-function Marker.new(col,line)
+---@param col number the column for the scanner to move backward
+function Marker.new(line,col)
     -- Type Checking
     assert(type(col)=='number','column is not a number')
     assert(type(line)=='number','line is not a number')

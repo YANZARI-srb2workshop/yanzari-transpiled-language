@@ -57,6 +57,8 @@ return function()
     ---@type byte
     local v3 = ScriptScanner.current
 
+    ScriptScanner:advance()
+
     -- Check to see if Byte 1, Byte 2, and Byte 3 are bytes.
     if type(v1)=="number"
     and type(v2)=="number"

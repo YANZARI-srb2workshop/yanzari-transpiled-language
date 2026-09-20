@@ -101,7 +101,8 @@ function Scanner:setScannerState(state)
 	assert(type(state.location.col)=="number", 'state.location.col is not a number.')
 	assert(state.location.line<=#self.source.content.normalized,"attempt to break out of the line boundaries")
 	assert(state.location.line>0,"attempt to break out of the line boundaries")
-	assert(state.location.col<=#self.source.content.normalized[state.location.line],"attempt to break out of the column boundaries")
+	-- Uncomment this if you don't want states with EOF:
+	-- assert(state.location.col<=#self.source.content.normalized[state.location.line],"attempt to break out of the column boundaries")
 	assert(state.location.col>=0,"attempt to break out of the column boundaries")
 	if state.current~=nil then
 		assert(type(state.current)=='number','The current character is not a byte.')
@@ -170,7 +171,7 @@ function Scanner:back(marker)
 	assert(marker.line<=#self.source.content.normalized,"attempt to break out of the line boundaries")
 	assert(marker.line>0,"attempt to break out of the line boundaries")
 	assert(marker.col<=#self.source.content.normalized[marker.line],"attempt to break out of the column boundaries")
-	assert(marker.col>=0,"attempt to break out of the column boundaries")
+	assert(marker.col>0,"attempt to break out of the column boundaries")
 	-------------------------------------------------------------
 	
 	self.location = Span.new(marker.line,marker.col)
@@ -188,16 +189,15 @@ end
 -- Insert a char
 ---@param char byte? the character to be inserted.
 function Scanner:insertChar(char)
-	-- Typing Check
-	if char~=nil then
-		assert(type(char)=='number','char is not a number')
-		assert(char <= 255 and char >= 0, "Invalid Byte")
-	end
-	------
 
 	if char==nil then
 		char = self.current
 	end
+	-- Typing Check
+	assert(char~=nil,'char is nil')
+	assert(type(char)=='number','char is not a number')
+	assert(char <= 255 and char >= 0, "Invalid Byte")
+	-------------------------------------------------------
 	table.insert(self.token,char)
 end
 
@@ -305,7 +305,7 @@ function Scanner:getCharacter(line,column)
 	-------------------------------------------------------
 	if line>=1 then
 		-- Type Checking
-		assert(line<=#self.source.content.normalized,'line is invalid')
+		assert(self.location.line+line<=#self.source.content.normalized,'line is invalid')
 		assert(type(self.source.content.normalized[self.location.line+line])=='table','column is invalid')
 		assert(column<=#self.source.content.normalized[self.location.line+line],'column is invalid')
 		-------------------------------------
@@ -333,6 +333,12 @@ function Scanner:matchAChar(the_char_used_for_match,the_char_to_match)
 	if the_char_used_for_match==nil then
 		the_char_used_for_match = self.current
 	end
+	if the_char_used_for_match==nil then
+		if the_char_to_match==nil then
+			return true
+		end
+		return false
+	end
 	-- Type Checking
 	assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=255),'the_char_to_match need to be a byte')
 	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match need to be a byte')
@@ -349,6 +355,9 @@ function Scanner:matchRangeAChar(the_char_used_for_match,start_range,end_range)
 	-- Type Checking
 	if the_char_used_for_match==nil then
 		the_char_used_for_match = self.current
+	end
+	if the_char_used_for_match==nil then
+		return false
 	end
 
 	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match need to be a byte')
@@ -367,6 +376,9 @@ function Scanner:matchOutOfRangeAChar(the_char_used_for_match,start_range,end_ra
 	-- Type Checking
 	if the_char_used_for_match==nil then
 		the_char_used_for_match = self.current
+	end
+	if the_char_used_for_match==nil then
+		return false
 	end
 
 	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match need to be a byte')
