@@ -448,10 +448,11 @@ Scanner.runRules = function(self)
 					break
 				end
 			end
-			if self.current==nil then
+			if self:isEOF() then
 				break
 			end
 			if passed==false then
+				-- Unknown character; I'll handle it later (I'll add support for syntax errors later).
 				break
 			end
 		end
