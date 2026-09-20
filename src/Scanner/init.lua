@@ -24,7 +24,7 @@ local SourceCode = require('src.SourceCode')
 ---@field tokens Token[][] a buffer containing all the stored tokens
 ---@field token byte[]? The Token Content
 ---@field next byte? The Next Character
----@field current byte? The Current Character
+---@field current byte The Current Character
 ---@field previous byte? The Previous Character
 ---@field location Span Cursor location
 ---@field extra any? Expandable content in the Scanner.
@@ -94,6 +94,28 @@ end
 ---@param state ScannerState a scanner state
 ---@return nil nothing returns nothing
 function Scanner:setScannerState(state)
+	-- Type Checking
+	assert(type(state)=="table",'state is not a table.')
+	assert(type(state.location)=="table", 'state.location is not a span.')
+	assert(type(state.location.line)=="number", 'state.location.line is not a number.')
+	assert(type(state.location.col)=="number", 'state.location.col is not a number.')
+	assert(state.location.line<=#self.source.content.normalized,"attempt to break out of the line boundaries")
+	assert(state.location.line>0,"attempt to break out of the line boundaries")
+	assert(state.location.col<=#self.source.content.normalized[state.location.line],"attempt to break out of the column boundaries")
+	assert(state.location.col>0,"attempt to break out of the column boundaries")
+	assert(type(state.current)=='number','The current character is not a byte.')
+	assert(state.current>=0 and state.current<=255,'The current character is not a byte.')
+	if state.previous~=nil then
+		assert(type(state.previous)=='number','The previous character is not a byte.')
+		assert(state.previous>=0 and state.previous<=255,'The previous character is not a byte.')
+	end
+	if state.next~=nil then
+		assert(type(state.next)=='number','The next character is not a byte.')
+		assert(state.next>=0 and state.next<=255,'The next character is not a byte.')
+	end
+	assert((state.current_output_pos+1)>=256,'buffer overflow')
+	---------------------------------------------------------------------------------
+
 	self.tokens = state.tokens
 	self.token = state.token
 	self.extra = state.extra
@@ -101,6 +123,7 @@ function Scanner:setScannerState(state)
 	self.previous = state.previous
 	self.current = state.current
 	self.next = state.next
+	self.current_output_pos = state.current_output_pos
 end
 
 -- A new Span based on the current position.
@@ -124,7 +147,11 @@ function Scanner:advance(limit)
 			end
 			jumplines = 1
 		end
-		self.location = Span.new(self.location.line+jumplines,self.location.col+1)
+		if jumplines>=1 then
+			self.location = Span.new(self.location.line+jumplines,1)
+		else
+			self.location = Span.new(self.location.line,self.location.col+1)
+		end
 		self.previous = self.source.content.normalized[self.location.line][self.location.col-1]
 		self.current = self.source.content.normalized[self.location.line][self.location.col]
 		self.next = self.source.content.normalized[self.location.line][self.location.col+1]
@@ -137,6 +164,10 @@ end
 function Scanner:back(marker)
 	-- Type Checking
 	assert(getmetatable(marker)==Marker,'marker is not a Marker')
+	assert(marker.line<=#self.source.content.normalized,"attempt to break out of the line boundaries")
+	assert(marker.line>0,"attempt to break out of the line boundaries")
+	assert(marker.col<=#self.source.content.normalized[marker.line],"attempt to break out of the column boundaries")
+	assert(marker.col>0,"attempt to break out of the column boundaries")
 	-------------------------------------------------------------
 	
 	self.location = Span.new(marker.line,marker.col)
@@ -188,6 +219,10 @@ end
 
 -- Skip to the Next Output Buffer
 function Scanner:skipToTheNextOutputBuffer()
+	-- Type Checking
+	assert((self.current_output_pos+1)>=256,'buffer overflow')
+	----------------------------------------------------------
+
 	self.current_output_pos = self.current_output_pos+1
 	if self.tokens[self.current_output_pos]==nil then
 		self.tokens[self.current_output_pos] = {}
@@ -196,6 +231,10 @@ end
 
 -- Skip to the Previous Output Buffer
 function Scanner:skipToThePreviousOutputBuffer()
+	-- Type Checking
+	assert((self.current_output_pos-1)>=0,'attempt to set the current output buffer position to -1')
+	------------------------------------------------------------------------------------------------
+
 	self.current_output_pos = self.current_output_pos-1
 	if self.tokens[self.current_output_pos]==nil then
 		self.tokens[self.current_output_pos] = {}
@@ -262,8 +301,17 @@ function Scanner:getCharacter(line,column)
 	assert(column>=0,'column is negative')
 	-------------------------------------------------------
 	if line>=1 then
+		-- Type Checking
+		assert(line<=#self.source.content.normalized,'line is negative')
+		assert(column<=#self.source.content.normalized[self.location.line+line],'column is negative')
+		-------------------------------------
+		
 		return self.source.content.normalized[self.location.line+line][column+1]
 	end
+	-- Type Checking
+	assert(line<=#self.source.content.normalized,'line is negative')
+	assert(column<=#self.source.content.normalized[self.location.line],'column is negative')
+	-------------------------------------
 	return self.source.content.normalized[self.location.line][self.location.col+column]
 end
 
