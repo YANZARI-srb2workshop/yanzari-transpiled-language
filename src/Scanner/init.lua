@@ -232,7 +232,7 @@ end
 -- Skip to the Previous Output Buffer
 function Scanner:skipToThePreviousOutputBuffer()
 	-- Type Checking
-	assert((self.current_output_pos-1)>=0,'attempt to set the current output buffer position to -1')
+	assert((self.current_output_pos-1)>=1,'attempt to set the current output buffer position to -1')
 	------------------------------------------------------------------------------------------------
 
 	self.current_output_pos = self.current_output_pos-1
