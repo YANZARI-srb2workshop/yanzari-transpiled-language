@@ -220,7 +220,7 @@ end
 -- Skip to the Next Output Buffer
 function Scanner:skipToTheNextOutputBuffer()
 	-- Type Checking
-	assert((self.current_output_pos+1)>=256,'buffer overflow')
+	assert((self.current_output_pos+1)<=256,'buffer overflow')
 	----------------------------------------------------------
 
 	self.current_output_pos = self.current_output_pos+1
