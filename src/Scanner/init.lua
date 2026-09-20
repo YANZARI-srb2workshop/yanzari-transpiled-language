@@ -103,7 +103,7 @@ function Scanner:setScannerState(state)
 	assert(state.location.line>0,"attempt to break out of the line boundaries")
 	-- Uncomment this if you don't want states with EOF:
 	-- assert(state.location.col<=#self.source.content.normalized[state.location.line],"attempt to break out of the column boundaries")
-	assert(state.location.col>=0,"attempt to break out of the column boundaries")
+	assert(state.location.col>0,"attempt to break out of the column boundaries")
 	if state.current~=nil then
 		assert(type(state.current)=='number','The current character is not a byte.')
 		assert(state.current>=0 and state.current<=255,'The current character is not a byte.')
