@@ -100,9 +100,9 @@ function Scanner:setScannerState(state)
 	assert(type(state.location.line)=="number", 'state.location.line is not a number.')
 	assert(type(state.location.col)=="number", 'state.location.col is not a number.')
 	assert(state.location.line<=#self.source.content.normalized,"attempt to break out of the line boundaries")
-	assert(state.location.line>0,"attempt to break out of the line boundaries")
+	assert(state.location.line>=0,"attempt to break out of the line boundaries")
 	assert(state.location.col<=#self.source.content.normalized[state.location.line],"attempt to break out of the column boundaries")
-	assert(state.location.col>0,"attempt to break out of the column boundaries")
+	assert(state.location.col>=0,"attempt to break out of the column boundaries")
 	assert(type(state.current)=='number','The current character is not a byte.')
 	assert(state.current>=0 and state.current<=255,'The current character is not a byte.')
 	if state.previous~=nil then
@@ -113,7 +113,7 @@ function Scanner:setScannerState(state)
 		assert(type(state.next)=='number','The next character is not a byte.')
 		assert(state.next>=0 and state.next<=255,'The next character is not a byte.')
 	end
-	assert((state.current_output_pos+1)>=256,'buffer overflow')
+	assert((state.current_output_pos+1)<=256,'buffer overflow')
 	---------------------------------------------------------------------------------
 
 	self.tokens = state.tokens
@@ -134,7 +134,7 @@ end
 -- Advance a Token
 ---@param limit number? the Advance Limit
 function Scanner:advance(limit)
-	if self.current==nil then
+	if self.current==nil and self.source.content.normalized[self.location.line+1]==nil then
 		return nil
 	end
 	limit = limit or 1
@@ -165,9 +165,9 @@ function Scanner:back(marker)
 	-- Type Checking
 	assert(getmetatable(marker)==Marker,'marker is not a Marker')
 	assert(marker.line<=#self.source.content.normalized,"attempt to break out of the line boundaries")
-	assert(marker.line>0,"attempt to break out of the line boundaries")
+	assert(marker.line>=0,"attempt to break out of the line boundaries")
 	assert(marker.col<=#self.source.content.normalized[marker.line],"attempt to break out of the column boundaries")
-	assert(marker.col>0,"attempt to break out of the column boundaries")
+	assert(marker.col>=0,"attempt to break out of the column boundaries")
 	-------------------------------------------------------------
 	
 	self.location = Span.new(marker.line,marker.col)
@@ -188,7 +188,7 @@ function Scanner:insertChar(char)
 	-- Typing Check
 	if char~=nil then
 		assert(type(char)=='number','char is not a number')
-		assert(char < 255 and char > 0, "Invalid Byte")
+		assert(char <= 255 and char >= 0, "Invalid Byte")
 	end
 	------
 
@@ -249,7 +249,7 @@ end
 function Scanner:emitToken(kind,start_location,end_location,extra)
 	-- Type Checking
 	assert(type(kind)=='table','Kind is not a TokenKind')
-	assert(type(kind.category)=='string','Kind.category is not a String')
+	assert(type(kind.category)=='number','Kind.category is not a Enum Value')
 
 	---@type Token
 	local TokenNode = Token.new({
@@ -302,16 +302,16 @@ function Scanner:getCharacter(line,column)
 	-------------------------------------------------------
 	if line>=1 then
 		-- Type Checking
-		assert(line<=#self.source.content.normalized,'line is negative')
-		assert(column<=#self.source.content.normalized[self.location.line+line],'column is negative')
+		assert(line<=#self.source.content.normalized,'line is invalid')
+		assert(column<=#self.source.content.normalized[self.location.line+line],'column is invalid')
 		-------------------------------------
 		
 		return self.source.content.normalized[self.location.line+line][column+1]
 	end
 	-- Type Checking
-	assert(line<=#self.source.content.normalized,'line is negative')
-	assert(column<=#self.source.content.normalized[self.location.line],'column is negative')
-	-------------------------------------
+	assert(line<=#self.source.content.normalized,'line is invalid')
+	assert(column<=#self.source.content.normalized[self.location.line],'column is invalid')
+	---------------------------------------------------------------------------------------
 	return self.source.content.normalized[self.location.line][self.location.col+column]
 end
 
@@ -369,7 +369,7 @@ function Scanner:matchOutOfRangeAChar(the_char_used_for_match,start_range,end_ra
 	assert(type(start_range)=='number' and (start_range>=0 and start_range<=255),'start_range need to be a byte')
 	assert(type(end_range)=='number' and (end_range>=0 and end_range<=255),'end_range need to be a byte')
 
-	return (the_char_used_for_match<=start_range) or (the_char_used_for_match>=end_range)
+	return (the_char_used_for_match<start_range) or (the_char_used_for_match>end_range)
 end
 
 -- Scanner Rules
@@ -420,7 +420,7 @@ Scanner.runRules = function(self)
 				break
 			end
 		end
-		return self.tokens[1]
+		return self.tokens
 	end)
 end
 

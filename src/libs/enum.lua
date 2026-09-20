@@ -7,8 +7,8 @@
 
 -- Enums
 ---@class Enum
----@field key table
----@field value any[]
+---@field key table key-to-value map
+---@field value any[] value-to-key map
 ---@field new fun(...): Enum
 ---@field getvalue fun(self:Enum,key:any):number
 ---@field getkey fun(self:Enum,value:number):any
@@ -32,14 +32,14 @@ end
 ---@param key any the Key for getting the Value
 ---@return number value the Value returned
 function Enum:getvalue(key)
-	return self.value[key]
+	return self.key[key]
 end
 
 -- Get a Key from a Value
 ---@param value number the Value for getting a Key
 ---@return any key the Key returned
 function Enum:getkey(value)
-	return self.key[value]
+	return self.value[value]
 end
 
 -- Export
