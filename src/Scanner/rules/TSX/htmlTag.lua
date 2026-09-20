@@ -12,6 +12,9 @@
 -- A module that handles rules.
 local Rules = require('src.Scanner.rules')
 
+-- A module that handles tokens.
+local Token = require('src.Scanner.token')
+
 -- Enum Module
 local enum = require("src.libs.enum")
 
@@ -65,11 +68,12 @@ return Rules.new({
         -- ...
 
         local End = base:newSpanBasedOnCurrentPosition()
-        base:emitToken({
-            category=JSXTags
-        },
-        Start,
-        End)
+        table.remove(base.states)
+        return Token.new({
+            kind={category=JSXTags},
+            location={start=Start,["end"]=End},
+            token=base.token
+        })
     end,
     exportable={
         JSXTags=JSXTags, -- value of the JSX tag for the Scanner's Enum.

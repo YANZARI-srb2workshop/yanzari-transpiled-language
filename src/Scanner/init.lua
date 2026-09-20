@@ -100,11 +100,13 @@ function Scanner:setScannerState(state)
 	assert(type(state.location.line)=="number", 'state.location.line is not a number.')
 	assert(type(state.location.col)=="number", 'state.location.col is not a number.')
 	assert(state.location.line<=#self.source.content.normalized,"attempt to break out of the line boundaries")
-	assert(state.location.line>=0,"attempt to break out of the line boundaries")
+	assert(state.location.line>0,"attempt to break out of the line boundaries")
 	assert(state.location.col<=#self.source.content.normalized[state.location.line],"attempt to break out of the column boundaries")
 	assert(state.location.col>=0,"attempt to break out of the column boundaries")
-	assert(type(state.current)=='number','The current character is not a byte.')
-	assert(state.current>=0 and state.current<=255,'The current character is not a byte.')
+	if state.current~=nil then
+		assert(type(state.current)=='number','The current character is not a byte.')
+		assert(state.current>=0 and state.current<=255,'The current character is not a byte.')
+	end
 	if state.previous~=nil then
 		assert(type(state.previous)=='number','The previous character is not a byte.')
 		assert(state.previous>=0 and state.previous<=255,'The previous character is not a byte.')
@@ -113,7 +115,8 @@ function Scanner:setScannerState(state)
 		assert(type(state.next)=='number','The next character is not a byte.')
 		assert(state.next>=0 and state.next<=255,'The next character is not a byte.')
 	end
-	assert((state.current_output_pos+1)<=256,'buffer overflow')
+	assert((state.current_output_pos)<=256,'buffer overflow')
+	assert((state.current_output_pos+1)>0,'buffer overflow')
 	---------------------------------------------------------------------------------
 
 	self.tokens = state.tokens
@@ -165,7 +168,7 @@ function Scanner:back(marker)
 	-- Type Checking
 	assert(getmetatable(marker)==Marker,'marker is not a Marker')
 	assert(marker.line<=#self.source.content.normalized,"attempt to break out of the line boundaries")
-	assert(marker.line>=0,"attempt to break out of the line boundaries")
+	assert(marker.line>0,"attempt to break out of the line boundaries")
 	assert(marker.col<=#self.source.content.normalized[marker.line],"attempt to break out of the column boundaries")
 	assert(marker.col>=0,"attempt to break out of the column boundaries")
 	-------------------------------------------------------------
@@ -303,6 +306,7 @@ function Scanner:getCharacter(line,column)
 	if line>=1 then
 		-- Type Checking
 		assert(line<=#self.source.content.normalized,'line is invalid')
+		assert(type(self.source.content.normalized[self.location.line+line])=='table','column is invalid')
 		assert(column<=#self.source.content.normalized[self.location.line+line],'column is invalid')
 		-------------------------------------
 		
@@ -310,7 +314,7 @@ function Scanner:getCharacter(line,column)
 	end
 	-- Type Checking
 	assert(line<=#self.source.content.normalized,'line is invalid')
-	assert(column<=#self.source.content.normalized[self.location.line],'column is invalid')
+	assert(self.location.col+column<=#self.source.content.normalized[self.location.line],'column is invalid')
 	---------------------------------------------------------------------------------------
 	return self.source.content.normalized[self.location.line][self.location.col+column]
 end
@@ -409,6 +413,7 @@ Scanner.runRules = function(self)
 						self:insertChar(char)
 					end
 					self:emitToken(token.kind,token.location.start,token.location["end"],token.extra)
+					self.token = {}
 					passed = true
 					break
 				end

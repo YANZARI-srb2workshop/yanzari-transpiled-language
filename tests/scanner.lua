@@ -11,7 +11,7 @@
 return function()
     -- Source
     ---@type string
-    local Source = [[YTL]]
+    local Source = "YTL"
 
     -- Source Code Module
     ---@type SourceCode
