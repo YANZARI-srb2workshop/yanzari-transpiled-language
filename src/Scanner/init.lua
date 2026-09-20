@@ -281,10 +281,10 @@ end
 -- Return character based on the `line` and `column` parameters.
 ---
 --- If the `line` parameter is greater than 1: returns the character in the column specified by
---- the `column` parameter, where the line is relative to the current line.
+--- the `column` parameter + 1, where the line is the current line + `line` parameter.
 --- 
---- If the `line` parameter is 0: returns the character in the column specified by
---- the `column` parameter (the column is relative to the current column) and the line is the
+--- If the `line` parameter is 0: returns the character in the column is
+--- the `column` parameter + current column and the line is the
 --- current line.
 ---@param line number line relative to the current line.
 ---@param column number column relative to the current column.
@@ -307,13 +307,13 @@ function Scanner:getCharacter(line,column)
 		-- Type Checking
 		assert(self.location.line+line<=#self.source.content.normalized,'line is invalid')
 		assert(type(self.source.content.normalized[self.location.line+line])=='table','column is invalid')
-		assert(column<=#self.source.content.normalized[self.location.line+line],'column is invalid')
+		assert(column+1<=#self.source.content.normalized[self.location.line+line],'column is invalid')
 		-------------------------------------
 		
 		return self.source.content.normalized[self.location.line+line][column+1]
 	end
 	-- Type Checking
-	assert(line<=#self.source.content.normalized,'line is invalid')
+	assert(self.location.line<=#self.source.content.normalized,'line is invalid')
 	assert(self.location.col+column<=#self.source.content.normalized[self.location.line],'column is invalid')
 	---------------------------------------------------------------------------------------
 	return self.source.content.normalized[self.location.line][self.location.col+column]
