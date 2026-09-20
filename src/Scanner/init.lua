@@ -430,7 +430,7 @@ Scanner.runRules = function(self)
 		while true do
 			local passed = false
 			for _,rule in ipairs(Scanner.rules) do
-				if self.current==nil then
+				if self:isEOF() then
 					break
 				end
 
