@@ -33,7 +33,7 @@ local TokenKinds = enum.new(
 	'Directive', -- //!
 	'Property', -- //$
 	'Documentation', -- //@
-	'Miscellanious',
+	'Miscellaneous', -- Miscellaneous token category.
 	'EndOfFile' -- EOF
 )
 
@@ -44,7 +44,7 @@ local CommentSize = enum.new(
 )
 
 -- some extra types of tokens
-local MiscellaniousTokenKinds = enum.new(
+local MiscellaneousTokenKinds = enum.new(
 	'Parentesis',
 	'CurlyBracket',
 	'SquareBracket',
@@ -106,7 +106,7 @@ local TokenDirection = enum.new(
 -- Module
 local Enums = {
 	TokenKinds=TokenKinds, -- Kinds of Tokens
-	MiscellaniousTokenKinds=MiscellaniousTokenKinds, -- some extra types of tokens
+	MiscellaneousTokenKinds=MiscellaneousTokenKinds, -- some extra types of tokens
 	OperatorsTokenKinds=OperatorsTokenKinds, -- Types of Operators
 	CommentSize=CommentSize, -- Commentary Sizes
 	TokenDirection=TokenDirection -- Directions of Tokens (e.g. Left Parentesis, Left Curly Brackets)
