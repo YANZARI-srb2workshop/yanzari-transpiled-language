@@ -40,8 +40,14 @@ function Rules.new(options)
 end
 
 -- Run the Rule
+---
+--- The first returned argument, `entered`
+--- indicates whether the rule found at least one match;
+--- 
+--- the second returned argument, `token`
+--- is the token produced by the rule.
 ---@param base Scanner an instance of the Scanner.
----@return Token? token token that will be emitted to the output buffer, or nil.
+---@return boolean entered,Token? token
 function Rules:run(base)
     local enter
     local token
@@ -49,16 +55,16 @@ function Rules:run(base)
     
     enter = self.enter(base)
     if enter~=true then
-        return nil
+        return false,nil
     end
     token = self.loop(base)
     if token==nil then
-        return nil
+        return true,nil
     end
     if self.exit~=nil then
         self.exit(base)
     end
-    return token
+    return true,token
 end
 
 -- Export

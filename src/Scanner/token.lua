@@ -31,7 +31,9 @@ function Token.new(options)
 	assert(type(options)=='table','Options is not a Token Interface')
 	assert(type(options.kind)=='table','Options.kind is not a TokenKind')
 	assert(type(options.kind.category)=='number','Options.kind.category is not a Number')
-	assert(type(options.token)=='table','Options.token is not a byte array')
+	if options.token~=nil then
+		assert(type(options.token)=='table','Options.token is not a byte array')
+	end
 	assert(type(options.location)=='table','Options.location is not a Span Group')
 	assert(type(options.location.start)=='table','Options.location.start is not a Span')
 	assert(type(options.location['end'])=='table','Options.location.end is not a Span')

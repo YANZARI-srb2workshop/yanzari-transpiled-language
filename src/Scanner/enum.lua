@@ -24,7 +24,7 @@ local TokenKinds = enum.new(
 	'Identifier', -- Flower
 	'BitString', -- b"hihi"
 	'Keyword', -- is
-	'Operators', -- +
+	'Operator', -- +
 	'JSXTag', -- <example> </example>
 	'Indent',
 	'Dedent',
@@ -45,8 +45,8 @@ local CommentSize = enum.new(
 -- some extra types of tokens
 local MiscellaniousTokenKinds = enum.new(
 	'Parentesis',
-	'CurlyBrackets',
-	'SquareBrackets',
+	'CurlyBracket',
+	'SquareBracket',
 	'Semicolon'
 )
 
@@ -73,10 +73,12 @@ local OperatorsTokenKinds = enum.new(
 	'LessThan', -- <
 	'GreaterThan', -- >
 	'LessThan LessThan', -- <<
+	'LessThan LessThan Equals', -- <<=
 	'GreaterThan GreaterThan', -- >>
+	'GreaterThan GreaterThan Equals', -- >>=
 	'LessThan Equals', -- <=
 	'GreaterThan Equals', -- >=
-	'LessThan Equals GreaterThan', -- <=
+	'LessThan Equals GreaterThan', -- <=>
 	'Equals Equals', -- ==
 	'Equals', -- =
 	'Plus Equals', -- +=
@@ -90,7 +92,8 @@ local OperatorsTokenKinds = enum.new(
 	'Circumflex Equals', -- ^=
 	'Exclamation', -- !
 	'Exclamation Equals', -- !=
-	'Tilde' -- ~
+	'Tilde', -- ~
+	'Custom'
 )
 
 -- Directions of Tokens (e.g. Left Parentesis, Left Curly Brackets)

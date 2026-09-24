@@ -1,0 +1,14 @@
+# to avoid committing files I don't want.
+# I created this file named .gitignore
+#--by Yanzari
+
+# I use this file for more complex tests, but I don't want to include it.
+# Never leak your .env file; it might contain passwords and various other things,
+# so just never leak it.
+deep-test.lua
+
+# Never leak your .env file;
+# it might contain passwords and various other things
+#
+# so just never leak it.
+.env
