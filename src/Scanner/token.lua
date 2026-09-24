@@ -31,6 +31,15 @@ function Token.new(options)
 	assert(type(options)=='table','Options is not a Token Interface')
 	assert(type(options.kind)=='table','Options.kind is not a TokenKind')
 	assert(type(options.kind.category)=='number','Options.kind.category is not a Number')
+	if options.kind.direction~=nil then
+		assert(type(options.kind.direction)=='number','Options.kind.direction is not a Number')
+	end
+	if options.kind.operator~=nil then
+		assert(type(options.kind.operator)=='number','Options.kind.operator is not a Number')
+	end
+	if options.kind.size~=nil then
+		assert(type(options.kind.size)=='number','Options.kind.size is not a Number')
+	end
 	if options.token~=nil then
 		assert(type(options.token)=='table','Options.token is not a byte array')
 	end

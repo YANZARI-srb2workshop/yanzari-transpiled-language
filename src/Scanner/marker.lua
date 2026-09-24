@@ -5,9 +5,7 @@
 --> By Yanzari
 
 -- a marker to be able to go back
----@class ScannerMarker
----@field col number the column for the scanner to move backward
----@field line number the line for the scanner to move backward
+---@class ScannerMarker: Span
 local Marker = {}
 Marker.__index = Marker
 

@@ -430,7 +430,7 @@ Scanner.runRules = function(self)
 		end
 		while true do
 			local passed = false
-			for _,rule in ipairs(Scanner.rules) do
+			for rulenumber,rule in ipairs(Scanner.rules) do
 				if self:isEOF() then
 					break
 				end
@@ -443,8 +443,11 @@ Scanner.runRules = function(self)
 				local token
 
 				enterred,token = rule:run(self)
+				assert(type(enterred)=='boolean','rule #'..tostring(rulenumber)..' returned argument #1 is not a boolean')
 				if enterred==true then
 					if token~=nil then
+						assert(getmetatable(token)==Token,'rule #'..tostring(rulenumber)..' returned argument #2 is not a Token')
+						
 						coroutine.yield(token)
 						self:emitToken(token)
 						self.token = {}

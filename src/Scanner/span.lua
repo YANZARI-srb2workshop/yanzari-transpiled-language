@@ -18,6 +18,11 @@ Span.__index = Span
 ---@param col number Text's Column
 ---@return Span self
 function Span.new(line,col)
+	-- Type Checking
+	assert(type(line)=='number','line is not a number')
+	assert(type(col)=='number','col is not a number')
+	---------------------------------------------------
+
 	local self = setmetatable({},Span)
 	self.line = line
 	self.col = col
