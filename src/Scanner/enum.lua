@@ -33,6 +33,7 @@ local TokenKinds = enum.new(
 	'Directive', -- //!
 	'Property', -- //$
 	'Documentation', -- //@
+	'Miscellanious',
 	'EndOfFile' -- EOF
 )
 

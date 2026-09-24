@@ -10,6 +10,7 @@ local Span = require('src.Scanner.span')
 -- Kind of a Token
 ---@class TokenKind
 ---@field category enum_value Token Category
+---@field miscellanious enum_value? Miscellanious Token category
 ---@field operator enum_value? Token Operator Category
 ---@field size enum_value? Comment Size (used only for Comment Token)
 ---@field direction enum_value? Token Direction (used only for parentheses, braces, and brackets)
@@ -31,6 +32,9 @@ function Token.new(options)
 	assert(type(options)=='table','Options is not a Token Interface')
 	assert(type(options.kind)=='table','Options.kind is not a TokenKind')
 	assert(type(options.kind.category)=='number','Options.kind.category is not a Number')
+	if options.kind.miscellanious~=nil then
+		assert(type(options.kind.miscellanious)=='number','Options.kind.miscellanious is not a Number')
+	end
 	if options.kind.direction~=nil then
 		assert(type(options.kind.direction)=='number','Options.kind.direction is not a Number')
 	end
