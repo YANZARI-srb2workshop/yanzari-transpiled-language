@@ -28,7 +28,7 @@ This repository contains no AI-generated code (or AI-generated text).
   - [ ] Warnings
 - [ ] Scanner
   - [ ] Keywords
-  - [ ] Operators
+  - [x] Operators
   - [ ] Comments
   - [ ] WildCards
   - [ ] Identifiers
