@@ -157,10 +157,10 @@ function Scanner:emitError(options)
 	TypeCheckingError(options)
 	--------------------------------------------------------------------------------
 
-	table.insert({
+	table.insert(self.errors,{
 		text=options.text,
 		location=options.location
-	},self.errors)
+	})
 end
 
 -- Emit a Warning
@@ -170,10 +170,10 @@ function Scanner:emitWarning(options)
 	TypeCheckingError(options)
 	--------------------------------------------------------------------------------
 
-	table.insert({
+	table.insert(self.warnings,{
 		text=options.text,
 		location=options.location
-	},self.warnings)
+	})
 end
 
 -- A new Span based on the current position.
