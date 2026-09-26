@@ -47,7 +47,7 @@ function FileSystem.open(filename,mode)
 	assert(AvailableOpenModes[mode]==true,"Mode's value is not a Valid value")
 
 	local file,err = io.open(filename,mode)
-	assert(file~=nil and type(err)==nil,err)
+	assert(file~=nil and err==nil,err)
 
 	local self = setmetatable({},File)
 	self.filename = filename
