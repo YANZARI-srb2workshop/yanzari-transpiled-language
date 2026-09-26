@@ -8,7 +8,7 @@
 
 -- the Tests
 local Tests = {
-    Scanner = require("tests.scanner"), -- Scanner Test
+	Scanner = require("tests.scanner"), -- Scanner Test
 }
 -- Tester
 local Tester = {}
@@ -16,19 +16,19 @@ local Tester = {}
 -- Test Scanner
 ---@return nil nil returns nothing
 function Tester.TestScanner()
-    print(".")
-    print("| Scanner")
+	print(".")
+	print("| Scanner")
 
-    -- Check if it passed the test.
-    Tests.Scanner()
+	-- Check if it passed the test.
+	Tests.Scanner()
 
-    print("")
+	print("")
 end
 
 -- Full Test
 ---@return nil nil returns nothing
 function Tester.Test()
-    Tester.TestScanner()
+	Tester.TestScanner()
 end
 
 -- Export

@@ -6,19 +6,22 @@
 --> By Yanzari
 
 -- Enums
----@class Enum
----@field key table key-to-value map
----@field value any[] value-to-key map
----@field new fun(...): Enum
----@field getvalue fun(self:Enum,key:any):number
----@field getkey fun(self:Enum,value:number):any
+---@class Enum<EnumValue>
+---@field key table<number,EnumValue> key-to-value map
+---@field value table<EnumValue,number> value-to-key map
+---@field new fun(...: EnumValue): Enum<EnumValue>
+---@field getvalue fun(self:Enum,key:EnumValue):number
+---@field getkey fun(self:Enum,value:number):EnumValue
 local Enum = {}
 Enum.__index = Enum
 
 -- Create a Enum
----@vararg any
+---@generic EnumValue: any
+---@vararg EnumValue
+---@return Enum<EnumValue> self
 function Enum.new(...)
-	local args,output = {...},{...}
+	local args = {...}
+	local output = {}
 	for k,v in ipairs(args) do
 		output[v] = k
 	end
@@ -29,15 +32,17 @@ function Enum.new(...)
 end
 
 -- Get a Value from a Key
----@param key any the Key for getting the Value
+---@generic EnumKey: any
+---@param key EnumKey the Key for getting the Value
 ---@return number value the Value returned
 function Enum:getvalue(key)
 	return self.key[key]
 end
 
 -- Get a Key from a Value
+---@generic EnumKey: any
 ---@param value number the Value for getting a Key
----@return any key the Key returned
+---@return EnumKey key the Key returned
 function Enum:getkey(value)
 	return self.value[value]
 end

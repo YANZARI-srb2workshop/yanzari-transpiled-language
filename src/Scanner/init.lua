@@ -30,6 +30,8 @@ local SourceCode = require('src.SourceCode')
 ---@field extra any? Expandable content in the Scanner.
 ---@field current_output_pos number the output buffer position.
 ---@field states {[number]: string|table} Scanner states
+---@field warnings table<number,string> a stack containing all the program's warnings
+---@field errors table<number,string> a stack containing all the program's errors
 local Scanner = {}
 Scanner.__index = Scanner
 
@@ -49,6 +51,9 @@ function Scanner.new(source)
 	self.location = Span.new(1,1)
 	self.current_output_pos = 1
 	self.states = {}
+	self.extra = {}
+	self.errors = {}
+	self.warnings = {}
 	if #self.source.content.normalized>=1 then
 		self.previous = self.source.content.normalized[self.location.line][self.location.col-1]
 		self.current = self.source.content.normalized[self.location.line][self.location.col]
@@ -67,7 +72,7 @@ function Scanner:clearScanner()
 	self.token = {}
 	self.location = Span.new(1,1)
 	self.current_output_pos = 1
-	self.extra = nil
+	self.extra = {}
 	if #self.source.content.normalized>=1 then
 		self.previous = self.source.content.normalized[self.location.line][self.location.col-1]
 		self.current = self.source.content.normalized[self.location.line][self.location.col]
@@ -128,6 +133,47 @@ function Scanner:setScannerState(state)
 	self.current = state.current
 	self.next = state.next
 	self.current_output_pos = state.current_output_pos
+end
+
+-- Error Interface
+---@class ErrorInterface
+---@field text string error message
+---@field location {start: Span, end: Span} error span
+
+-- Type Checking a Error
+---@param options ErrorInterface a Error Interface
+local function TypeCheckingError(options)
+	assert(type(options)=='table','options is not a ErrorInterface')
+	assert(type(options.text)=='string','options.text is not a string')
+	assert(type(options.location)=='table','options.location is not a span group')
+	assert(getmetatable(options.location.start)==Span,'options.location.start is not a span')
+	assert(getmetatable(options.location['end'])==Span,'options.location.end is not a span')
+end
+
+-- Emit a Error
+---@param options ErrorInterface a Error Interface
+function Scanner:emitError(options)
+	-- Runtime Type Checking
+	TypeCheckingError(options)
+	--------------------------------------------------------------------------------
+
+	table.insert({
+		text=options.text,
+		location=options.location
+	},self.errors)
+end
+
+-- Emit a Warning
+---@param options ErrorInterface a Warning Interface
+function Scanner:emitWarning(options)
+	-- Runtime Type Checking
+	TypeCheckingError(options)
+	--------------------------------------------------------------------------------
+
+	table.insert({
+		text=options.text,
+		location=options.location
+	},self.warnings)
 end
 
 -- A new Span based on the current position.
@@ -411,8 +457,9 @@ end
 -- Scanner Rules
 ---@type ScannerRule[]
 Scanner.rules = {
-	LoadRule('operator'),
-	LoadRule('space')
+	LoadRule('layout.indentation'), -- Indentation
+	LoadRule('operator'), -- Operator
+	LoadRule('layout.space'), -- Spaces
 	-- Coming Soon More
 }
 

@@ -19,24 +19,24 @@ Rules.__index = Rules
 -- Create a new Rules
 ---@param options ScannerRuleInterface
 function Rules.new(options)
-    -- Type Checking
-    assert(type(options)=='table','Options is not a Scanner Rule Interface.')
-    assert(type(options.enter)=='function','Options.enter is not a function.')
-    assert(type(options.loop)=='function','Options.loop is not a function.')
-    if options.exit~=nil then
-        assert(type(options.exit)=='function','Options.exit is not a function.')
-    end
-    if options.exportable~=nil then
-        assert(type(options.exportable)=='table','Options.exportable is not a table.')
-    end
-    ----------------------------------------------------------------------------------
+	-- Type Checking
+	assert(type(options)=='table','Options is not a Scanner Rule Interface.')
+	assert(type(options.enter)=='function','Options.enter is not a function.')
+	assert(type(options.loop)=='function','Options.loop is not a function.')
+	if options.exit~=nil then
+		assert(type(options.exit)=='function','Options.exit is not a function.')
+	end
+	if options.exportable~=nil then
+		assert(type(options.exportable)=='table','Options.exportable is not a table.')
+	end
+	----------------------------------------------------------------------------------
 
-    local self = setmetatable({},Rules)
-    self.enter = options.enter
-    self.loop = options.loop
-    self.exit = options.exit
-    self.exportable = options.exportable
-    return self
+	local self = setmetatable({},Rules)
+	self.enter = options.enter
+	self.loop = options.loop
+	self.exit = options.exit
+	self.exportable = options.exportable
+	return self
 end
 
 -- Run the Rule
@@ -49,22 +49,22 @@ end
 ---@param base Scanner an instance of the Scanner.
 ---@return boolean entered,Token? token
 function Rules:run(base)
-    local enter
-    local token
-    -----------
-    
-    enter = self.enter(base)
-    if enter~=true then
-        return false,nil
-    end
-    token = self.loop(base)
-    if token==nil then
-        return true,nil
-    end
-    if self.exit~=nil then
-        self.exit(base)
-    end
-    return true,token
+	local enter
+	local token
+	-----------
+	
+	enter = self.enter(base)
+	if enter~=true then
+		return false,nil
+	end
+	token = self.loop(base)
+	if token==nil then
+		return true,nil
+	end
+	if self.exit~=nil then
+		self.exit(base)
+	end
+	return true,token
 end
 
 -- Export

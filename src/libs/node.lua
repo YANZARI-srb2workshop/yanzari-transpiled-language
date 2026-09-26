@@ -16,17 +16,17 @@ local Node = {}
 ---@param children table? the children belonging to the node.
 ---@return Node self a Node
 function Node.new(value,children)
-    -- Type Checking
-    assert(type(value)~='nil','value is nil')
-    if children~=nil then
-        assert(type(children)=='table','value is not a table')
-    end
-    ----------------------------------------------------------
+	-- Type Checking
+	assert(type(value)~='nil','value is nil')
+	if children~=nil then
+		assert(type(children)=='table','value is not a table')
+	end
+	----------------------------------------------------------
 
-    local self = setmetatable({},Node)
-    self.children = children
-    self.value = value
-    return self
+	local self = setmetatable({},Node)
+	self.children = children
+	self.value = value
+	return self
 end
 
 -- Export
