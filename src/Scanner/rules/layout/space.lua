@@ -6,7 +6,7 @@
 --> By Yanzari
 
 -- Module that handles Scanner Rules
-local Rules = require('src.Scanner.rules')
+local Rules = require('src.Scanner.utils.scanning.rules')
 
 -- Module that is shared across the rules
 local Shared = require('src.Scanner.rules.shared')
@@ -22,17 +22,17 @@ local ListOfWhiteSpaces = {
 return Rules.new(
 	{
 		enter=function(self)
-			if ListOfWhiteSpaces[self.current] then
+			if ListOfWhiteSpaces[self.cursor:getCurrentCharacter()] then
 				return true
 			end
 			return false
 		end,
 		loop=function(self)
 			while true do
-				if self:isEOF() then break end
-				if self:isEOL() then break end
-				if ListOfWhiteSpaces[self.current]==nil then break end
-				self:advance()
+				if self.cursor:isEOF() then break end
+				if self.cursor:isEOL() then break end
+				if ListOfWhiteSpaces[self.cursor:getCurrentCharacter()]==nil then break end
+				self.cursor:advance()
 			end
 			return nil
 		end,

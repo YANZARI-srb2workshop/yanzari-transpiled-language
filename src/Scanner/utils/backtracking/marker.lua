@@ -14,8 +14,8 @@ Marker.__index = Marker
 ---@param col number the column for the scanner to move backward
 function Marker.new(line,col)
 	-- Type Checking
-	assert(type(col)=='number','column is not a number')
-	assert(type(line)=='number','line is not a number')
+	assert(type(col)=='number','column must be a number')
+	assert(type(line)=='number','line must be a number')
 	----------------------------------------------------
 
 	local self = setmetatable({},Marker)

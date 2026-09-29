@@ -34,7 +34,7 @@ end
 -- Get a Value from a Key
 ---@generic EnumKey: any
 ---@param key EnumKey the Key for getting the Value
----@return number value the Value returned
+---@return number? value the Value returned
 function Enum:getvalue(key)
 	return self.key[key]
 end

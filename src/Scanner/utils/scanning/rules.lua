@@ -20,14 +20,14 @@ Rules.__index = Rules
 ---@param options ScannerRuleInterface
 function Rules.new(options)
 	-- Type Checking
-	assert(type(options)=='table','Options is not a Scanner Rule Interface.')
-	assert(type(options.enter)=='function','Options.enter is not a function.')
-	assert(type(options.loop)=='function','Options.loop is not a function.')
+	assert(type(options)=='table','Options must be a Scanner Rule Interface.')
+	assert(type(options.enter)=='function','Options.enter must be a function.')
+	assert(type(options.loop)=='function','Options.loop must be a function.')
 	if options.exit~=nil then
-		assert(type(options.exit)=='function','Options.exit is not a function.')
+		assert(type(options.exit)=='function','Options.exit must be a function.')
 	end
 	if options.exportable~=nil then
-		assert(type(options.exportable)=='table','Options.exportable is not a table.')
+		assert(type(options.exportable)=='table','Options.exportable must be a table.')
 	end
 	----------------------------------------------------------------------------------
 

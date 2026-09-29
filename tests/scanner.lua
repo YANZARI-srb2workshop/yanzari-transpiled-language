@@ -33,37 +33,25 @@ return function()
 
 	-- Byte 1
 	---@type byte
-	local v1 = ScriptScanner.current
-
-	-- The Scanner's previous State
-	---@type ScannerState
-	local statev1 = ScriptScanner:getScannerState()
-	ScriptScanner:advance()
+	local byte1 = ScriptScanner.cursor:getCurrentCharacter()
+	ScriptScanner.cursor:advance()
 
 	-- Byte 2
 	---@type byte
-	local v2 = ScriptScanner.current
-
-	-- The Scanner's New State
-	---@type ScannerState
-	local statev2 = ScriptScanner:getScannerState()
-	if statev1.current==statev2.current then
-		print("- [Failed] The old character is a reference to the current character.")
-		return nil
-	end
-	ScriptScanner:advance()
+	local byte2 = ScriptScanner.cursor:getCurrentCharacter()
+	ScriptScanner.cursor:advance()
 
 	-- Byte 3
 	---@type byte
-	local v3 = ScriptScanner.current
+	local byte3 = ScriptScanner.cursor:getCurrentCharacter()
 
-	ScriptScanner:advance()
+	ScriptScanner.cursor:advance()
 
 	-- Check to see if Byte 1, Byte 2, and Byte 3 are bytes.
-	if type(v1)=="number"
-	and type(v2)=="number"
-	and type(v3)=="number" then
-		local char1,char2,char3 = string.char(v1),string.char(v2),string.char(v3)
+	if type(byte1)=="number"
+	and type(byte2)=="number"
+	and type(byte3)=="number" then
+		local char1,char2,char3 = string.char(byte1),string.char(byte2),string.char(byte3)
 		-- Check if the text is correct.
 		if char1=="Y"
 		and char2=="T"
@@ -79,6 +67,6 @@ return function()
 	end
 	-- Didn't Pass the Test
 	print("- [Failed] One of the 3 characters is not a byte:")
-	print(v1,v2,v3)
+	print(byte1,byte2,byte3)
 	return nil
 end -- Export

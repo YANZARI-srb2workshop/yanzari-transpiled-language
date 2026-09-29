@@ -6,16 +6,16 @@
 --> By Yanzari
 
 -- Module that handles Scanner Enums
-local Enum = require('src.Scanner.enum')
+local Enum = require('src.Scanner.utils.enum')
 
 -- Enum Module
 local enum = require('src.libs.enum')
 
 -- Module that handles Scanner Rules
-local Rules = require('src.Scanner.rules')
+local Rules = require('src.Scanner.utils.scanning.rules')
 
 -- Module that handles Scanner Tokens
-local Token = require('src.Scanner.token')
+local Token = require('src.Scanner.utils.token')
 
 -- Module that handles space rules.
 local Space = require('src.Scanner.rules.layout.space')
@@ -78,7 +78,7 @@ return Rules.new({
 		and self.extra.indentation == nil then
 			return true
 		end
-		if self:isEOL() then
+		if self.cursor:isEOL() then
 			return true
 		end
 		return false
@@ -88,9 +88,9 @@ return Rules.new({
 		--#region SkipEOL
 		do
 			-- This variable holds a boolean value and is used to skip the line break.
-			local skipEOL = self:isEOL()
+			local skipEOL = self.cursor:isEOL()
 			if skipEOL==true then
-				self:advance()
+				self.cursor:advance()
 			end
 		end
 		--#endregion SkipEOL
@@ -114,23 +114,23 @@ return Rules.new({
 
 		-- the current indentation
 		local IndentationCount = 0
-		local Start = self:newSpanBasedOnCurrentPosition()
+		local Start = self.cursor:newSpan()
 		do
 			while true do
-				if self:isEOF() then break end
-				if ListOfWhiteSpaces[self.current] ~= true then break end
-				if self.current==SpaceChar then
+				if self.cursor:isEOF() then break end
+				if ListOfWhiteSpaces[self.cursor:getCurrentCharacter()] ~= true then break end
+				if self.cursor:getCurrentCharacter()==SpaceChar then
 					self.extra.indentation.spaces = self.extra.indentation.spaces+1
 				end
-				if self.current==TabChar then
+				if self.cursor:getCurrentCharacter()==TabChar then
 					self.extra.indentation.tabs = self.extra.indentation.tabs+1
 					IndentationCount = IndentationCount+3
 				end
 				IndentationCount = IndentationCount+1
-				self:advance()
+				self.cursor:advance()
 			end
 		end
-		local End = self:newSpanBasedOnCurrentPosition()
+		local End = self.cursor:newSpan()
 		--#endregion readSpacesOrTabs
 
 		-- Emits indentation tokens.
@@ -158,7 +158,7 @@ return Rules.new({
 						break
 					end
 					if IndentationCount>self.extra.indentation.stack[#self.extra.indentation.stack-1] then
-						self:emitError({
+						self.errors:emit({
 							text='Inconsistent indentation.',
 							location={
 								start=Start,

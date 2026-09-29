@@ -34,10 +34,10 @@ SourceCode.__index = SourceCode
 ---@return SourceCode self
 function SourceCode.new(options)
 	-- Typing Check
-	assert(type(options)=='table','Option\'s is not a Table')
-	assert(type(options.content)=='string','Option\'s content is not a string')
+	assert(type(options)=='table','Option\'s must be a Table')
+	assert(type(options.content)=='string','Option\'s content must be a string')
 	if options.filename~=nil then
-		assert(type(options.filename)=='string','Option\'s filename is not a string')
+		assert(type(options.filename)=='string','Option\'s filename must be a string')
 	end
 	
 	local self = setmetatable({},SourceCode)

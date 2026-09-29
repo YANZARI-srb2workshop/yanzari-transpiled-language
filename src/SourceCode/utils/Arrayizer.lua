@@ -14,7 +14,7 @@ local Module = {}
 function Module.StringToByteArray(text)
 	-- Typechecking
 
-	assert(type(text)=='string','text is not a string')
+	assert(type(text)=='string','text must be a string')
 	---------------------------------------------------
 
 	local output = {}
@@ -30,13 +30,13 @@ end
 function Module.ByteArrayToString(array)
 	-- Type checking
 	
-	assert(type(array)=='table','array is not a array')
+	assert(type(array)=='table','array must be a array')
 	---------------------------------------------------
 	
 	local output = {}
 	for _,v in ipairs(array) do
 		-- Type checking
-		assert(type(v)=='number','array is not a byte array')
+		assert(type(v)=='number','array must be a byte array')
 		-----------------------------------------------------
 		
 		output[#output+1] = string.char(v)

@@ -6,13 +6,13 @@
 --> By Yanzari
 
 -- Module that handles Scanner Enums
-local Enum = require('src.Scanner.enum')
+local Enum = require('src.Scanner.utils.enum')
 
 -- Module that handles Scanner Rules
-local Rules = require('src.Scanner.rules')
+local Rules = require('src.Scanner.utils.scanning.rules')
 
 -- Module that handles Scanner Tokens
-local Token = require('src.Scanner.token')
+local Token = require('src.Scanner.utils.token')
 
 -- The operator value in the Enum related to token types
 local Operator = Enum.TokenKinds:getvalue('Operator')
@@ -112,24 +112,24 @@ local CustomOperator = Enum.OperatorsTokenKinds:getvalue('Custom')
 return Rules.new(
 	{
 		enter=function(self)
-			if ListOfOperators.Single[self.current] then
+			if ListOfOperators.Single[self.cursor:getCurrentCharacter()] then
 				return true
 			end
 			return false
 		end,
 		loop=function(self)
-			local Start = self:newSpanBasedOnCurrentPosition()
-			self:insertChar(self.current)
-			self:advance()
+			local Start = self.cursor:newSpan()
+			self:insertChar(self.cursor:getCurrentCharacter())
+			self.cursor:advance()
 			while true do
-				if self:isEOF() then break end
-				if self:isEOL() then break end
-				if ListOfOperators.More[self.current]==nil then break end
+				if self.cursor:isEOF() then break end
+				if self.cursor:isEOL() then break end
+				if ListOfOperators.More[self.cursor:getCurrentCharacter()]==nil then break end
 				if #self.token>=64 then break end
-				self:insertChar(self.current)
-				self:advance()
+				self:insertChar(self.cursor:getCurrentCharacter())
+				self.cursor:advance()
 			end
-			local End = self:newSpanBasedOnCurrentPosition()
+			local End = self.cursor:newSpan()
 			if #self.token == 1 then
 				local SingleCharacter = ListOfOperators.Single[self.token[1]]
 				if type(SingleCharacter)=='number' then
