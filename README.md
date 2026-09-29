@@ -28,12 +28,12 @@ But this repository can use AI to find bugs, yet the corrected code is produced 
 	- [ ] Errors
 	- [ ] Warnings
 - [ ] Scanner
-	- [ ] Keywords
+	- [x] Keywords
 	- [x] Operators
 	- [ ] Comments
 	- [ ] WildCards
-	- [ ] Identifiers
-	- [ ] Indents
+	- [x] Identifiers
+	- [x] Indents
 	- [ ] Directives
 		- [ ] `//!nonstrict`
 		- [ ] `//!strict`
