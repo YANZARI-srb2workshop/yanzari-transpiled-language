@@ -1,9 +1,7 @@
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/YANZARI-srb2workshop/yanzari-transpiled-language)
 
 <div align="center">
-
 	<img src="imgs/logo.png" alt="Yanzari Transpiled Language">
-		
 	<h3 align="center">Yanzari's Transpiled Language</h3>
 	<sup>YTL</sup>
 	<p align="center">
