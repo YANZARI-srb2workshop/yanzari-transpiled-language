@@ -169,5 +169,11 @@ return Rules.new({
                 ['end']=End
             }
         })
-    end
+    end,
+    exportable = {
+        Identifier_Loop=Identifier_Loop,
+        Identifier=Identifier,
+        Identifier_Start=Identifier_Start,
+        Keywords=Keywords
+    }
 })
