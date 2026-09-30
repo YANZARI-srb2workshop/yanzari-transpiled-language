@@ -13,19 +13,19 @@ local Marker = require('src.Scanner.utils.backtracking.marker')
 -- the module containing the object representation of the source code.
 local SourceCode = require('src.SourceCode')
 
--- Scanner Cursor
+-- the cursor used by the Scanner to read the text and advance.
 ---@class ScannerCursor
----@field source SourceCode The Source Code
----@field location Span Cursor location
----@field next byte? The Next Character
----@field current byte? The Current Character
----@field previous byte? The Previous Character
+---@field source SourceCode the source code that allows the scanner cursor to advance and capture characters from it.
+---@field location Span the current location of the cursor.
+---@field next byte? the next character the cursor will pass over.
+---@field current byte? the current character the cursor is on.
+---@field previous byte? the previous character that the cursor has already passed.
 local Cursor = {}
 Cursor.__index = Cursor
 
--- Create a new Cursor
----@param source SourceCode
----@return ScannerCursor
+-- creates a new instance of the cursor
+---@param source SourceCode the source code that allows the scanner cursor to advance and capture characters from it.
+---@return ScannerCursor an instance of the Cursor.
 function Cursor.new(source)
 	-- Type Checking
 
@@ -43,33 +43,36 @@ function Cursor.new(source)
     return self
 end
 
--- Get the Cursor Location
+-- Gets the current cursor location.
 function Cursor:getLocation()
     return self.location
 end
 
--- Get the Previous Character
+-- Gets the previous character at the cursor's current position.
 function Cursor:getPreviousCharacter()
     return self.previous
 end
 
--- Get the Current Character
+-- Gets the character at the cursor's current position.
 function Cursor:getCurrentCharacter()
     return self.current
 end
 
--- Get the Next Character
+-- Gets the next character at the cursor's current position.
 function Cursor:getNextCharacter()
     return self.next
 end
 
--- Advance a Token
----@param limit number? the Advance Limit
+-- Advances several characters.
+---@param limit number? the character advance limit; it stops when it reaches this limit. The default value is 1.
 function Cursor:advance(limit)
 	if self.current==nil and self.source.content.normalized[self.location.line+1]==nil then
 		return nil
 	end
-	limit = limit or 1
+	if limit==nil then
+		limit = 1
+	end
+	assert(type(limit)=='number','limit must be a number')
 	for _=1,limit do
 		local cur = self.current
 		local jumplines = 0
@@ -90,10 +93,10 @@ function Cursor:advance(limit)
 	end
 end
 
--- turn back
----@param marker ScannerMarker a marker to be able to go back
----@return byte char the current character before returning.
-function Cursor:back(marker)
+-- This function causes the cursor to perform a backtracking.
+---@param marker ScannerMarker a marker to make the cursor perform backtracking.
+---@return byte char the current character before backtracking.
+function Cursor:backtrack(marker)
 	-- Type Checking
 	assert(getmetatable(marker)==Marker,'marker must be a Marker')
 	assert(marker.line<=#self.source.content.normalized,"attempt to break out of the line boundaries")
@@ -104,7 +107,7 @@ function Cursor:back(marker)
 	
 	self.location = Span.new(marker.line,marker.col)
 
-	-- Old Token
+	-- the current character before backtracking.
 	---@type byte
 	local old = self.source.content.normalized[self.location.line][self.location.col]
 
@@ -238,7 +241,7 @@ function Cursor:matchOutOfRangeAChar(the_char_used_for_match,start_range,end_ran
 	return (the_char_used_for_match<start_range) or (the_char_used_for_match>end_range)
 end
 
--- the Cursor's current position in a new Span.
+-- creates a Span based on the current Cursor location.
 function Cursor:newSpan()
 	return Span.new(self.location.line,self.location.col)
 end

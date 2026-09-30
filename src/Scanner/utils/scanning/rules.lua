@@ -4,20 +4,21 @@
 --- a module that implements the Scanner's rule class
 --> By Yanzari
 
--- Rule Class Interface
+-- the interface for the `ScannerRule` to create a Rule.
 ---@class ScannerRuleInterface
 ---@field enter fun(base: Scanner): boolean when you call the rule's scanning function.
 ---@field loop fun(base: Scanner): Token? when the rule scan was accepted.
 ---@field exit? fun(base: Scanner): nil when the rule scan is complete.
 ---@field exportable? table exportable content.
 
--- Rule Class
+-- the class for creating rules for the scanner.
 ---@class ScannerRule: ScannerRuleInterface
 local Rules = {}
 Rules.__index = Rules
 
--- Create a new Rules
----@param options ScannerRuleInterface
+-- Create a rule for the scanner.
+---@param options ScannerRuleInterface an interface to create the rule.
+---@return ScannerRule rule a rule for the scanner
 function Rules.new(options)
 	-- Type Checking
 	assert(type(options)=='table','Options must be a Scanner Rule Interface.')
@@ -39,7 +40,7 @@ function Rules.new(options)
 	return self
 end
 
--- Run the Rule
+-- run the Rule
 ---
 --- The first returned argument, `entered`
 --- indicates whether the rule found at least one match;

@@ -6,7 +6,7 @@
 --- it can be used for shared constants, for example.
 --> By Yanzari
 
-local Shared = {} -- Shared Module
+local Shared = {} -- A shared module for any rule.
 Shared.Tab = 9 -- Character that represents Tab
 Shared.Space = 32 -- Character that represents Space
 

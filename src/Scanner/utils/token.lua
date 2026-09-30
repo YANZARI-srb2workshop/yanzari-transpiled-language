@@ -16,18 +16,18 @@ local Span = require('src.Scanner.utils.span')
 ---@field size enum_value? Comment Size (used only for Comment Token)
 ---@field direction enum_value? Token Direction (used only for parentheses, braces, and brackets)
 
--- Token
+-- a class that handles Scanner tokens.
 ---@class Token
----@field kind TokenKind
----@field token byte[]? The Token Content
----@field location {start: Span, end: Span} the Token Location
----@field extra any? Extra content for Token
+---@field kind TokenKind the token kind
+---@field token byte[]? the token content
+---@field location {start: Span, end: Span} the location of the token.
+---@field extra any? Extra content for a token; for cases requiring the storage of additional information that a standard token does not hold.
 local Token = {}
 Token.__index = Token
 
 -- Create a Token
----@param options Token
----@return Token self
+---@param options Token an interface that you pass to the function, which returns a token.
+---@return Token token a token.
 function Token.new(options)
 	-- Type Checking
 	assert(type(options)=='table','Options must be a Token Interface')

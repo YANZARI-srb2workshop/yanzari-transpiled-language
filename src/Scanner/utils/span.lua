@@ -8,15 +8,15 @@
 
 -- Span
 ---@class Span
----@field line number Line
----@field col number Column
+---@field line number Span's line.
+---@field col number Span's column.
 local Span = {}
 Span.__index = Span
 
--- Create a Span
----@param line number Text's Line
----@param col number Text's Column
----@return Span self
+-- create a Span
+---@param line number the text line to construct the Span.
+---@param col number the text column to construct the Span.
+---@return Span self a Span that stores position.
 function Span.new(line,col)
 	-- Type Checking
 	assert(type(line)=='number','line must be a number')
