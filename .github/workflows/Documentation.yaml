@@ -28,24 +28,20 @@ jobs:
           luarocks install luafilesystem
           luarocks install ldoc
 
-      - name: Generate docs
+      - name: Generate Documentation
         run: |
-          echo "Current config.ld:"
-          cat config.ld || echo "No config.ld found"
           ldoc . || echo "ldoc failed, checking files"
-          ls -la
-          ls -la docs/ || echo "docs/ not created"
 
-      - name: Commit docs
+      - name: Commit Documentation
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          mkdir -p docs
-          git add docs/ -f || echo "nothing to add"
+          mkdir -p doc
+          git add doc/ -f || echo "nothing to add"
           if git diff --staged --quiet; then
             echo "No changes"
           else
-            git commit -m "docs: auto-generate API docs"
+            git commit -m "[Automatic] generates ldoc documentation in the doc folder."
             git push
           fi

@@ -1,5 +1,5 @@
 project = "Yanzari Transpiled Language"
 format = "markdown"
-output = "docs"
+ext = 'md'
 file = {"src"}
 not_luadoc = true
