@@ -57,6 +57,7 @@ local Keywords = enum.new(
     -- without goto, SRB2 does not support it
     'if',
     'inline',
+    'import',
     'int',
     'long',
     'mutable',
@@ -80,6 +81,7 @@ local Keywords = enum.new(
     'static',
     'static_assert',
     'static_cast',
+    'string',
     'struct', -- Very useful😈
     'switch',
     'template',
