@@ -6,42 +6,54 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write
+
 jobs:
-  docs:
+  generate-docs:
     runs-on: ubuntu-26.04
-    permissions:
-      contents: write
+
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Install Lua 5.4
-        uses: leafo/gh-actions-lua@v12
-        with:
-          luaVersion: "5.4"
-
-      - name: Install LuaRocks
-        uses: leafo/gh-actions-luarocks@v4
-
-      - name: Install LDoc
+      - name: Download LuaLS 3.19.1
         run: |
-          luarocks install penlight
-          luarocks install luafilesystem
-          luarocks install ldoc
+          curl -L \
+            -o lua-language-server.tar.gz \
+            https://github.com/LuaLS/lua-language-server/releases/download/3.19.1/lua-language-server-3.19.1-linux-x64.tar.gz
 
-      - name: Generate Documentation
+      - name: Verify LuaLS archive
         run: |
-          ldoc . || echo "ldoc failed, checking files"
+          echo "e9235d2d72ef55bc41cf8c99cda2ed64777682024b4bb81f5dea425060c5cbb8  lua-language-server.tar.gz" \
+            | sha256sum -c -
 
-      - name: Commit Documentation
-        if: github.event_name == 'push'
+      - name: Extract LuaLS
+        run: |
+          mkdir -p "$HOME/luals"
+          tar -xzf lua-language-server.tar.gz -C "$HOME/luals"
+
+      - name: Verify LuaLS version
+        run: |
+          "$HOME/luals/bin/lua-language-server" --version
+
+      - name: Generate documentation
+        run: |
+          "$HOME/luals/bin/lua-language-server" \
+            --doc=. \
+            --doc_out_path=docs
+
+      - name: Commit generated documentation
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          mkdir -p doc
-          git add doc/ -f || echo "nothing to add"
-          if git diff --staged --quiet; then
-            echo "No changes"
-          else
-            git commit -m "[Automatic] generates ldoc documentation in the doc folder."
-            git push
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add docs
+
+          if git diff --cached --quiet; then
+            echo "No documentation changes detected."
+            exit 0
           fi
+
+          git commit -m "[Automatic] generates ldoc documentation in the doc folder."
+          git push
