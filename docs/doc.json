@@ -507,12 +507,12 @@
                 "desc": " Error Interface",
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    4,
+                    11,
                     24
                 ],
                 "rawdesc": " Error Interface",
                 "start": [
-                    4,
+                    11,
                     10
                 ],
                 "type": "doc.class",
@@ -528,11 +528,11 @@
                 "desc": "error span",
                 "extends": {
                     "finish": [
-                        6,
+                        13,
                         43
                     ],
                     "start": [
-                        6,
+                        13,
                         19
                     ],
                     "type": "doc.type",
@@ -542,17 +542,17 @@
                                 {
                                     "desc": " Span",
                                     "finish": [
-                                        6,
+                                        13,
                                         31
                                     ],
                                     "name": {
                                         "[1]": "start",
                                         "finish": [
-                                            6,
+                                            13,
                                             25
                                         ],
                                         "start": [
-                                            6,
+                                            13,
                                             20
                                         ],
                                         "type": "doc.field.name",
@@ -560,7 +560,7 @@
                                     },
                                     "rawdesc": " Span",
                                     "start": [
-                                        6,
+                                        13,
                                         20
                                     ],
                                     "type": "doc.type.field",
@@ -569,17 +569,17 @@
                                 {
                                     "desc": " Span",
                                     "finish": [
-                                        6,
+                                        13,
                                         42
                                     ],
                                     "name": {
                                         "[1]": "end",
                                         "finish": [
-                                            6,
+                                            13,
                                             36
                                         ],
                                         "start": [
-                                            6,
+                                            13,
                                             33
                                         ],
                                         "type": "doc.field.name",
@@ -587,7 +587,7 @@
                                     },
                                     "rawdesc": " Span",
                                     "start": [
-                                        6,
+                                        13,
                                         33
                                     ],
                                     "type": "doc.type.field",
@@ -595,11 +595,11 @@
                                 }
                             ],
                             "finish": [
-                                6,
+                                13,
                                 43
                             ],
                             "start": [
-                                6,
+                                13,
                                 19
                             ],
                             "type": "doc.type.table",
@@ -610,13 +610,13 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    6,
+                    13,
                     43
                 ],
                 "name": "location",
                 "rawdesc": "error span",
                 "start": [
-                    6,
+                    13,
                     10
                 ],
                 "type": "doc.field",
@@ -629,22 +629,22 @@
                 "desc": "error message",
                 "extends": {
                     "finish": [
-                        5,
+                        12,
                         21
                     ],
                     "start": [
-                        5,
+                        12,
                         15
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                5,
+                                12,
                                 21
                             ],
                             "start": [
-                                5,
+                                12,
                                 15
                             ],
                             "type": "doc.type.name",
@@ -655,13 +655,13 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    5,
+                    12,
                     21
                 ],
                 "name": "text",
                 "rawdesc": "error message",
                 "start": [
-                    5,
+                    12,
                     10
                 ],
                 "type": "doc.field",
@@ -2845,12 +2845,12 @@
                 "desc": " Scanner Cursor",
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    10,
+                    16,
                     23
                 ],
                 "rawdesc": " Scanner Cursor",
                 "start": [
-                    10,
+                    16,
                     10
                 ],
                 "type": "doc.class",
@@ -2867,12 +2867,12 @@
                 "extends": {
                     "desc": " Scanner Cursor",
                     "finish": [
-                        17,
+                        23,
                         23
                     ],
                     "rawdesc": " Scanner Cursor",
                     "start": [
-                        17,
+                        23,
                         17
                     ],
                     "type": "getlocal",
@@ -2880,13 +2880,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    17,
+                    23,
                     14
                 ],
                 "name": "__index",
                 "rawdesc": " Scanner Cursor",
                 "start": [
-                    17,
+                    23,
                     0
                 ],
                 "type": "setfield",
@@ -2902,13 +2902,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                61,
+                                67,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                61,
+                                67,
                                 8
                             ],
                             "type": "self",
@@ -2917,13 +2917,13 @@
                         {
                             "desc": "the Advance Limit",
                             "finish": [
-                                61,
+                                67,
                                 29
                             ],
                             "name": "limit",
                             "rawdesc": "the Advance Limit",
                             "start": [
-                                61,
+                                67,
                                 24
                             ],
                             "type": "local",
@@ -2932,7 +2932,7 @@
                     ],
                     "desc": " Advance a Token\n\n@*param* `limit` — the Advance Limit",
                     "finish": [
-                        84,
+                        90,
                         3
                     ],
                     "rawdesc": " Advance a Token",
@@ -2943,7 +2943,7 @@
                         }
                     ],
                     "start": [
-                        61,
+                        67,
                         0
                     ],
                     "type": "function",
@@ -2951,13 +2951,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    61,
+                    67,
                     23
                 ],
                 "name": "advance",
                 "rawdesc": " Advance a Token",
                 "start": [
-                    61,
+                    67,
                     9
                 ],
                 "type": "setmethod",
@@ -2973,13 +2973,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                89,
+                                95,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                89,
+                                95,
                                 8
                             ],
                             "type": "self",
@@ -2988,13 +2988,13 @@
                         {
                             "desc": "a marker to be able to go back",
                             "finish": [
-                                89,
+                                95,
                                 27
                             ],
                             "name": "marker",
                             "rawdesc": "a marker to be able to go back",
                             "start": [
-                                89,
+                                95,
                                 21
                             ],
                             "type": "local",
@@ -3003,7 +3003,7 @@
                     ],
                     "desc": " turn back\n\n@*param* `marker` — a marker to be able to go back\n\n@*return* `char` — the current character before returning.",
                     "finish": [
-                        108,
+                        114,
                         3
                     ],
                     "rawdesc": " turn back",
@@ -3017,7 +3017,7 @@
                         }
                     ],
                     "start": [
-                        89,
+                        95,
                         0
                     ],
                     "type": "function",
@@ -3025,13 +3025,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    89,
+                    95,
                     20
                 ],
                 "name": "back",
                 "rawdesc": " turn back",
                 "start": [
-                    89,
+                    95,
                     9
                 ],
                 "type": "setmethod",
@@ -3045,12 +3045,12 @@
                 "extends": {
                     "desc": " a byte of a string.",
                     "finish": [
-                        14,
+                        20,
                         23
                     ],
                     "rawdesc": " a byte of a string.",
                     "start": [
-                        14,
+                        20,
                         18
                     ],
                     "type": "doc.type",
@@ -3058,12 +3058,12 @@
                         {
                             "desc": " a byte of a string.",
                             "finish": [
-                                14,
+                                20,
                                 22
                             ],
                             "rawdesc": " a byte of a string.",
                             "start": [
-                                14,
+                                20,
                                 18
                             ],
                             "type": "doc.type.name",
@@ -3074,13 +3074,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    14,
+                    20,
                     23
                 ],
                 "name": "current",
                 "rawdesc": "The Current Character",
                 "start": [
-                    14,
+                    20,
                     10
                 ],
                 "type": "doc.field",
@@ -3096,13 +3096,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                139,
+                                145,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                139,
+                                145,
                                 8
                             ],
                             "type": "self",
@@ -3111,13 +3111,13 @@
                         {
                             "desc": "line relative to the current line.",
                             "finish": [
-                                139,
+                                145,
                                 33
                             ],
                             "name": "line",
                             "rawdesc": "line relative to the current line.",
                             "start": [
-                                139,
+                                145,
                                 29
                             ],
                             "type": "local",
@@ -3126,13 +3126,13 @@
                         {
                             "desc": "column relative to the current column.",
                             "finish": [
-                                139,
+                                145,
                                 40
                             ],
                             "name": "column",
                             "rawdesc": "column relative to the current column.",
                             "start": [
-                                139,
+                                145,
                                 34
                             ],
                             "type": "local",
@@ -3141,7 +3141,7 @@
                     ],
                     "desc": " Return character based on the `line` and `column` parameters.\n\n If the `line` parameter is greater than 1: returns the character in the column specified by\n the `column` parameter + 1, where the line is the current line + `line` parameter.\n \n If the `line` parameter is 0: returns the character in the column is\n the `column` parameter + current column and the line is the\n current line.\n\n@*param* `line` — line relative to the current line.\n\n@*param* `column` — column relative to the current column.\n\n@*return* `char` — the line-related character.",
                     "finish": [
-                        167,
+                        173,
                         3
                     ],
                     "rawdesc": " Return character based on the `line` and `column` parameters.\n\n If the `line` parameter is greater than 1: returns the character in the column specified by\n the `column` parameter + 1, where the line is the current line + `line` parameter.\n \n If the `line` parameter is 0: returns the character in the column is\n the `column` parameter + current column and the line is the\n current line.",
@@ -3155,7 +3155,7 @@
                         }
                     ],
                     "start": [
-                        139,
+                        145,
                         0
                     ],
                     "type": "function",
@@ -3163,13 +3163,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    139,
+                    145,
                     28
                 ],
                 "name": "getCharacter",
                 "rawdesc": " Return character based on the `line` and `column` parameters.\n\n If the `line` parameter is greater than 1: returns the character in the column specified by\n the `column` parameter + 1, where the line is the current line + `line` parameter.\n \n If the `line` parameter is 0: returns the character in the column is\n the `column` parameter + current column and the line is the\n current line.",
                 "start": [
-                    139,
+                    145,
                     9
                 ],
                 "type": "setmethod",
@@ -3185,13 +3185,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                50,
+                                56,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                50,
+                                56,
                                 8
                             ],
                             "type": "self",
@@ -3200,7 +3200,7 @@
                     ],
                     "desc": " Get the Current Character",
                     "finish": [
-                        52,
+                        58,
                         3
                     ],
                     "rawdesc": " Get the Current Character",
@@ -3211,7 +3211,7 @@
                         }
                     ],
                     "start": [
-                        50,
+                        56,
                         0
                     ],
                     "type": "function",
@@ -3219,13 +3219,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    50,
+                    56,
                     35
                 ],
                 "name": "getCurrentCharacter",
                 "rawdesc": " Get the Current Character",
                 "start": [
-                    50,
+                    56,
                     9
                 ],
                 "type": "setmethod",
@@ -3241,13 +3241,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                40,
+                                46,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                40,
+                                46,
                                 8
                             ],
                             "type": "self",
@@ -3256,7 +3256,7 @@
                     ],
                     "desc": " Get the Cursor Location",
                     "finish": [
-                        42,
+                        48,
                         3
                     ],
                     "rawdesc": " Get the Cursor Location",
@@ -3267,7 +3267,7 @@
                         }
                     ],
                     "start": [
-                        40,
+                        46,
                         0
                     ],
                     "type": "function",
@@ -3275,13 +3275,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    40,
+                    46,
                     27
                 ],
                 "name": "getLocation",
                 "rawdesc": " Get the Cursor Location",
                 "start": [
-                    40,
+                    46,
                     9
                 ],
                 "type": "setmethod",
@@ -3297,13 +3297,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                55,
+                                61,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                55,
+                                61,
                                 8
                             ],
                             "type": "self",
@@ -3312,7 +3312,7 @@
                     ],
                     "desc": " Get the Next Character",
                     "finish": [
-                        57,
+                        63,
                         3
                     ],
                     "rawdesc": " Get the Next Character",
@@ -3323,7 +3323,7 @@
                         }
                     ],
                     "start": [
-                        55,
+                        61,
                         0
                     ],
                     "type": "function",
@@ -3331,13 +3331,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    55,
+                    61,
                     32
                 ],
                 "name": "getNextCharacter",
                 "rawdesc": " Get the Next Character",
                 "start": [
-                    55,
+                    61,
                     9
                 ],
                 "type": "setmethod",
@@ -3353,13 +3353,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                45,
+                                51,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                45,
+                                51,
                                 8
                             ],
                             "type": "self",
@@ -3368,7 +3368,7 @@
                     ],
                     "desc": " Get the Previous Character",
                     "finish": [
-                        47,
+                        53,
                         3
                     ],
                     "rawdesc": " Get the Previous Character",
@@ -3379,7 +3379,7 @@
                         }
                     ],
                     "start": [
-                        45,
+                        51,
                         0
                     ],
                     "type": "function",
@@ -3387,13 +3387,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    45,
+                    51,
                     36
                 ],
                 "name": "getPreviousCharacter",
                 "rawdesc": " Get the Previous Character",
                 "start": [
-                    45,
+                    51,
                     9
                 ],
                 "type": "setmethod",
@@ -3409,13 +3409,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                121,
+                                127,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                121,
+                                127,
                                 8
                             ],
                             "type": "self",
@@ -3424,7 +3424,7 @@
                     ],
                     "desc": " Is this the end of the file or not?\n\n@*return* `EOF` — Is it the end of the file?",
                     "finish": [
-                        126,
+                        132,
                         3
                     ],
                     "rawdesc": " Is this the end of the file or not?",
@@ -3438,7 +3438,7 @@
                         }
                     ],
                     "start": [
-                        121,
+                        127,
                         0
                     ],
                     "type": "function",
@@ -3446,13 +3446,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    121,
+                    127,
                     21
                 ],
                 "name": "isEOF",
                 "rawdesc": " Is this the end of the file or not?",
                 "start": [
-                    121,
+                    127,
                     9
                 ],
                 "type": "setmethod",
@@ -3468,13 +3468,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                112,
+                                118,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                112,
+                                118,
                                 8
                             ],
                             "type": "self",
@@ -3483,7 +3483,7 @@
                     ],
                     "desc": " Is this the end of the line or not?\n\n@*return* `EOL` — Is it the end of the line?",
                     "finish": [
-                        117,
+                        123,
                         3
                     ],
                     "rawdesc": " Is this the end of the line or not?",
@@ -3497,7 +3497,7 @@
                         }
                     ],
                     "start": [
-                        112,
+                        118,
                         0
                     ],
                     "type": "function",
@@ -3505,13 +3505,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    112,
+                    118,
                     21
                 ],
                 "name": "isEOL",
                 "rawdesc": " Is this the end of the line or not?",
                 "start": [
-                    112,
+                    118,
                     9
                 ],
                 "type": "setmethod",
@@ -3525,12 +3525,12 @@
                 "extends": {
                     "desc": " Span",
                     "finish": [
-                        12,
+                        18,
                         23
                     ],
                     "rawdesc": " Span",
                     "start": [
-                        12,
+                        18,
                         19
                     ],
                     "type": "doc.type",
@@ -3538,12 +3538,12 @@
                         {
                             "desc": " Span",
                             "finish": [
-                                12,
+                                18,
                                 23
                             ],
                             "rawdesc": " Span",
                             "start": [
-                                12,
+                                18,
                                 19
                             ],
                             "type": "doc.type.name",
@@ -3554,13 +3554,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    12,
+                    18,
                     23
                 ],
                 "name": "location",
                 "rawdesc": "Cursor location",
                 "start": [
-                    12,
+                    18,
                     10
                 ],
                 "type": "doc.field",
@@ -3576,13 +3576,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                173,
+                                179,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                173,
+                                179,
                                 8
                             ],
                             "type": "self",
@@ -3591,13 +3591,13 @@
                         {
                             "desc": "The Character Used For Matching",
                             "finish": [
-                                173,
+                                179,
                                 50
                             ],
                             "name": "the_char_used_for_match",
                             "rawdesc": "The Character Used For Matching",
                             "start": [
-                                173,
+                                179,
                                 27
                             ],
                             "type": "local",
@@ -3606,13 +3606,13 @@
                         {
                             "desc": "The Character to Matching",
                             "finish": [
-                                173,
+                                179,
                                 68
                             ],
                             "name": "the_char_to_match",
                             "rawdesc": "The Character to Matching",
                             "start": [
-                                173,
+                                179,
                                 51
                             ],
                             "type": "local",
@@ -3621,7 +3621,7 @@
                     ],
                     "desc": " tries to compare whether two characters are equal\n\n@*param* `the_char_used_for_match` — The Character Used For Matching\n\n@*param* `the_char_to_match` — The Character to Matching\n\n@*return* `result` — the result of the match.",
                     "finish": [
-                        188,
+                        194,
                         3
                     ],
                     "rawdesc": " tries to compare whether two characters are equal",
@@ -3635,7 +3635,7 @@
                         }
                     ],
                     "start": [
-                        173,
+                        179,
                         0
                     ],
                     "type": "function",
@@ -3643,13 +3643,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    173,
+                    179,
                     26
                 ],
                 "name": "matchAChar",
                 "rawdesc": " tries to compare whether two characters are equal",
                 "start": [
-                    173,
+                    179,
                     9
                 ],
                 "type": "setmethod",
@@ -3665,13 +3665,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                218,
+                                224,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                218,
+                                224,
                                 8
                             ],
                             "type": "self",
@@ -3680,13 +3680,13 @@
                         {
                             "desc": "The Character Used For match",
                             "finish": [
-                                218,
+                                224,
                                 60
                             ],
                             "name": "the_char_used_for_match",
                             "rawdesc": "The Character Used For match",
                             "start": [
-                                218,
+                                224,
                                 37
                             ],
                             "type": "local",
@@ -3695,13 +3695,13 @@
                         {
                             "desc": "The start of the range",
                             "finish": [
-                                218,
+                                224,
                                 72
                             ],
                             "name": "start_range",
                             "rawdesc": "The start of the range",
                             "start": [
-                                218,
+                                224,
                                 61
                             ],
                             "type": "local",
@@ -3710,13 +3710,13 @@
                         {
                             "desc": "The end of the range",
                             "finish": [
-                                218,
+                                224,
                                 82
                             ],
                             "name": "end_range",
                             "rawdesc": "The end of the range",
                             "start": [
-                                218,
+                                224,
                                 73
                             ],
                             "type": "local",
@@ -3725,7 +3725,7 @@
                     ],
                     "desc": " tries to compare whether the character\n is outside the range between `start_range` and `end_range`\n\n@*param* `the_char_used_for_match` — The Character Used For match\n\n@*param* `start_range` — The start of the range\n\n@*param* `end_range` — The end of the range\n\n@*return* `result` — the result of the match.",
                     "finish": [
-                        232,
+                        238,
                         3
                     ],
                     "rawdesc": " tries to compare whether the character\n is outside the range between `start_range` and `end_range`",
@@ -3739,7 +3739,7 @@
                         }
                     ],
                     "start": [
-                        218,
+                        224,
                         0
                     ],
                     "type": "function",
@@ -3747,13 +3747,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    218,
+                    224,
                     36
                 ],
                 "name": "matchOutOfRangeAChar",
                 "rawdesc": " tries to compare whether the character\n is outside the range between `start_range` and `end_range`",
                 "start": [
-                    218,
+                    224,
                     9
                 ],
                 "type": "setmethod",
@@ -3769,13 +3769,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                196,
+                                202,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                196,
+                                202,
                                 8
                             ],
                             "type": "self",
@@ -3784,13 +3784,13 @@
                         {
                             "desc": "The Character Used For match",
                             "finish": [
-                                196,
+                                202,
                                 55
                             ],
                             "name": "the_char_used_for_match",
                             "rawdesc": "The Character Used For match",
                             "start": [
-                                196,
+                                202,
                                 32
                             ],
                             "type": "local",
@@ -3799,13 +3799,13 @@
                         {
                             "desc": "The start of the range",
                             "finish": [
-                                196,
+                                202,
                                 67
                             ],
                             "name": "start_range",
                             "rawdesc": "The start of the range",
                             "start": [
-                                196,
+                                202,
                                 56
                             ],
                             "type": "local",
@@ -3814,13 +3814,13 @@
                         {
                             "desc": "The end of the range",
                             "finish": [
-                                196,
+                                202,
                                 77
                             ],
                             "name": "end_range",
                             "rawdesc": "The end of the range",
                             "start": [
-                                196,
+                                202,
                                 68
                             ],
                             "type": "local",
@@ -3829,7 +3829,7 @@
                     ],
                     "desc": " tries to compare whether the character\n is within the range between `start_range` and `end_range`\n\n@*param* `the_char_used_for_match` — The Character Used For match\n\n@*param* `start_range` — The start of the range\n\n@*param* `end_range` — The end of the range\n\n@*return* `result` — the result of the match.",
                     "finish": [
-                        210,
+                        216,
                         3
                     ],
                     "rawdesc": " tries to compare whether the character\n is within the range between `start_range` and `end_range`",
@@ -3843,7 +3843,7 @@
                         }
                     ],
                     "start": [
-                        196,
+                        202,
                         0
                     ],
                     "type": "function",
@@ -3851,13 +3851,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    196,
+                    202,
                     31
                 ],
                 "name": "matchRangeAChar",
                 "rawdesc": " tries to compare whether the character\n is within the range between `start_range` and `end_range`",
                 "start": [
-                    196,
+                    202,
                     9
                 ],
                 "type": "setmethod",
@@ -3873,13 +3873,13 @@
                         {
                             "desc": " Source Code",
                             "finish": [
-                                22,
+                                28,
                                 26
                             ],
                             "name": "source",
                             "rawdesc": " Source Code",
                             "start": [
-                                22,
+                                28,
                                 20
                             ],
                             "type": "local",
@@ -3888,7 +3888,7 @@
                     ],
                     "desc": " Create a new Cursor",
                     "finish": [
-                        37,
+                        43,
                         3
                     ],
                     "rawdesc": " Create a new Cursor",
@@ -3899,7 +3899,7 @@
                         }
                     ],
                     "start": [
-                        22,
+                        28,
                         0
                     ],
                     "type": "function",
@@ -3907,13 +3907,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    22,
+                    28,
                     19
                 ],
                 "name": "new",
                 "rawdesc": " Create a new Cursor",
                 "start": [
-                    22,
+                    28,
                     9
                 ],
                 "type": "setfield",
@@ -3929,13 +3929,13 @@
                         {
                             "desc": " Scanner Cursor",
                             "finish": [
-                                235,
+                                241,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Cursor",
                             "start": [
-                                235,
+                                241,
                                 8
                             ],
                             "type": "self",
@@ -3944,7 +3944,7 @@
                     ],
                     "desc": " the Cursor's current position in a new Span.",
                     "finish": [
-                        237,
+                        243,
                         3
                     ],
                     "rawdesc": " the Cursor's current position in a new Span.",
@@ -3955,7 +3955,7 @@
                         }
                     ],
                     "start": [
-                        235,
+                        241,
                         0
                     ],
                     "type": "function",
@@ -3963,13 +3963,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    235,
+                    241,
                     23
                 ],
                 "name": "newSpan",
                 "rawdesc": " the Cursor's current position in a new Span.",
                 "start": [
-                    235,
+                    241,
                     9
                 ],
                 "type": "setmethod",
@@ -3983,12 +3983,12 @@
                 "extends": {
                     "desc": " a byte of a string.",
                     "finish": [
-                        13,
+                        19,
                         20
                     ],
                     "rawdesc": " a byte of a string.",
                     "start": [
-                        13,
+                        19,
                         15
                     ],
                     "type": "doc.type",
@@ -3996,12 +3996,12 @@
                         {
                             "desc": " a byte of a string.",
                             "finish": [
-                                13,
+                                19,
                                 19
                             ],
                             "rawdesc": " a byte of a string.",
                             "start": [
-                                13,
+                                19,
                                 15
                             ],
                             "type": "doc.type.name",
@@ -4012,13 +4012,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    13,
+                    19,
                     20
                 ],
                 "name": "next",
                 "rawdesc": "The Next Character",
                 "start": [
-                    13,
+                    19,
                     10
                 ],
                 "type": "doc.field",
@@ -4032,12 +4032,12 @@
                 "extends": {
                     "desc": " a byte of a string.",
                     "finish": [
-                        15,
+                        21,
                         24
                     ],
                     "rawdesc": " a byte of a string.",
                     "start": [
-                        15,
+                        21,
                         19
                     ],
                     "type": "doc.type",
@@ -4045,12 +4045,12 @@
                         {
                             "desc": " a byte of a string.",
                             "finish": [
-                                15,
+                                21,
                                 23
                             ],
                             "rawdesc": " a byte of a string.",
                             "start": [
-                                15,
+                                21,
                                 19
                             ],
                             "type": "doc.type.name",
@@ -4061,13 +4061,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    15,
+                    21,
                     24
                 ],
                 "name": "previous",
                 "rawdesc": "The Previous Character",
                 "start": [
-                    15,
+                    21,
                     10
                 ],
                 "type": "doc.field",
@@ -4081,12 +4081,12 @@
                 "extends": {
                     "desc": " Source Code",
                     "finish": [
-                        11,
+                        17,
                         27
                     ],
                     "rawdesc": " Source Code",
                     "start": [
-                        11,
+                        17,
                         17
                     ],
                     "type": "doc.type",
@@ -4094,12 +4094,12 @@
                         {
                             "desc": " Source Code",
                             "finish": [
-                                11,
+                                17,
                                 27
                             ],
                             "rawdesc": " Source Code",
                             "start": [
-                                11,
+                                17,
                                 17
                             ],
                             "type": "doc.type.name",
@@ -4110,13 +4110,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    11,
+                    17,
                     27
                 ],
                 "name": "source",
                 "rawdesc": "The Source Code",
                 "start": [
-                    11,
+                    17,
                     10
                 ],
                 "type": "doc.field",
@@ -4137,12 +4137,12 @@
                 "desc": " Scanner Error Bucket",
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    9,
+                    16,
                     28
                 ],
                 "rawdesc": " Scanner Error Bucket",
                 "start": [
-                    9,
+                    16,
                     10
                 ],
                 "type": "doc.class",
@@ -4159,12 +4159,12 @@
                 "extends": {
                     "desc": " Scanner Error Bucket",
                     "finish": [
-                        12,
+                        19,
                         23
                     ],
                     "rawdesc": " Scanner Error Bucket",
                     "start": [
-                        12,
+                        19,
                         17
                     ],
                     "type": "getlocal",
@@ -4172,13 +4172,13 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    12,
+                    19,
                     14
                 ],
                 "name": "__index",
                 "rawdesc": " Scanner Error Bucket",
                 "start": [
-                    12,
+                    19,
                     0
                 ],
                 "type": "setfield",
@@ -4191,22 +4191,22 @@
                 "desc": "a bucket that stores all the errors issued",
                 "extends": {
                     "finish": [
-                        10,
+                        17,
                         33
                     ],
                     "start": [
-                        10,
+                        17,
                         17
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                10,
+                                17,
                                 33
                             ],
                             "start": [
-                                10,
+                                17,
                                 17
                             ],
                             "type": "doc.type.array",
@@ -4217,13 +4217,13 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    10,
+                    17,
                     33
                 ],
                 "name": "bucket",
                 "rawdesc": "a bucket that stores all the errors issued",
                 "start": [
-                    10,
+                    17,
                     10
                 ],
                 "type": "doc.field",
@@ -4239,13 +4239,13 @@
                         {
                             "desc": " Scanner Error Bucket",
                             "finish": [
-                                23,
+                                30,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Error Bucket",
                             "start": [
-                                23,
+                                30,
                                 8
                             ],
                             "type": "self",
@@ -4254,13 +4254,13 @@
                         {
                             "desc": "a Error Interface",
                             "finish": [
-                                23,
+                                30,
                                 28
                             ],
                             "name": "options",
                             "rawdesc": "a Error Interface",
                             "start": [
-                                23,
+                                30,
                                 21
                             ],
                             "type": "local",
@@ -4269,12 +4269,12 @@
                     ],
                     "desc": " Emit a Error\n\n@*param* `options` — a Error Interface",
                     "finish": [
-                        36,
+                        43,
                         3
                     ],
                     "rawdesc": " Emit a Error",
                     "start": [
-                        23,
+                        30,
                         0
                     ],
                     "type": "function",
@@ -4282,13 +4282,13 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    23,
+                    30,
                     20
                 ],
                 "name": "emit",
                 "rawdesc": " Emit a Error",
                 "start": [
-                    23,
+                    30,
                     9
                 ],
                 "type": "setmethod",
@@ -4303,7 +4303,7 @@
                     "args": [],
                     "desc": " Create a Error Bucket",
                     "finish": [
-                        19,
+                        26,
                         3
                     ],
                     "rawdesc": " Create a Error Bucket",
@@ -4314,7 +4314,7 @@
                         }
                     ],
                     "start": [
-                        15,
+                        22,
                         0
                     ],
                     "type": "function",
@@ -4322,13 +4322,13 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    15,
+                    22,
                     19
                 ],
                 "name": "new",
                 "rawdesc": " Create a Error Bucket",
                 "start": [
-                    15,
+                    22,
                     9
                 ],
                 "type": "setfield",
