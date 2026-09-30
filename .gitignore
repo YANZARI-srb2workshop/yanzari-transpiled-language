@@ -12,6 +12,3 @@ deep-test.lua
 #
 # so just never leak it.
 .env
-
-# to make Git ignore the docs folder.
-docs/
