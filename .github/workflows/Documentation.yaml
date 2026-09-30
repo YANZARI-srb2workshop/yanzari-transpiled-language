@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "Current config.ld:"
           cat config.ld || echo "No config.ld found"
-          ldoc. || echo "ldoc failed, checking files"
+          ldoc . || echo "ldoc failed, checking files"
           ls -la
           ls -la docs/ || echo "docs/ not created"
 
