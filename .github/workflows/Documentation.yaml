@@ -39,6 +39,7 @@ jobs:
 
       - name: Generate documentation
         run: |
+          mkdir -p docs
           "$HOME/luals/bin/lua-language-server" \
             --doc=. \
             --doc_out_path=docs
@@ -55,5 +56,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "[Automatic] generates ldoc documentation in the doc folder."
+          git commit -m "[Automatic] generates LuaLS documentation in the doc folder."
           git push
