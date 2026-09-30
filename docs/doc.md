@@ -282,7 +282,9 @@ any
 
 # Scanner
 
- Scanner
+ This class handles text tokenization.<br>
+ It transforms the text into tokens so that the parser<br>
+ can convert them into a Concrete Syntax Tree.
 
 ## __index
 
@@ -291,7 +293,9 @@ any
 Scanner
 ```
 
- Scanner
+ This class handles text tokenization.<br>
+ It transforms the text into tokens so that the parser<br>
+ can convert them into a Concrete Syntax Tree.
 
 ## current_output_pos
 
@@ -318,7 +322,8 @@ The Scanner Cursor
 (method) Scanner:emitToken(token: Token)
 ```
 
- Emit a Token
+ emits a token and places it in the `tokens` buffer<br>
+ at the buffer position determined by "self.current_output_pos".
 
 @*param* `token` — Token to Emit
 
@@ -348,7 +353,7 @@ Expandable content in the Scanner.
   -> number|number[]
 ```
 
- Get a Inserted char
+ gets a character inserted into the `token` buffer.
 
 @*param* `offset` — the offset to get the character.
 
@@ -360,7 +365,10 @@ Expandable content in the Scanner.
   -> Token|Token[]
 ```
 
- Get a Inserted Token
+ get a token already present in the output.
+
+ If the `offset` is not provided,<br>
+ it returns all inserted tokens.
 
 @*param* `offset` — the offset to get the Token.
 
@@ -371,9 +379,30 @@ Expandable content in the Scanner.
 (method) Scanner:insertChar(char?: number)
 ```
 
- Insert a char
+ inserts a character into the `token` buffer.<br>
+
+ If the `byte` parameter has not been provided,<br>
+ it inserts the character at the scanner's current position.
 
 @*param* `char` — the character to be inserted.
+
+## moveToTheNextOutputBuffer
+
+
+```lua
+(method) Scanner:moveToTheNextOutputBuffer()
+```
+
+ moves to the next output buffer.
+
+## moveToThePreviousOutputBuffer
+
+
+```lua
+(method) Scanner:moveToThePreviousOutputBuffer()
+```
+
+ moves to the previous output buffer.
 
 ## new
 
@@ -385,7 +414,9 @@ function Scanner.new(source: SourceCode)
 
  Create a New Scanner
 
-@*param* `source` — The Source Code
+@*param* `source` — the source code. for the scanner to be able to read the source code.
+
+@*return* `self` — an instance of the Scanner.
 
 ## removeInsertedChar
 
@@ -394,7 +425,7 @@ function Scanner.new(source: SourceCode)
 (method) Scanner:removeInsertedChar()
 ```
 
- Remove a Inserted char
+ removes the most recently inserted character from the `token` buffer.
 
 ## rules
 
@@ -403,13 +434,13 @@ function Scanner.new(source: SourceCode)
 ScannerRule[]
 ```
 
- Scanner Rules
+ The Scanner rules are per instance.
 
 ## runRules
 
 
 ```lua
-(async) function Scanner.runRules(self: Scanner)
+(async) function Scanner.runRules(self: Scanner, unknown?: fun(self: Scanner):boolean)
   -> thread: thread
 ```
 
@@ -419,25 +450,29 @@ ScannerRule[]
 
  Run Scanner Rules
 
- You must run the returned thread without any arguments.
+ `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>
+ It can be nil or not.
+ 
+ If `unknown` returns `true`,<br>
+ it stops the scanner, and the scanner returns the final result.
 
-## skipToTheNextOutputBuffer
+ If `unknown` returns `false`,<br>
+ the scanner continues even with the unknown character.
+ 
+ If `unknown` is `nil`,<br>
+ it stops the scanner, and the scanner returns the final result.
 
-
-```lua
-(method) Scanner:skipToTheNextOutputBuffer()
-```
-
- Skip to the Next Output Buffer
-
-## skipToThePreviousOutputBuffer
-
-
-```lua
-(method) Scanner:skipToThePreviousOutputBuffer()
-```
-
- Skip to the Previous Output Buffer
+ You must run the returned thread without any arguments. <br>
+ the thread returns:
+ ```lua
+ {
+   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.
+   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.
+   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.
+   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.
+   ended: boolean -- if the scanner has finished producing the tokens.
+ }
+ ```
 
 ## source
 
@@ -446,7 +481,7 @@ ScannerRule[]
 SourceCode
 ```
 
-The Source Code
+the source code. for the scanner to be able to read the source code.
 
 ## states
 
@@ -455,7 +490,7 @@ The Source Code
 { [number]: string|table }
 ```
 
-Scanner states
+The scanner states; they can be used to store state information.
 
 ## token
 
@@ -464,7 +499,7 @@ Scanner states
 number[]?
 ```
 
-The Token Content
+The content of a token; it contains multiple bytes.
 
 ## tokens
 
@@ -489,7 +524,7 @@ a bucket that stores all the errors issued.
 
 # ScannerCursor
 
- Scanner Cursor
+ the cursor used by the Scanner to read the text and advance.
 
 ## __index
 
@@ -498,7 +533,7 @@ a bucket that stores all the errors issued.
 ScannerCursor
 ```
 
- Scanner Cursor
+ the cursor used by the Scanner to read the text and advance.
 
 ## advance
 
@@ -508,23 +543,23 @@ ScannerCursor
   -> nil
 ```
 
- Advance a Token
+ Advances several characters.
 
-@*param* `limit` — the Advance Limit
+@*param* `limit` — the character advance limit; it stops when it reaches this limit. The default value is 1.
 
-## back
+## backtrack
 
 
 ```lua
-(method) ScannerCursor:back(marker: ScannerMarker)
+(method) ScannerCursor:backtrack(marker: ScannerMarker)
   -> char: number
 ```
 
- turn back
+ This function causes the cursor to perform a backtracking.
 
-@*param* `marker` — a marker to be able to go back
+@*param* `marker` — a marker to make the cursor perform backtracking.
 
-@*return* `char` — the current character before returning.
+@*return* `char` — the current character before backtracking.
 
 ## current
 
@@ -533,7 +568,7 @@ ScannerCursor
 number?
 ```
 
-The Current Character
+the current character the cursor is on.
 
 ## getCharacter
 
@@ -566,7 +601,7 @@ The Current Character
   -> number
 ```
 
- Get the Current Character
+ Gets the character at the cursor's current position.
 
 ## getLocation
 
@@ -576,7 +611,7 @@ The Current Character
   -> Span
 ```
 
- Get the Cursor Location
+ Gets the current cursor location.
 
 ## getNextCharacter
 
@@ -586,7 +621,7 @@ The Current Character
   -> number
 ```
 
- Get the Next Character
+ Gets the next character at the cursor's current position.
 
 ## getPreviousCharacter
 
@@ -596,7 +631,7 @@ The Current Character
   -> number
 ```
 
- Get the Previous Character
+ Gets the previous character at the cursor's current position.
 
 ## isEOF
 
@@ -629,7 +664,7 @@ The Current Character
 Span
 ```
 
-Cursor location
+the current location of the cursor.
 
 ## matchAChar
 
@@ -690,10 +725,14 @@ Cursor location
 
 ```lua
 function ScannerCursor.new(source: SourceCode)
-  -> ScannerCursor
+  -> an: ScannerCursor
 ```
 
- Create a new Cursor
+ creates a new instance of the cursor
+
+@*param* `source` — the source code that allows the scanner cursor to advance and capture characters from it.
+
+@*return* `an` — instance of the Cursor.
 
 ## newSpan
 
@@ -703,7 +742,7 @@ function ScannerCursor.new(source: SourceCode)
   -> Span
 ```
 
- the Cursor's current position in a new Span.
+ creates a Span based on the current Cursor location.
 
 ## next
 
@@ -712,7 +751,7 @@ function ScannerCursor.new(source: SourceCode)
 number?
 ```
 
-The Next Character
+the next character the cursor will pass over.
 
 ## previous
 
@@ -721,7 +760,7 @@ The Next Character
 number?
 ```
 
-The Previous Character
+the previous character that the cursor has already passed.
 
 ## source
 
@@ -730,7 +769,7 @@ The Previous Character
 SourceCode
 ```
 
-The Source Code
+the source code that allows the scanner cursor to advance and capture characters from it.
 
 
 ---
@@ -783,7 +822,7 @@ function ScannerErrorBucket.new()
 
 # ScannerMarker
 
- a marker to be able to go back
+ a marker to make the scanner cursor backtrack.
 
 ## __index
 
@@ -792,7 +831,7 @@ function ScannerErrorBucket.new()
 ScannerMarker
 ```
 
- a marker to be able to go back
+ a marker to make the scanner cursor backtrack.
 
 ## col
 
@@ -801,7 +840,7 @@ ScannerMarker
 number
 ```
 
-Column
+Span's column.
 
 ## line
 
@@ -810,28 +849,30 @@ Column
 number
 ```
 
-Line
+Span's line.
 
 ## new
 
 
 ```lua
 function ScannerMarker.new(line: number, col: number)
-  -> ScannerMarker
+  -> self: ScannerMarker
 ```
 
- Creates a marker so the scanner can backtrack.
+ creates a marker for the Scanner Cursor.
 
-@*param* `line` — the line for the scanner to move backward
+@*param* `line` — the line for the scanner to perform backtracking.
 
-@*param* `col` — the column for the scanner to move backward
+@*param* `col` — the column for the scanner to backtrack.
+
+@*return* `self` — a marker to make the scanner cursor backtrack.
 
 
 ---
 
 # ScannerRule
 
- Rule Class
+ the class for creating rules for the scanner.
 
 ## __index
 
@@ -840,7 +881,7 @@ function ScannerMarker.new(line: number, col: number)
 ScannerRule
 ```
 
- Rule Class
+ the class for creating rules for the scanner.
 
 ## enter
 
@@ -883,10 +924,14 @@ when the rule scan was accepted.
 
 ```lua
 function ScannerRule.new(options: ScannerRuleInterface)
-  -> ScannerRule
+  -> rule: ScannerRule
 ```
 
- Create a new Rules
+ Create a rule for the scanner.
+
+@*param* `options` — an interface to create the rule.
+
+@*return* `rule` — a rule for the scanner
 
 ## run
 
@@ -897,7 +942,7 @@ function ScannerRule.new(options: ScannerRuleInterface)
   2. token: Token?
 ```
 
- Run the Rule
+ run the Rule
 
  The first returned argument, `entered`
  indicates whether the rule found at least one match;
@@ -912,7 +957,7 @@ function ScannerRule.new(options: ScannerRuleInterface)
 
 # ScannerRuleInterface
 
- Rule Class Interface
+ the interface for the `ScannerRule` to create a Rule.
 
 ## enter
 
@@ -1064,7 +1109,7 @@ Span
 number
 ```
 
-Column
+Span's column.
 
 ## line
 
@@ -1073,7 +1118,7 @@ Column
 number
 ```
 
-Line
+Span's line.
 
 ## new
 
@@ -1083,18 +1128,20 @@ function Span.new(line: number, col: number)
   -> self: Span
 ```
 
- Create a Span
+ create a Span
 
-@*param* `line` — Text's Line
+@*param* `line` — the text line to construct the Span.
 
-@*param* `col` — Text's Column
+@*param* `col` — the text column to construct the Span.
+
+@*return* `self` — a Span that stores position.
 
 
 ---
 
 # Token
 
- Token
+ a class that handles Scanner tokens.
 
 ## __index
 
@@ -1103,7 +1150,7 @@ function Span.new(line: number, col: number)
 Token
 ```
 
- Token
+ a class that handles Scanner tokens.
 
 ## extra
 
@@ -1112,7 +1159,7 @@ Token
 any
 ```
 
-Extra content for Token
+Extra content for a token; for cases requiring the storage of additional information that a standard token does not hold.
 
 ## kind
 
@@ -1121,7 +1168,7 @@ Extra content for Token
 TokenKind
 ```
 
- Kind of a Token
+the token kind
 
 ## location
 
@@ -1130,17 +1177,21 @@ TokenKind
 { start: Span, end: Span }
 ```
 
-the Token Location
+the location of the token.
 
 ## new
 
 
 ```lua
 function Token.new(options: Token)
-  -> self: Token
+  -> token: Token
 ```
 
  Create a Token
+
+@*param* `options` — an interface that you pass to the function, which returns a token.
+
+@*return* `token` — a token.
 
 ## token
 
@@ -1149,7 +1200,7 @@ function Token.new(options: Token)
 number[]?
 ```
 
-The Token Content
+the token content
 
 
 ---
