@@ -1,5 +1,5 @@
 -- Scanner's Rules
---- Operator
+--- Shared
 --- 
 --- 
 --- This module is shared across the rules;

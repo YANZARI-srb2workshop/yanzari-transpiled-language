@@ -1,3 +1,10 @@
+-- Scanner
+--- Errors
+--- 
+--- handles scanner errors, for example:
+--- Syntax Error.
+--> By Yanzari
+
 -- A module that handles intervals.
 local Span = require('src.Scanner.utils.span')
 

@@ -1,3 +1,9 @@
+-- Scanner
+--- Cursor
+--- 
+--- This module handles the scanner cursor.
+--> By Yanzari
+
 -- A module that handles intervals.
 local Span = require('src.Scanner.utils.span')
 
