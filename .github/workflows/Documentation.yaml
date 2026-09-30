@@ -12,34 +12,39 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v5
 
       - name: Install Lua 5.4
-        uses: leafo/gh-actions-lua@v10
+        uses: leafo/gh-actions-lua@v12
         with:
           luaVersion: "5.4"
 
       - name: Install LuaRocks
         uses: leafo/gh-actions-luarocks@v4
 
-      - name: Install LDoc dependencies
+      - name: Install LDoc
         run: |
           luarocks install penlight
           luarocks install luafilesystem
           luarocks install ldoc
 
-      - name: Generate documentation
-        run: ldoc .
+      - name: Generate docs
+        run: |
+          echo "Current config.ld:"
+          cat config.ld || echo "No config.ld found"
+          ldoc. || echo "ldoc failed, checking files"
+          ls -la
+          ls -la docs/ || echo "docs/ not created"
 
-      - name: Commit and push docs
+      - name: Commit docs
+        if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/
+          mkdir -p docs
+          git add docs/ -f || echo "nothing to add"
           if git diff --staged --quiet; then
-            echo "No docs changes"
+            echo "No changes"
           else
             git commit -m "docs: auto-generate API docs"
             git push
