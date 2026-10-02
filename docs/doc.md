@@ -29,7 +29,7 @@ fun(self: Enum, key: <EnumValue>):number
 
 
 ```lua
-table<number, EnumValue>
+table<EnumValue, number>
 ```
 
 key-to-value map
@@ -45,7 +45,7 @@ fun(...<EnumValue>):Enum<EnumValue>
 
 
 ```lua
-table<EnumValue, number>
+table<number, EnumValue>
 ```
 
 value-to-key map

@@ -330,10 +330,10 @@
                                 14
                             ],
                             "type": "doc.type.sign",
-                            "view": "table<number, EnumValue>"
+                            "view": "table<EnumValue, number>"
                         }
                     ],
-                    "view": "table<number, EnumValue>"
+                    "view": "table<EnumValue, number>"
                 },
                 "file": "src/libs/enum.lua",
                 "finish": [
@@ -347,7 +347,7 @@
                     10
                 ],
                 "type": "doc.field",
-                "view": "table<number, EnumValue>",
+                "view": "table<EnumValue, number>",
                 "visible": "public"
             },
             {
@@ -473,10 +473,10 @@
                                 16
                             ],
                             "type": "doc.type.sign",
-                            "view": "table<EnumValue, number>"
+                            "view": "table<number, EnumValue>"
                         }
                     ],
-                    "view": "table<EnumValue, number>"
+                    "view": "table<number, EnumValue>"
                 },
                 "file": "src/libs/enum.lua",
                 "finish": [
@@ -490,7 +490,7 @@
                     10
                 ],
                 "type": "doc.field",
-                "view": "table<EnumValue, number>",
+                "view": "table<number, EnumValue>",
                 "visible": "public"
             }
         ],
@@ -1904,13 +1904,13 @@
                         {
                             "desc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "finish": [
-                                128,
+                                129,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "start": [
-                                128,
+                                129,
                                 8
                             ],
                             "type": "self",
@@ -1919,13 +1919,13 @@
                         {
                             "desc": "Token to Emit",
                             "finish": [
-                                128,
+                                129,
                                 32
                             ],
                             "name": "token",
                             "rawdesc": "Token to Emit",
                             "start": [
-                                128,
+                                129,
                                 27
                             ],
                             "type": "local",
@@ -1934,12 +1934,12 @@
                     ],
                     "desc": " emits a token and places it in the `tokens` buffer<br>\n at the buffer position determined by \"self.current_output_pos\".\n\n@*param* `token` — Token to Emit",
                     "finish": [
-                        134,
+                        135,
                         3
                     ],
                     "rawdesc": " emits a token and places it in the `tokens` buffer<br>\n at the buffer position determined by \"self.current_output_pos\".",
                     "start": [
-                        128,
+                        129,
                         0
                     ],
                     "type": "function",
@@ -1947,13 +1947,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    128,
+                    129,
                     26
                 ],
                 "name": "emitToken",
                 "rawdesc": " emits a token and places it in the `tokens` buffer<br>\n at the buffer position determined by \"self.current_output_pos\".",
                 "start": [
-                    128,
+                    129,
                     9
                 ],
                 "type": "setmethod",
@@ -2063,13 +2063,13 @@
                         {
                             "desc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "finish": [
-                                89,
+                                90,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "start": [
-                                89,
+                                90,
                                 8
                             ],
                             "type": "self",
@@ -2078,13 +2078,13 @@
                         {
                             "desc": "the offset to get the character.",
                             "finish": [
-                                89,
+                                90,
                                 39
                             ],
                             "name": "offset",
                             "rawdesc": "the offset to get the character.",
                             "start": [
-                                89,
+                                90,
                                 33
                             ],
                             "type": "local",
@@ -2093,7 +2093,7 @@
                     ],
                     "desc": " gets a character inserted into the `token` buffer.\n\n@*param* `offset` — the offset to get the character.",
                     "finish": [
-                        99,
+                        100,
                         3
                     ],
                     "rawdesc": " gets a character inserted into the `token` buffer.",
@@ -2104,7 +2104,7 @@
                         }
                     ],
                     "start": [
-                        89,
+                        90,
                         0
                     ],
                     "type": "function",
@@ -2112,13 +2112,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    89,
+                    90,
                     32
                 ],
                 "name": "getInsertedChar",
                 "rawdesc": " gets a character inserted into the `token` buffer.",
                 "start": [
-                    89,
+                    90,
                     9
                 ],
                 "type": "setmethod",
@@ -2134,13 +2134,13 @@
                         {
                             "desc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "finish": [
-                                141,
+                                142,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "start": [
-                                141,
+                                142,
                                 8
                             ],
                             "type": "self",
@@ -2149,13 +2149,13 @@
                         {
                             "desc": "the offset to get the Token.",
                             "finish": [
-                                141,
+                                142,
                                 40
                             ],
                             "name": "offset",
                             "rawdesc": "the offset to get the Token.",
                             "start": [
-                                141,
+                                142,
                                 34
                             ],
                             "type": "local",
@@ -2164,7 +2164,7 @@
                     ],
                     "desc": " get a token already present in the output.\n\n If the `offset` is not provided,<br>\n it returns all inserted tokens.\n\n@*param* `offset` — the offset to get the Token.",
                     "finish": [
-                        151,
+                        152,
                         3
                     ],
                     "rawdesc": " get a token already present in the output.\n\n If the `offset` is not provided,<br>\n it returns all inserted tokens.",
@@ -2175,7 +2175,7 @@
                         }
                     ],
                     "start": [
-                        141,
+                        142,
                         0
                     ],
                     "type": "function",
@@ -2183,13 +2183,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    141,
+                    142,
                     33
                 ],
                 "name": "getInsertedToken",
                 "rawdesc": " get a token already present in the output.\n\n If the `offset` is not provided,<br>\n it returns all inserted tokens.",
                 "start": [
-                    141,
+                    142,
                     9
                 ],
                 "type": "setmethod",
@@ -2205,13 +2205,13 @@
                         {
                             "desc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "finish": [
-                                69,
+                                70,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "start": [
-                                69,
+                                70,
                                 8
                             ],
                             "type": "self",
@@ -2220,13 +2220,13 @@
                         {
                             "desc": "the character to be inserted.",
                             "finish": [
-                                69,
+                                70,
                                 32
                             ],
                             "name": "char",
                             "rawdesc": "the character to be inserted.",
                             "start": [
-                                69,
+                                70,
                                 28
                             ],
                             "type": "local",
@@ -2235,12 +2235,12 @@
                     ],
                     "desc": " inserts a character into the `token` buffer.<br>\n\n If the `byte` parameter has not been provided,<br>\n it inserts the character at the scanner's current position.\n\n@*param* `char` — the character to be inserted.",
                     "finish": [
-                        80,
+                        81,
                         3
                     ],
                     "rawdesc": " inserts a character into the `token` buffer.<br>\n\n If the `byte` parameter has not been provided,<br>\n it inserts the character at the scanner's current position.",
                     "start": [
-                        69,
+                        70,
                         0
                     ],
                     "type": "function",
@@ -2248,13 +2248,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    69,
+                    70,
                     27
                 ],
                 "name": "insertChar",
                 "rawdesc": " inserts a character into the `token` buffer.<br>\n\n If the `byte` parameter has not been provided,<br>\n it inserts the character at the scanner's current position.",
                 "start": [
-                    69,
+                    70,
                     9
                 ],
                 "type": "setmethod",
@@ -2270,13 +2270,13 @@
                         {
                             "desc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "finish": [
-                                102,
+                                103,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "start": [
-                                102,
+                                103,
                                 8
                             ],
                             "type": "self",
@@ -2285,12 +2285,12 @@
                     ],
                     "desc": " moves to the next output buffer.",
                     "finish": [
-                        111,
+                        112,
                         3
                     ],
                     "rawdesc": " moves to the next output buffer.",
                     "start": [
-                        102,
+                        103,
                         0
                     ],
                     "type": "function",
@@ -2298,13 +2298,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    102,
+                    103,
                     42
                 ],
                 "name": "moveToTheNextOutputBuffer",
                 "rawdesc": " moves to the next output buffer.",
                 "start": [
-                    102,
+                    103,
                     9
                 ],
                 "type": "setmethod",
@@ -2320,13 +2320,13 @@
                         {
                             "desc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "finish": [
-                                114,
+                                115,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "start": [
-                                114,
+                                115,
                                 8
                             ],
                             "type": "self",
@@ -2335,12 +2335,12 @@
                     ],
                     "desc": " moves to the previous output buffer.",
                     "finish": [
-                        123,
+                        124,
                         3
                     ],
                     "rawdesc": " moves to the previous output buffer.",
                     "start": [
-                        114,
+                        115,
                         0
                     ],
                     "type": "function",
@@ -2348,13 +2348,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    114,
+                    115,
                     46
                 ],
                 "name": "moveToThePreviousOutputBuffer",
                 "rawdesc": " moves to the previous output buffer.",
                 "start": [
-                    114,
+                    115,
                     9
                 ],
                 "type": "setmethod",
@@ -2370,13 +2370,13 @@
                         {
                             "desc": "the source code. for the scanner to be able to read the source code.",
                             "finish": [
-                                45,
+                                46,
                                 27
                             ],
                             "name": "source",
                             "rawdesc": "the source code. for the scanner to be able to read the source code.",
                             "start": [
-                                45,
+                                46,
                                 21
                             ],
                             "type": "local",
@@ -2385,7 +2385,7 @@
                     ],
                     "desc": " Create a New Scanner\n\n@*param* `source` — the source code. for the scanner to be able to read the source code.\n\n@*return* `self` — an instance of the Scanner.",
                     "finish": [
-                        62,
+                        63,
                         3
                     ],
                     "rawdesc": " Create a New Scanner",
@@ -2399,7 +2399,7 @@
                         }
                     ],
                     "start": [
-                        45,
+                        46,
                         0
                     ],
                     "type": "function",
@@ -2407,13 +2407,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    45,
+                    46,
                     20
                 ],
                 "name": "new",
                 "rawdesc": " Create a New Scanner",
                 "start": [
-                    45,
+                    46,
                     9
                 ],
                 "type": "setfield",
@@ -2429,13 +2429,13 @@
                         {
                             "desc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "finish": [
-                                83,
+                                84,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                             "start": [
-                                83,
+                                84,
                                 8
                             ],
                             "type": "self",
@@ -2444,12 +2444,12 @@
                     ],
                     "desc": " removes the most recently inserted character from the `token` buffer.",
                     "finish": [
-                        85,
+                        86,
                         3
                     ],
                     "rawdesc": " removes the most recently inserted character from the `token` buffer.",
                     "start": [
-                        83,
+                        84,
                         0
                     ],
                     "type": "function",
@@ -2457,13 +2457,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    83,
+                    84,
                     35
                 ],
                 "name": "removeInsertedChar",
                 "rawdesc": " removes the most recently inserted character from the `token` buffer.",
                 "start": [
-                    83,
+                    84,
                     9
                 ],
                 "type": "setmethod",
@@ -2476,11 +2476,11 @@
                 "desc": " The Scanner rules are per instance.",
                 "extends": {
                     "finish": [
-                        173,
+                        174,
                         1
                     ],
                     "start": [
-                        167,
+                        168,
                         16
                     ],
                     "type": "table",
@@ -2488,13 +2488,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    167,
+                    168,
                     13
                 ],
                 "name": "rules",
                 "rawdesc": " The Scanner rules are per instance.",
                 "start": [
-                    167,
+                    168,
                     0
                 ],
                 "type": "setfield",
@@ -2510,13 +2510,13 @@
                         {
                             "desc": "self",
                             "finish": [
-                                204,
+                                206,
                                 32
                             ],
                             "name": "self",
                             "rawdesc": "self",
                             "start": [
-                                204,
+                                206,
                                 28
                             ],
                             "type": "local",
@@ -2524,12 +2524,12 @@
                         },
                         {
                             "finish": [
-                                204,
+                                206,
                                 40
                             ],
                             "name": "unknown",
                             "start": [
-                                204,
+                                206,
                                 33
                             ],
                             "type": "local",
@@ -2538,7 +2538,7 @@
                     ],
                     "desc": "@*param* `self` — self\n\n@*return* `thread` — A thread you can use to scan the text asynchronously.\n\n Run Scanner Rules\n\n `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>\n It can be nil or not.\n \n If `unknown` returns `true`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n If `unknown` returns `false`,<br>\n the scanner continues even with the unknown character.\n \n If `unknown` is `nil`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
                     "finish": [
-                        279,
+                        281,
                         3
                     ],
                     "rawdesc": " Run Scanner Rules\n\n `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>\n It can be nil or not.\n \n If `unknown` returns `true`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n If `unknown` returns `false`,<br>\n the scanner continues even with the unknown character.\n \n If `unknown` is `nil`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
@@ -2552,7 +2552,7 @@
                         }
                     ],
                     "start": [
-                        204,
+                        206,
                         19
                     ],
                     "type": "function",
@@ -2560,13 +2560,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    204,
+                    206,
                     16
                 ],
                 "name": "runRules",
                 "rawdesc": " Run Scanner Rules\n\n `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>\n It can be nil or not.\n \n If `unknown` returns `true`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n If `unknown` returns `false`,<br>\n the scanner continues even with the unknown character.\n \n If `unknown` is `nil`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
                 "start": [
-                    204,
+                    206,
                     0
                 ],
                 "type": "setfield",
