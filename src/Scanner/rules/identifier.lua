@@ -14,97 +14,18 @@ local Token = require('src.Scanner.utils.token')
 -- Module that handles Scanner Enums
 local Enum = require('src.Scanner.utils.enum')
 
--- Enum Module
-local enum = require('src.libs.enum')
-
 -- A module that can convert a string into a byte array
 --- and also a byte array into a string.
 local Arrayizer = require('src.SourceCode.utils.Arrayizer')
 
--- List of Keywords
-local Keywords = enum.new(
-    -- C++
-    'alignas','alignof', -- Align
-    'and','and_eq', -- And
-    'auto',
-    'bitand','bitor','bitxor', -- Bit Operations
-    'bool',
-    'break',
-    'case',
-    'catch',
-    'char','char8_t','char16_t','char32_t', -- Char Types
-    'class', -- SRB2 Lua doesn't have classes, but you can easily simulate them.
-    'compl',
-    'concept',
-    'const','const_cast',
-    'continue',
-    'co_await','co_yield','co_return', -- Coroutine
-    'decltype',
-    'default',
-    'delete',
-    'do',
-    'double',
-    'dynamic_cast',
-    'else',
-    'enum',
-    'explicit',
-    'export',
-    'extern', -- This is a C++ keyword for external entities.
-    'false',
-    'float', -- I like floating-point numbers. They can be useful.
-    'for',
-    'friend', -- I have no idea how to do this.
-    -- without goto, SRB2 does not support it
-    'if',
-    'inline',
-    'import',
-    'int',
-    'long',
-    'mutable',
-    'namespace',
-    'new',
-    'noexcept',
-    'not',
-    'not_eq',
-    'nullptr', -- Here, this means a null reference, because SRB2 Lua doesn't have pointers.
-    'operator',
-    'or','or_eq',
-    'private', -- I'll come up with something for that.
-    'protected', -- That depends on the metatable.
-    'public',
-    -- SRB2 Lua does not have registers.
-    'reinterpret_cast',
-    'return',
-    'short',
-    'signed',
-    'sizeof', -- I'm going to do something cool for this keyword.
-    'static',
-    'static_assert',
-    'static_cast',
-    'string',
-    'struct', -- Very useful😈
-    'switch',
-    'template',
-    'this',
-    'throw',
-    'true',
-    'try',
-    'typedef',
-    'typeid',
-    'typename',
-    'union',
-    'unsigned',
-    'using',
-    'virtual',
-    'void',
-    'volatile',
-    'wchar_t',
-    'while',
-    'xor','xor_eq'
-)
+-- Trie of Keywords
+local Keywords = require('src.Scanner.utils.keyword_table').trie
 
 -- the value for the Identifiers category found in the enum.
 local Identifier = Enum.TokenKinds:getvalue('Identifier')
+
+-- the value for the Keywords category found in the enum.
+local Keyword = Enum.TokenKinds:getvalue('Keyword')
 
 -- This function is used to validate the starting character
 --- of the identifier.
@@ -124,6 +45,23 @@ local function Identifier_Loop(scanner)
     local current = scanner.cursor:getCurrentCharacter()
     return (Identifier_Start(scanner)==true
     or scanner.cursor:matchRangeAChar(current,48,57)) -- 48 = 0, 57 = 9
+end
+
+-- This function checks if it is a keyword.
+---@param bytes byte[] a byte array.
+---@return boolean is_a_keyword,number? id Returns a boolean and the Keyword ID: `true` and a `number` if it is a keyword, or `false` and `nil` if it is not.
+local function Is_A_Keyword(bytes)
+    local node = Keywords
+    for i=1,#bytes-1 do
+        node = node[bytes[i]]
+        if node==nil then
+            return false,nil
+        end
+    end
+    if type(node.id)=="number" then
+        return true,node.id
+    end
+    return false,nil
 end
 
 -- Export
@@ -146,13 +84,12 @@ return Rules.new({
 			self.cursor:advance()
 		end
         local End = self.cursor:newSpan()
-        local IdentifierString = Arrayizer.ByteArrayToString(self.token) -- convert this byte array into strings.
-        local Keyword = Keywords:getvalue(IdentifierString)
-        if Keyword~=nil then
+        local IsAKeyword,KeywordID = Is_A_Keyword(self.token)
+        if IsAKeyword==true then
             return Token.new({
                 kind={
-                    category=Identifier,
-                    keyword=Keyword
+                    category=Keyword,
+                    keyword=KeywordID
                 },
                 token=self.token,
                 location={

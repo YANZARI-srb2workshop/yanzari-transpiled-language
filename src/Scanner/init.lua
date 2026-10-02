@@ -41,6 +41,7 @@ local Scanner = {}
 Scanner.__index = Scanner
 
 -- Create a New Scanner
+---@nodiscard
 ---@param source SourceCode the source code. for the scanner to be able to read the source code.
 ---@return Scanner self an instance of the Scanner.
 function Scanner.new(source)
@@ -199,6 +200,7 @@ Scanner.rules = {
 --- }
 --- ```
 ---@async
+---@nodiscard
 ---@param self Scanner self
 ---@param unknown? fun(self: Scanner): boolean
 ---@return thread thread A thread you can use to scan the text asynchronously.

@@ -7,8 +7,8 @@
 
 -- Enums
 ---@class Enum<EnumValue>
----@field key table<number,EnumValue> key-to-value map
----@field value table<EnumValue,number> value-to-key map
+---@field key table<EnumValue,number> key-to-value map
+---@field value table<number,EnumValue> value-to-key map
 ---@field new fun(...: EnumValue): Enum<EnumValue>
 ---@field getvalue fun(self:Enum,key:EnumValue):number
 ---@field getkey fun(self:Enum,value:number):EnumValue

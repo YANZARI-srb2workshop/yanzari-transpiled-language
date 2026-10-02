@@ -7,6 +7,9 @@
 # so just never leak it.
 deep-test.lua
 
+# my dedicated folder for more complex tests.
+deep-tests/
+
 # Never leak your .env file;
 # it might contain passwords and various other things
 #
