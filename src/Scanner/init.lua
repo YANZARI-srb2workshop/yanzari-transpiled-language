@@ -152,41 +152,54 @@ function Scanner:getInsertedToken(offset)
 	return self.tokens[self.current_output_pos][offset]
 end
 
--- loads a Scanner rule
----@param name string name of the rule
----@return ScannerRule rule a Scanner Rule
-local function LoadRule(name)
-	assert(type(name)=='string','name must be a string')
-
-	-- A Rule
-	---@type ScannerRule
-	local content = require('src.Scanner.rules.'..name)
-	return content
-end
-
 -- The Scanner rules are per instance.
----@type ScannerRule[]
-Scanner.rules = {
-	LoadRule('layout.indentation'), -- Indentation
-	LoadRule('identifier'),
-	LoadRule('operator'), -- Operator
-	LoadRule('layout.space'), -- Spaces
-	-- Coming Soon More
-}
-
--- Run Scanner Rules
 ---
---- `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>
+--- `sof`: A rule that triggers when the scanner starts scanning.
+--- 
+--- `eof`: A rule that triggers when the scanner finishes scanning.
+---
+--- `unk`: a rule that is called when the scanner encounters an unknown character.<br>
 --- It can be nil or not.
 --- 
---- If `unknown` returns `true`,<br>
+--- If `unk` returns `true`,<br>
 --- it stops the scanner, and the scanner returns the final result.
 ---
---- If `unknown` returns `false`,<br>
+--- If `unk` returns `false`,<br>
 --- the scanner continues even with the unknown character.
 --- 
---- If `unknown` is `nil`,<br>
+--- If `unk` is `nil`,<br>
 --- it stops the scanner, and the scanner returns the final result.
+---@type {[number|'sof'|'eof'|'unk']: ScannerRule}
+Scanner.rules = require('src.Scanner.rules')
+
+-- executes only one rule and calls a callback if it returns a token.
+---@param base Scanner the class with the rules.
+---@param rule ScannerRule the rule itself.
+---@param callback fun(options: {base: Scanner, token: Token}): nil the callback for when a token is present.
+---@return boolean passed Did it pass the rule?
+local function runRule(base,rule,callback)
+	---@type boolean
+	local entered
+
+	-- Token returned by the rule
+	---@type Token?
+	local token
+
+	entered,token = rule:run(base)
+	assert(type(entered)=='boolean','this rule returned argument #1 must be a boolean')
+	if entered==true then
+		if token~=nil then
+			assert(getmetatable(token)==Token,'this rule returned argument #2 must be a Token')
+			
+			callback({base=base,token=token})
+		end
+		base.token = {}
+		return true
+	end
+	return false
+end
+
+-- Run Scanner Rules
 ---
 --- You must run the returned thread without any arguments. <br>
 --- the thread returns:
@@ -202,15 +215,8 @@ Scanner.rules = {
 ---@async
 ---@nodiscard
 ---@param self Scanner self
----@param unknown? fun(self: Scanner): boolean
 ---@return thread thread A thread you can use to scan the text asynchronously.
-Scanner.runRules = function(self,unknown)
-	-- Type Checking
-	if unknown~=nil then
-		assert(type(unknown)=='function','unknown must be a function')
-	end
-	----
-
+Scanner.runRules = function(self)
 	return coroutine.create(function()
 		if #Scanner.rules<=0 then
 			return {
@@ -222,47 +228,38 @@ Scanner.runRules = function(self,unknown)
 		end
 		local number_of_tokens = 0
 		local number_of_unknown_characters = 0
+		local RuleCallback = function(options)
+			number_of_tokens=number_of_tokens+1
+			coroutine.yield({
+				token=options.token,
+				ended=false
+			})
+			self:emitToken(options.token)
+		end
+		if self.rules.sof~=nil then
+			runRule(self,self.rules.sof,RuleCallback)
+		end
 		while true do
 			local passed = false
-			for rulenumber,rule in ipairs(self.rules) do
-				if self.cursor:isEOF() then
-					break
-				end
-
-				---@type boolean
-				local entered
-
-				-- Token returned by the rule
-				---@type Token?
-				local token
-
-				entered,token = rule:run(self)
-				assert(type(entered)=='boolean','rule #'..tostring(rulenumber)..' returned argument #1 must be a boolean')
-				if entered==true then
-					if token~=nil then
-						assert(getmetatable(token)==Token,'rule #'..tostring(rulenumber)..' returned argument #2 must be a Token')
-						
-						number_of_tokens=number_of_tokens+1
-						coroutine.yield({
-							token=token,
-							ended=false
-						})
-						self:emitToken(token)
-					end
-					self.token = {}
+			for _,rule in ipairs(self.rules) do
+				local ended = runRule(self,rule,RuleCallback)
+				if ended==true then
 					passed = true
 					break
 				end
 			end
 			if self.cursor:isEOF() then
+				if self.rules.eof~=nil then
+					runRule(self,self.rules.eof,RuleCallback)
+				end
 				break
 			end
 			if passed==false then
-				if unknown~=nil then
+				if self.rules.unk~=nil then
 					number_of_unknown_characters = number_of_unknown_characters+1
 					-------------------------------------------------------------
 
-					local can_break = unknown(self)
+					local can_break = runRule(self,self.rules.unk,RuleCallback)
 					assert(type(can_break)=='boolean',"The result of the 'unknown' function must be a boolean.")
 					if can_break==true then
 						break

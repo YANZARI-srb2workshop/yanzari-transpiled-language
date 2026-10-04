@@ -47,6 +47,9 @@ local Indent = Enum.TokenKinds:getvalue('Indent')
 -- Dedent
 local Dedent = Enum.TokenKinds:getvalue('Dedent')
 
+-- NewLine
+local NewLine = Enum.TokenKinds:getvalue('NewLine')
+
 -- the indentation type that represents neither.
 local TypeOfIndentation_None = typesOfIndentation:getvalue('None')
 
@@ -90,6 +93,20 @@ return Rules.new({
 			-- This variable holds a boolean value and is used to skip the line break.
 			local skipEOL = self.cursor:isEOL()
 			if skipEOL==true then
+				-- Let's make the EOF token.
+
+				local NewLinePos = self.cursor:newSpan()
+				self:emitToken(Token.new({
+					kind={
+						category=NewLine
+					},
+					location={
+						start=NewLinePos,
+						['end']=NewLinePos
+					}
+				}))
+				-- Let's skip this now.
+
 				self.cursor:advance()
 			end
 		end
@@ -118,6 +135,7 @@ return Rules.new({
 		do
 			while true do
 				if self.cursor:isEOF() then break end
+				if self.cursor:isEOL() then break end
 				if ListOfWhiteSpaces[self.cursor:getCurrentCharacter()] ~= true then break end
 				if self.cursor:getCurrentCharacter()==SpaceChar then
 					self.extra.indentation.spaces = self.extra.indentation.spaces+1
