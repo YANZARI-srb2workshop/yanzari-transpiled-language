@@ -2473,75 +2473,62 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": " The Scanner rules are per instance.",
+                "desc": " The Scanner rules are per instance.\n\n `sof`: A rule that triggers when the scanner starts scanning.\n \n `eof`: A rule that triggers when the scanner finishes scanning.\n\n `unk`: a rule that is called when the scanner encounters an unknown character.<br>\n It can be nil or not.\n \n If `unk` returns `true`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n If `unk` returns `false`,<br>\n the scanner continues even with the unknown character.\n \n If `unk` is `nil`,<br>\n it stops the scanner, and the scanner returns the final result.",
                 "extends": {
                     "finish": [
-                        174,
-                        1
+                        172,
+                        44
                     ],
                     "start": [
-                        168,
+                        172,
                         16
                     ],
-                    "type": "table",
-                    "view": "ScannerRule[]"
+                    "type": "select",
+                    "view": "{ [number|'eof'|'sof'|'unk']: ScannerRule }"
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    168,
+                    172,
                     13
                 ],
                 "name": "rules",
-                "rawdesc": " The Scanner rules are per instance.",
+                "rawdesc": " The Scanner rules are per instance.\n\n `sof`: A rule that triggers when the scanner starts scanning.\n \n `eof`: A rule that triggers when the scanner finishes scanning.\n\n `unk`: a rule that is called when the scanner encounters an unknown character.<br>\n It can be nil or not.\n \n If `unk` returns `true`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n If `unk` returns `false`,<br>\n the scanner continues even with the unknown character.\n \n If `unk` is `nil`,<br>\n it stops the scanner, and the scanner returns the final result.",
                 "start": [
-                    168,
+                    172,
                     0
                 ],
                 "type": "setfield",
-                "view": "ScannerRule[]",
+                "view": "{ [number|'eof'|'sof'|'unk']: ScannerRule }",
                 "visible": "public"
             },
             {
                 "async": true,
                 "deprecated": false,
-                "desc": "@*param* `self` — self\n\n@*return* `thread` — A thread you can use to scan the text asynchronously.\n\n Run Scanner Rules\n\n `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>\n It can be nil or not.\n \n If `unknown` returns `true`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n If `unknown` returns `false`,<br>\n the scanner continues even with the unknown character.\n \n If `unknown` is `nil`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
+                "desc": "@*param* `self` — self\n\n@*return* `thread` — A thread you can use to scan the text asynchronously.\n\n Run Scanner Rules\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
                 "extends": {
                     "args": [
                         {
                             "desc": "self",
                             "finish": [
-                                206,
+                                218,
                                 32
                             ],
                             "name": "self",
                             "rawdesc": "self",
                             "start": [
-                                206,
+                                218,
                                 28
                             ],
                             "type": "local",
                             "view": "Scanner"
-                        },
-                        {
-                            "finish": [
-                                206,
-                                40
-                            ],
-                            "name": "unknown",
-                            "start": [
-                                206,
-                                33
-                            ],
-                            "type": "local",
-                            "view": "(fun(self: Scanner):boolean)?"
                         }
                     ],
-                    "desc": "@*param* `self` — self\n\n@*return* `thread` — A thread you can use to scan the text asynchronously.\n\n Run Scanner Rules\n\n `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>\n It can be nil or not.\n \n If `unknown` returns `true`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n If `unknown` returns `false`,<br>\n the scanner continues even with the unknown character.\n \n If `unknown` is `nil`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
+                    "desc": "@*param* `self` — self\n\n@*return* `thread` — A thread you can use to scan the text asynchronously.\n\n Run Scanner Rules\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
                     "finish": [
-                        281,
+                        278,
                         3
                     ],
-                    "rawdesc": " Run Scanner Rules\n\n `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>\n It can be nil or not.\n \n If `unknown` returns `true`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n If `unknown` returns `false`,<br>\n the scanner continues even with the unknown character.\n \n If `unknown` is `nil`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
+                    "rawdesc": " Run Scanner Rules\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
                     "returns": [
                         {
                             "desc": "A thread you can use to scan the text asynchronously.",
@@ -2552,21 +2539,21 @@
                         }
                     ],
                     "start": [
-                        206,
+                        218,
                         19
                     ],
                     "type": "function",
-                    "view": "(async) function Scanner.runRules(self: Scanner, unknown?: fun(self: Scanner):boolean)\n  -> thread: thread"
+                    "view": "(async) function Scanner.runRules(self: Scanner)\n  -> thread: thread"
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    206,
+                    218,
                     16
                 ],
                 "name": "runRules",
-                "rawdesc": " Run Scanner Rules\n\n `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>\n It can be nil or not.\n \n If `unknown` returns `true`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n If `unknown` returns `false`,<br>\n the scanner continues even with the unknown character.\n \n If `unknown` is `nil`,<br>\n it stops the scanner, and the scanner returns the final result.\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
+                "rawdesc": " Run Scanner Rules\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
                 "start": [
-                    206,
+                    218,
                     0
                 ],
                 "type": "setfield",

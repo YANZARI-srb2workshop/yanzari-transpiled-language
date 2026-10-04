@@ -431,16 +431,32 @@ function Scanner.new(source: SourceCode)
 
 
 ```lua
-ScannerRule[]
+{ [number|'eof'|'sof'|'unk']: ScannerRule }
 ```
 
  The Scanner rules are per instance.
+
+ `sof`: A rule that triggers when the scanner starts scanning.
+ 
+ `eof`: A rule that triggers when the scanner finishes scanning.
+
+ `unk`: a rule that is called when the scanner encounters an unknown character.<br>
+ It can be nil or not.
+ 
+ If `unk` returns `true`,<br>
+ it stops the scanner, and the scanner returns the final result.
+
+ If `unk` returns `false`,<br>
+ the scanner continues even with the unknown character.
+ 
+ If `unk` is `nil`,<br>
+ it stops the scanner, and the scanner returns the final result.
 
 ## runRules
 
 
 ```lua
-(async) function Scanner.runRules(self: Scanner, unknown?: fun(self: Scanner):boolean)
+(async) function Scanner.runRules(self: Scanner)
   -> thread: thread
 ```
 
@@ -449,18 +465,6 @@ ScannerRule[]
 @*return* `thread` — A thread you can use to scan the text asynchronously.
 
  Run Scanner Rules
-
- `unknown`: a `function` that is called when the scanner encounters an unknown character.<br>
- It can be nil or not.
- 
- If `unknown` returns `true`,<br>
- it stops the scanner, and the scanner returns the final result.
-
- If `unknown` returns `false`,<br>
- the scanner continues even with the unknown character.
- 
- If `unknown` is `nil`,<br>
- it stops the scanner, and the scanner returns the final result.
 
  You must run the returned thread without any arguments. <br>
  the thread returns:
