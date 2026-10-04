@@ -52,7 +52,7 @@ end
 ---@return boolean is_a_keyword,number? id Returns a boolean and the Keyword ID: `true` and a `number` if it is a keyword, or `false` and `nil` if it is not.
 local function Is_A_Keyword(bytes)
     local node = Keywords
-    for i=1,#bytes-1 do
+    for i=1,#bytes do
         node = node[bytes[i]]
         if node==nil then
             return false,nil

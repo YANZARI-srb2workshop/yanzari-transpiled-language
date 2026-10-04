@@ -14,14 +14,17 @@ local Keywords = {
 	"and",
 	"and_eq",
 	"auto",
+	"automatic", -- same as auto
 	"bitand",
 	"bitor",
 	"bitxor",
 	"bool",
+	"boolean", -- same as bool
 	"break",
 	"case",
 	"catch",
 	"char",
+	"char_t", -- same as char
 	"char8_t",
 	"char16_t",
 	"char32_t",
@@ -50,9 +53,11 @@ local Keywords = {
 	"for",
 	"friend",
 	"if",
+	"in",
 	"inline",
 	"import",
 	"int",
+	"integer", -- same as int
 	"long",
 	"mutable",
 	"namespace",
@@ -60,6 +65,7 @@ local Keywords = {
 	"noexcept",
 	"not",
 	"not_eq",
+	"null",
 	"nullptr",
 	"operator",
 	"or",
@@ -146,7 +152,7 @@ local function Trie(tbl)
     local trie = {}
     for word, id in pairs(tbl) do
         local node = trie
-        for i = 1, #word-1 do
+        for i = 1, #word do
             local byte = word:byte(i,i)
             node[byte] = node[byte] or {}
             node = node[byte]
