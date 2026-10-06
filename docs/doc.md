@@ -431,25 +431,25 @@ function Scanner.new(source: SourceCode)
 
 
 ```lua
-{ [number|'eof'|'sof'|'unk']: ScannerRule }
+{ [number|'EndOfFile'|'StartOfFile'|'Unknown']: ScannerRule }
 ```
 
  The Scanner rules are per instance.
 
- `sof`: A rule that triggers when the scanner starts scanning.
+ `StartOfFile`: A rule that triggers when the scanner starts scanning.
  
- `eof`: A rule that triggers when the scanner finishes scanning.
+ `EndOfFile`: A rule that triggers when the scanner finishes scanning.
 
- `unk`: a rule that is called when the scanner encounters an unknown character.<br>
+ `Unknown`: a rule that is called when the scanner encounters an unknown character.<br>
  It can be nil or not.
  
- If `unk` returns `true`,<br>
+ If `Unknown` returns `true`,<br>
  it stops the scanner, and the scanner returns the final result.
 
- If `unk` returns `false`,<br>
+ If `Unknown` returns `false`,<br>
  the scanner continues even with the unknown character.
  
- If `unk` is `nil`,<br>
+ If `Unknown` is `nil`,<br>
  it stops the scanner, and the scanner returns the final result.
 
 ## runRules
