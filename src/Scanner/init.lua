@@ -1,9 +1,6 @@
 -- Scanner
 --- 
 --- This module will read the content of a text and convert it into tokens.
---- (I will implement the tokenization part soon)
---- 
---- This part is a work in progress.
 --> By Yanzari
 
 -- A module that handles intervals.
@@ -154,22 +151,22 @@ end
 
 -- The Scanner rules are per instance.
 ---
---- `sof`: A rule that triggers when the scanner starts scanning.
+--- `StartOfFile`: A rule that triggers when the scanner starts scanning.
 --- 
---- `eof`: A rule that triggers when the scanner finishes scanning.
+--- `EndOfFile`: A rule that triggers when the scanner finishes scanning.
 ---
---- `unk`: a rule that is called when the scanner encounters an unknown character.<br>
+--- `Unknown`: a rule that is called when the scanner encounters an unknown character.<br>
 --- It can be nil or not.
 --- 
---- If `unk` returns `true`,<br>
+--- If `Unknown` returns `true`,<br>
 --- it stops the scanner, and the scanner returns the final result.
 ---
---- If `unk` returns `false`,<br>
+--- If `Unknown` returns `false`,<br>
 --- the scanner continues even with the unknown character.
 --- 
---- If `unk` is `nil`,<br>
+--- If `Unknown` is `nil`,<br>
 --- it stops the scanner, and the scanner returns the final result.
----@type {[number|'sof'|'eof'|'unk']: ScannerRule}
+---@type {[number|'StartOfFile'|'EndOfFile'|'Unknown']: ScannerRule}
 Scanner.rules = require('src.Scanner.rules')
 
 -- executes only one rule and calls a callback if it returns a token.
@@ -236,8 +233,8 @@ Scanner.runRules = function(self)
 			})
 			self:emitToken(options.token)
 		end
-		if self.rules.sof~=nil then
-			runRule(self,self.rules.sof,RuleCallback)
+		if self.rules.StartOfFile~=nil then
+			runRule(self,self.rules.StartOfFile,RuleCallback)
 		end
 		while true do
 			local passed = false
@@ -249,17 +246,17 @@ Scanner.runRules = function(self)
 				end
 			end
 			if self.cursor:isEOF() then
-				if self.rules.eof~=nil then
-					runRule(self,self.rules.eof,RuleCallback)
+				if self.rules.EndOfFile~=nil then
+					runRule(self,self.rules.EndOfFile,RuleCallback)
 				end
 				break
 			end
 			if passed==false then
-				if self.rules.unk~=nil then
+				if self.rules.Unknown~=nil then
 					number_of_unknown_characters = number_of_unknown_characters+1
 					-------------------------------------------------------------
 
-					local can_break = runRule(self,self.rules.unk,RuleCallback)
+					local can_break = runRule(self,self.rules.Unknown,RuleCallback)
 					assert(type(can_break)=='boolean',"The result of the 'unknown' function must be a boolean.")
 					if can_break==true then
 						break

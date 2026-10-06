@@ -26,6 +26,7 @@ local Token = {}
 Token.__index = Token
 
 -- Create a Token
+---@nodiscard
 ---@param options Token an interface that you pass to the function, which returns a token.
 ---@return Token token a token.
 function Token.new(options)

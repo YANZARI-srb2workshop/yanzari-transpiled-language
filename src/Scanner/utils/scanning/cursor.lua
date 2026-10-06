@@ -24,6 +24,7 @@ local Cursor = {}
 Cursor.__index = Cursor
 
 -- creates a new instance of the cursor
+---@nodiscard
 ---@param source SourceCode the source code that allows the scanner cursor to advance and capture characters from it.
 ---@return ScannerCursor an instance of the Cursor.
 function Cursor.new(source)

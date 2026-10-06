@@ -6,7 +6,7 @@
 --> By Yanzari
 
 -- a rules table
----@type {[number|'sof'|'eof'|'unk']: ScannerRule}
+---@type {[number|'StartOfFile'|'EndOfFile'|'Unknown']: ScannerRule}
 local Rules = {}
 
 -- It adds a rule to the Rules table.
@@ -22,11 +22,12 @@ local function AddRule(rulename,name)
 end
 
 -- Let's add the rules to the rules table!
-AddRule('points.start','sof') -- start of file.
-AddRule('points.end','eof') -- end of file.
+AddRule('points.start','StartOfFile') -- start of file.
+AddRule('points.end','EndOfFile') -- end of file.
 AddRule('layout.indentation') -- indentation
 AddRule('layout.space') -- spaces/tabs
 AddRule('literal.identifier') -- identifier/keyword
+AddRule('literal.numeric.integer') -- an integer.
 AddRule('operator') -- operator
 
 -- Export

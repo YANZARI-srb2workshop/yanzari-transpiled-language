@@ -10,6 +10,7 @@ local Marker = {}
 Marker.__index = Marker
 
 -- creates a marker for the Scanner Cursor.
+---@nodiscard
 ---@param line number the line for the scanner to perform backtracking.
 ---@param col number the column for the scanner to backtrack.
 ---@return ScannerMarker self a marker to make the scanner cursor backtrack.

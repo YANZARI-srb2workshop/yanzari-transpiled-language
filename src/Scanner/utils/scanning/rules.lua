@@ -17,6 +17,7 @@ local Rules = {}
 Rules.__index = Rules
 
 -- Create a rule for the scanner.
+---@nodiscard
 ---@param options ScannerRuleInterface an interface to create the rule.
 ---@return ScannerRule rule a rule for the scanner
 function Rules.new(options)
@@ -47,6 +48,7 @@ end
 --- 
 --- the second returned argument, `token`
 --- is the token produced by the rule.
+---@nodiscard
 ---@param base Scanner an instance of the Scanner.
 ---@return boolean entered,Token? token
 function Rules:run(base)

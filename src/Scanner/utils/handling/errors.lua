@@ -20,6 +20,7 @@ local Errors = {}
 Errors.__index = Errors
 
 -- Create a Error Bucket
+---@nodiscard
 function Errors.new()
     local self = setmetatable({},Errors)
     self.bucket = {}

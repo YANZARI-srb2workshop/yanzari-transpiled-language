@@ -38,7 +38,7 @@ module.exports = {
 
   formatMessageCB: ({ type, markBreaking, subject, body }) => {
     if (markBreaking.length>0) {
-      return `breaking-changes:${type}: ${subject}
+      return `breaking-changes|${type}: ${subject}
 
 ${body}`
     }

@@ -14,6 +14,7 @@ local Span = {}
 Span.__index = Span
 
 -- create a Span
+---@nodiscard
 ---@param line number the text line to construct the Span.
 ---@param col number the text column to construct the Span.
 ---@return Span self a Span that stores position.
