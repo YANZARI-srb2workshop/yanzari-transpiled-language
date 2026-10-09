@@ -1750,6 +1750,595 @@
             {
                 "async": false,
                 "deprecated": false,
+                "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    11,
+                    16
+                ],
+                "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                "start": [
+                    11,
+                    10
+                ],
+                "type": "doc.class",
+                "view": "Parser",
+                "visible": "public"
+            }
+        ],
+        "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+        "fields": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                "extends": {
+                    "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                    "finish": [
+                        17,
+                        23
+                    ],
+                    "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                    "start": [
+                        17,
+                        17
+                    ],
+                    "type": "getlocal",
+                    "view": "Parser"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    17,
+                    14
+                ],
+                "name": "__index",
+                "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                "start": [
+                    17,
+                    0
+                ],
+                "type": "setfield",
+                "view": "Parser",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "a Concrete Syntax Tree",
+                "extends": {
+                    "desc": " CST",
+                    "finish": [
+                        12,
+                        23
+                    ],
+                    "rawdesc": " CST",
+                    "start": [
+                        12,
+                        14
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "desc": " CST",
+                            "finish": [
+                                12,
+                                23
+                            ],
+                            "rawdesc": " CST",
+                            "start": [
+                                12,
+                                14
+                            ],
+                            "type": "doc.type.name",
+                            "view": "ParserCST"
+                        }
+                    ],
+                    "view": "ParserCST"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    12,
+                    23
+                ],
+                "name": "cst",
+                "rawdesc": "a Concrete Syntax Tree",
+                "start": [
+                    12,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "ParserCST",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": " Create a Parser Instance\n\n@*param* `options` — The source code and the scanner tokens.",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": "The source code and the scanner tokens.",
+                            "finish": [
+                                21,
+                                27
+                            ],
+                            "name": "options",
+                            "rawdesc": "The source code and the scanner tokens.",
+                            "start": [
+                                21,
+                                20
+                            ],
+                            "type": "local",
+                            "view": "context_shared<Token[][]>"
+                        }
+                    ],
+                    "desc": " Create a Parser Instance\n\n@*param* `options` — The source code and the scanner tokens.",
+                    "finish": [
+                        31,
+                        3
+                    ],
+                    "rawdesc": " Create a Parser Instance",
+                    "returns": [
+                        {
+                            "type": "function.return",
+                            "view": "Parser"
+                        }
+                    ],
+                    "start": [
+                        21,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "function Parser.new(options: context_shared<Token[][]>)\n  -> Parser"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    21,
+                    19
+                ],
+                "name": "new",
+                "rawdesc": " Create a Parser Instance",
+                "start": [
+                    21,
+                    9
+                ],
+                "type": "setfield",
+                "view": "function",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "the source code.",
+                "extends": {
+                    "desc": " Source Code",
+                    "finish": [
+                        14,
+                        27
+                    ],
+                    "rawdesc": " Source Code",
+                    "start": [
+                        14,
+                        17
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "desc": " Source Code",
+                            "finish": [
+                                14,
+                                27
+                            ],
+                            "rawdesc": " Source Code",
+                            "start": [
+                                14,
+                                17
+                            ],
+                            "type": "doc.type.name",
+                            "view": "SourceCode"
+                        }
+                    ],
+                    "view": "SourceCode"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    14,
+                    27
+                ],
+                "name": "source",
+                "rawdesc": "the source code.",
+                "start": [
+                    14,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "SourceCode",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "the current token buffer's position, in case you want to switch to another token buffer.",
+                "extends": {
+                    "finish": [
+                        13,
+                        32
+                    ],
+                    "start": [
+                        13,
+                        26
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                13,
+                                32
+                            ],
+                            "start": [
+                                13,
+                                26
+                            ],
+                            "type": "doc.type.name",
+                            "view": "number"
+                        }
+                    ],
+                    "view": "number"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    13,
+                    32
+                ],
+                "name": "tokenBuffer_pos",
+                "rawdesc": "the current token buffer's position, in case you want to switch to another token buffer.",
+                "start": [
+                    13,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "number",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "the tokens produced by the scanner.",
+                "extends": {
+                    "finish": [
+                        15,
+                        26
+                    ],
+                    "start": [
+                        15,
+                        17
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                15,
+                                26
+                            ],
+                            "start": [
+                                15,
+                                17
+                            ],
+                            "type": "doc.type.array",
+                            "view": "Token[][]"
+                        }
+                    ],
+                    "view": "Token[][]"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    15,
+                    26
+                ],
+                "name": "tokens",
+                "rawdesc": "the tokens produced by the scanner.",
+                "start": [
+                    15,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "Token[][]",
+                "visible": "public"
+            }
+        ],
+        "name": "Parser",
+        "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+        "type": "type",
+        "view": "Parser"
+    },
+    {
+        "defines": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": " CST",
+                "extends": [
+                    {
+                        "desc": " Parser nodes used in the CST.",
+                        "finish": [
+                            21,
+                            31
+                        ],
+                        "rawdesc": " Parser nodes used in the CST.",
+                        "start": [
+                            21,
+                            21
+                        ],
+                        "type": "doc.extends.name",
+                        "view": "ParserNode"
+                    }
+                ],
+                "file": "src/Parser/types.lua",
+                "finish": [
+                    21,
+                    31
+                ],
+                "rawdesc": " CST",
+                "start": [
+                    21,
+                    10
+                ],
+                "type": "doc.class",
+                "view": "ParserCST",
+                "visible": "public"
+            }
+        ],
+        "desc": " CST",
+        "fields": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "the program statements.",
+                "extends": {
+                    "finish": [
+                        23,
+                        25
+                    ],
+                    "start": [
+                        23,
+                        20
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                23,
+                                25
+                            ],
+                            "start": [
+                                23,
+                                20
+                            ],
+                            "type": "doc.type.array",
+                            "view": "any[]"
+                        }
+                    ],
+                    "view": "any[]"
+                },
+                "file": "src/Parser/types.lua",
+                "finish": [
+                    23,
+                    25
+                ],
+                "name": "childerns",
+                "rawdesc": "the program statements.",
+                "start": [
+                    23,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "any[]",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "the Node type being the type corresponding to Program.",
+                "extends": {
+                    "finish": [
+                        22,
+                        16
+                    ],
+                    "start": [
+                        22,
+                        15
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                22,
+                                16
+                            ],
+                            "start": [
+                                22,
+                                15
+                            ],
+                            "type": "doc.type.integer",
+                            "view": "1"
+                        }
+                    ],
+                    "view": "1"
+                },
+                "file": "src/Parser/types.lua",
+                "finish": [
+                    22,
+                    16
+                ],
+                "name": "kind",
+                "rawdesc": "the Node type being the type corresponding to Program.",
+                "start": [
+                    22,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "1",
+                "visible": "public"
+            }
+        ],
+        "name": "ParserCST",
+        "rawdesc": " CST",
+        "type": "type",
+        "view": "ParserCST"
+    },
+    {
+        "defines": [
+            {
+                "desc": "```lua\n--  the enum used by the Concrete Syntax Tree.\nParserCSTEnum:\n    | 1 -- Program\n    | 2 -- Atom\n```",
+                "file": "src/Parser/types.lua",
+                "finish": [
+                    10,
+                    6
+                ],
+                "rawdesc": "```lua\n--  the enum used by the Concrete Syntax Tree.\nParserCSTEnum:\n    | 1 -- Program\n    | 2 -- Atom\n```",
+                "start": [
+                    8,
+                    10
+                ],
+                "type": "doc.alias",
+                "view": "1|2"
+            }
+        ],
+        "desc": " the enum used by the Concrete Syntax Tree.",
+        "fields": [],
+        "name": "ParserCSTEnum",
+        "rawdesc": " the enum used by the Concrete Syntax Tree.",
+        "type": "type",
+        "view": "ParserCSTEnum"
+    },
+    {
+        "defines": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": " Parser nodes used in the CST.",
+                "file": "src/Parser/types.lua",
+                "finish": [
+                    14,
+                    20
+                ],
+                "rawdesc": " Parser nodes used in the CST.",
+                "start": [
+                    14,
+                    10
+                ],
+                "type": "doc.class",
+                "view": "ParserNode",
+                "visible": "public"
+            }
+        ],
+        "desc": " Parser nodes used in the CST.",
+        "fields": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "the children of the node.",
+                "extends": {
+                    "finish": [
+                        16,
+                        25
+                    ],
+                    "start": [
+                        16,
+                        20
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                16,
+                                25
+                            ],
+                            "start": [
+                                16,
+                                20
+                            ],
+                            "type": "doc.type.name",
+                            "view": "table"
+                        }
+                    ],
+                    "view": "table"
+                },
+                "file": "src/Parser/types.lua",
+                "finish": [
+                    16,
+                    25
+                ],
+                "name": "childerns",
+                "rawdesc": "the children of the node.",
+                "start": [
+                    16,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "table",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "the node type.",
+                "extends": {
+                    "desc": " the enum used by the Concrete Syntax Tree.",
+                    "finish": [
+                        15,
+                        28
+                    ],
+                    "rawdesc": " the enum used by the Concrete Syntax Tree.",
+                    "start": [
+                        15,
+                        15
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "desc": " the enum used by the Concrete Syntax Tree.",
+                            "finish": [
+                                15,
+                                28
+                            ],
+                            "rawdesc": " the enum used by the Concrete Syntax Tree.",
+                            "start": [
+                                15,
+                                15
+                            ],
+                            "type": "doc.type.name",
+                            "view": "1|2"
+                        }
+                    ],
+                    "view": "1|2"
+                },
+                "file": "src/Parser/types.lua",
+                "finish": [
+                    15,
+                    28
+                ],
+                "name": "kind",
+                "rawdesc": "the node type.",
+                "start": [
+                    15,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "1|2",
+                "visible": "public"
+            }
+        ],
+        "name": "ParserNode",
+        "rawdesc": " Parser nodes used in the CST.",
+        "type": "type",
+        "view": "ParserNode"
+    },
+    {
+        "defines": [
+            {
+                "async": false,
+                "deprecated": false,
                 "desc": " This class handles text tokenization.<br>\n It transforms the text into tokens so that the parser<br>\n can convert them into a Concrete Syntax Tree.",
                 "file": "src/Scanner/init.lua",
                 "finish": [
@@ -6973,6 +7562,31 @@
         "rawdesc": " a byte of a string.",
         "type": "type",
         "view": "byte"
+    },
+    {
+        "defines": [
+            {
+                "desc": " context shared by multiple instances.",
+                "file": "src/alias.lua",
+                "finish": [
+                    18,
+                    60
+                ],
+                "rawdesc": " context shared by multiple instances.",
+                "start": [
+                    18,
+                    10
+                ],
+                "type": "doc.alias",
+                "view": "context_shared"
+            }
+        ],
+        "desc": " context shared by multiple instances.",
+        "fields": [],
+        "name": "context_shared",
+        "rawdesc": " context shared by multiple instances.",
+        "type": "type",
+        "view": "context_shared"
     },
     {
         "defines": [

@@ -280,6 +280,129 @@ any
 
 ---
 
+# Parser
+
+ The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />
+ (WIP)
+
+## __index
+
+
+```lua
+Parser
+```
+
+ The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />
+ (WIP)
+
+## cst
+
+
+```lua
+ParserCST
+```
+
+a Concrete Syntax Tree
+
+## new
+
+
+```lua
+function Parser.new(options: context_shared<Token[][]>)
+  -> Parser
+```
+
+ Create a Parser Instance
+
+@*param* `options` — The source code and the scanner tokens.
+
+## source
+
+
+```lua
+SourceCode
+```
+
+the source code.
+
+## tokenBuffer_pos
+
+
+```lua
+number
+```
+
+the current token buffer's position, in case you want to switch to another token buffer.
+
+## tokens
+
+
+```lua
+Token[][]
+```
+
+the tokens produced by the scanner.
+
+
+---
+
+# ParserCST
+
+ CST
+
+## childerns
+
+
+```lua
+any[]
+```
+
+the program statements.
+
+## kind
+
+
+```lua
+1
+```
+
+the Node type being the type corresponding to Program.
+
+
+---
+
+# ParserCSTEnum
+
+ the enum used by the Concrete Syntax Tree.
+
+
+---
+
+# ParserNode
+
+ Parser nodes used in the CST.
+
+## childerns
+
+
+```lua
+table
+```
+
+the children of the node.
+
+## kind
+
+
+```lua
+1|2
+```
+
+the node type.
+
+
+---
+
 # Scanner
 
  This class handles text tokenization.<br>
@@ -1273,6 +1396,13 @@ Comment Size (used only for Comment Token)
 # byte
 
  a byte of a string.
+
+
+---
+
+# context_shared
+
+ context shared by multiple instances.
 
 
 ---
