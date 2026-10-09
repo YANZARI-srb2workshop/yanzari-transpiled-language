@@ -15,5 +15,8 @@
 -- a error message.
 ---@alias error string
 
+-- context shared by multiple instances.
+---@alias context_shared<T> {Source: SourceCode, Context: T}
+
 -- Export
 return nil

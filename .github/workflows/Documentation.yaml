@@ -56,5 +56,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "[Automatic] generates LuaLS documentation."
+          git commit -m "automatic: generates LuaLS documentation."
           git push
