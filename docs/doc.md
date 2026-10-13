@@ -295,6 +295,24 @@ Parser
  The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />
  (WIP)
 
+## advance
+
+
+```lua
+(method) Parser:advance()
+```
+
+ parser position advances.
+
+## back
+
+
+```lua
+(method) Parser:back()
+```
+
+ parser position moves backward.
+
 ## cst
 
 
@@ -303,6 +321,16 @@ ParserCST
 ```
 
 a Concrete Syntax Tree
+
+## current
+
+
+```lua
+(method) Parser:current()
+  -> Token
+```
+
+ returns the current token.
 
 ## new
 
@@ -315,6 +343,35 @@ function Parser.new(options: context_shared<Token[][]>)
  Create a Parser Instance
 
 @*param* `options` — The source code and the scanner tokens.
+
+## next
+
+
+```lua
+(method) Parser:next()
+  -> Token
+```
+
+ returns the next token.
+
+## position
+
+
+```lua
+number
+```
+
+Parser cursor position
+
+## previous
+
+
+```lua
+(method) Parser:previous()
+  -> Token
+```
+
+ returns the previous token.
 
 ## source
 

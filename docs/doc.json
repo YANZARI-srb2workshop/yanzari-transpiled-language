@@ -1775,12 +1775,12 @@
                 "extends": {
                     "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
                     "finish": [
-                        17,
+                        18,
                         23
                     ],
                     "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
                     "start": [
-                        17,
+                        18,
                         17
                     ],
                     "type": "getlocal",
@@ -1788,17 +1788,117 @@
                 },
                 "file": "src/Parser/init.lua",
                 "finish": [
-                    17,
+                    18,
                     14
                 ],
                 "name": "__index",
                 "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
                 "start": [
-                    17,
+                    18,
                     0
                 ],
                 "type": "setfield",
                 "view": "Parser",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": " parser position advances.",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "finish": [
+                                36,
+                                8
+                            ],
+                            "name": "self",
+                            "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "start": [
+                                36,
+                                8
+                            ],
+                            "type": "self",
+                            "view": "Parser"
+                        }
+                    ],
+                    "desc": " parser position advances.",
+                    "finish": [
+                        38,
+                        3
+                    ],
+                    "rawdesc": " parser position advances.",
+                    "start": [
+                        36,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "(method) Parser:advance()"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    36,
+                    23
+                ],
+                "name": "advance",
+                "rawdesc": " parser position advances.",
+                "start": [
+                    36,
+                    9
+                ],
+                "type": "setmethod",
+                "view": "function",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": " parser position moves backward.",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "finish": [
+                                41,
+                                8
+                            ],
+                            "name": "self",
+                            "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "start": [
+                                41,
+                                8
+                            ],
+                            "type": "self",
+                            "view": "Parser"
+                        }
+                    ],
+                    "desc": " parser position moves backward.",
+                    "finish": [
+                        43,
+                        3
+                    ],
+                    "rawdesc": " parser position moves backward.",
+                    "start": [
+                        41,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "(method) Parser:back()"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    41,
+                    20
+                ],
+                "name": "back",
+                "rawdesc": " parser position moves backward.",
+                "start": [
+                    41,
+                    9
+                ],
+                "type": "setmethod",
+                "view": "function",
                 "visible": "public"
             },
             {
@@ -1853,19 +1953,75 @@
             {
                 "async": false,
                 "deprecated": false,
+                "desc": " returns the current token.",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "finish": [
+                                51,
+                                8
+                            ],
+                            "name": "self",
+                            "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "start": [
+                                51,
+                                8
+                            ],
+                            "type": "self",
+                            "view": "Parser"
+                        }
+                    ],
+                    "desc": " returns the current token.",
+                    "finish": [
+                        53,
+                        3
+                    ],
+                    "rawdesc": " returns the current token.",
+                    "returns": [
+                        {
+                            "type": "function.return",
+                            "view": "Token"
+                        }
+                    ],
+                    "start": [
+                        51,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "(method) Parser:current()\n  -> Token"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    51,
+                    23
+                ],
+                "name": "current",
+                "rawdesc": " returns the current token.",
+                "start": [
+                    51,
+                    9
+                ],
+                "type": "setmethod",
+                "view": "function",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
                 "desc": " Create a Parser Instance\n\n@*param* `options` — The source code and the scanner tokens.",
                 "extends": {
                     "args": [
                         {
                             "desc": "The source code and the scanner tokens.",
                             "finish": [
-                                21,
+                                22,
                                 27
                             ],
                             "name": "options",
                             "rawdesc": "The source code and the scanner tokens.",
                             "start": [
-                                21,
+                                22,
                                 20
                             ],
                             "type": "local",
@@ -1874,7 +2030,7 @@
                     ],
                     "desc": " Create a Parser Instance\n\n@*param* `options` — The source code and the scanner tokens.",
                     "finish": [
-                        31,
+                        33,
                         3
                     ],
                     "rawdesc": " Create a Parser Instance",
@@ -1885,7 +2041,7 @@
                         }
                     ],
                     "start": [
-                        21,
+                        22,
                         0
                     ],
                     "type": "function",
@@ -1893,16 +2049,173 @@
                 },
                 "file": "src/Parser/init.lua",
                 "finish": [
-                    21,
+                    22,
                     19
                 ],
                 "name": "new",
                 "rawdesc": " Create a Parser Instance",
                 "start": [
-                    21,
+                    22,
                     9
                 ],
                 "type": "setfield",
+                "view": "function",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": " returns the next token.",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "finish": [
+                                46,
+                                8
+                            ],
+                            "name": "self",
+                            "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "start": [
+                                46,
+                                8
+                            ],
+                            "type": "self",
+                            "view": "Parser"
+                        }
+                    ],
+                    "desc": " returns the next token.",
+                    "finish": [
+                        48,
+                        3
+                    ],
+                    "rawdesc": " returns the next token.",
+                    "returns": [
+                        {
+                            "type": "function.return",
+                            "view": "Token"
+                        }
+                    ],
+                    "start": [
+                        46,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "(method) Parser:next()\n  -> Token"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    46,
+                    20
+                ],
+                "name": "next",
+                "rawdesc": " returns the next token.",
+                "start": [
+                    46,
+                    9
+                ],
+                "type": "setmethod",
+                "view": "function",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Parser cursor position",
+                "extends": {
+                    "finish": [
+                        16,
+                        25
+                    ],
+                    "start": [
+                        16,
+                        19
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                16,
+                                25
+                            ],
+                            "start": [
+                                16,
+                                19
+                            ],
+                            "type": "doc.type.name",
+                            "view": "number"
+                        }
+                    ],
+                    "view": "number"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    16,
+                    25
+                ],
+                "name": "position",
+                "rawdesc": "Parser cursor position",
+                "start": [
+                    16,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "number",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": " returns the previous token.",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "finish": [
+                                56,
+                                8
+                            ],
+                            "name": "self",
+                            "rawdesc": " The class that takes the tokens from the Scanner and transforms them into a Concrete Syntax Tree.<br />\n (WIP)",
+                            "start": [
+                                56,
+                                8
+                            ],
+                            "type": "self",
+                            "view": "Parser"
+                        }
+                    ],
+                    "desc": " returns the previous token.",
+                    "finish": [
+                        58,
+                        3
+                    ],
+                    "rawdesc": " returns the previous token.",
+                    "returns": [
+                        {
+                            "type": "function.return",
+                            "view": "Token"
+                        }
+                    ],
+                    "start": [
+                        56,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "(method) Parser:previous()\n  -> Token"
+                },
+                "file": "src/Parser/init.lua",
+                "finish": [
+                    56,
+                    24
+                ],
+                "name": "previous",
+                "rawdesc": " returns the previous token.",
+                "start": [
+                    56,
+                    9
+                ],
+                "type": "setmethod",
                 "view": "function",
                 "visible": "public"
             },
@@ -5037,7 +5350,7 @@
                     ],
                     "view": "number"
                 },
-                "file": "src/Scanner/utils/span.lua",
+                "file": "src/libs/span.lua",
                 "finish": [
                     11,
                     20
@@ -5082,7 +5395,7 @@
                     ],
                     "view": "number"
                 },
-                "file": "src/Scanner/utils/span.lua",
+                "file": "src/libs/span.lua",
                 "finish": [
                     10,
                     21
@@ -6634,7 +6947,7 @@
                 "async": false,
                 "deprecated": false,
                 "desc": " Span",
-                "file": "src/Scanner/utils/span.lua",
+                "file": "src/libs/span.lua",
                 "finish": [
                     9,
                     14
@@ -6669,7 +6982,7 @@
                     "type": "getlocal",
                     "view": "Span"
                 },
-                "file": "src/Scanner/utils/span.lua",
+                "file": "src/libs/span.lua",
                 "finish": [
                     13,
                     12
@@ -6714,7 +7027,7 @@
                     ],
                     "view": "number"
                 },
-                "file": "src/Scanner/utils/span.lua",
+                "file": "src/libs/span.lua",
                 "finish": [
                     11,
                     20
@@ -6759,7 +7072,7 @@
                     ],
                     "view": "number"
                 },
-                "file": "src/Scanner/utils/span.lua",
+                "file": "src/libs/span.lua",
                 "finish": [
                     10,
                     21
@@ -6833,7 +7146,7 @@
                     "type": "function",
                     "view": "function Span.new(line: number, col: number)\n  -> self: Span"
                 },
-                "file": "src/Scanner/utils/span.lua",
+                "file": "src/libs/span.lua",
                 "finish": [
                     20,
                     17
