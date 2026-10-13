@@ -5,7 +5,7 @@
 --> By Yanzari
 
 -- A module that handles intervals.
-local Span = require('src.Scanner.utils.span')
+local Span = require('src.libs.span')
 
 -- Kind of a Token
 ---@class TokenKind

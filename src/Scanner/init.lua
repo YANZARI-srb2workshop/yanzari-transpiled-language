@@ -4,7 +4,7 @@
 --> By Yanzari
 
 -- A module that handles intervals.
-local Span = require('src.Scanner.utils.span')
+local Span = require('src.libs.span')
 
 -- A module that handles tokens.
 local Token = require('src.Scanner.utils.token')

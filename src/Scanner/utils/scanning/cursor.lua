@@ -5,7 +5,7 @@
 --> By Yanzari
 
 -- A module that handles intervals.
-local Span = require('src.Scanner.utils.span')
+local Span = require('src.libs.span')
 
 -- a module that handles markers.
 local Marker = require('src.Scanner.utils.backtracking.marker')
