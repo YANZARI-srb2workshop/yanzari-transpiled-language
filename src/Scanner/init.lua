@@ -172,25 +172,23 @@ Scanner.rules = require('src.Scanner.rules')
 -- executes only one rule and calls a callback if it returns a token.
 ---@param base Scanner the class with the rules.
 ---@param rule ScannerRule the rule itself.
----@param callback fun(options: {base: Scanner, token: Token}): nil the callback for when a token is present.
----@return boolean passed, boolean? token_is_true Did it pass the rule? Does the returned token correspond to the value true?
+---@param callback fun(options: {base: Scanner, token: Token|boolean?}): nil the callback for when a token is present.
+---@return boolean passed Did it pass the rule?
 local function runRule(base,rule,callback)
 	---@type boolean
 	local entered
 
 	-- Token returned by the rule
-	---@type Token|true?
+	---@type Token|boolean?
 	local token
 
 	entered,token = rule:run(base)
 	assert(type(entered)=='boolean','this rule returned argument #1 must be a boolean')
 	if entered==true then
-		if token==true then
-			return true,true
-		end
 		if token~=nil then
-			assert(getmetatable(token)==Token,'this rule returned argument #2 must be a Token')
-			
+			if token~=true and token~=false then
+				assert(getmetatable(token)==Token,'this rule returned argument #2 must be a Token')
+			end
 			callback({base=base,token=token})
 		end
 		base.token = {}
@@ -228,6 +226,7 @@ Scanner.runRules = function(self)
 		end
 		local number_of_tokens = 0
 		local number_of_unknown_characters = 0
+		---@type fun(options: {base: Scanner, token: Token}): nil
 		local RuleCallback = function(options)
 			number_of_tokens=number_of_tokens+1
 			coroutine.yield({
@@ -235,6 +234,22 @@ Scanner.runRules = function(self)
 				ended=false
 			})
 			self:emitToken(options.token)
+		end
+
+		-- This variable indicates whether the scanner should stop or not.
+		---@type boolean
+		local stop_the_scanner = false
+
+		---@type fun(options: {base: Scanner, token: boolean}): nil
+		local UnknownRuleCallback = function(options)
+			if options.token~=nil then
+				assert(type(options.token)=='boolean','options.token must be a boolean')
+			end
+			if options.token==true or options.token==nil then
+				stop_the_scanner = true
+			else
+				stop_the_scanner = false
+			end
 		end
 		if self.rules.StartOfFile~=nil then
 			runRule(self,self.rules.StartOfFile,RuleCallback)
@@ -259,11 +274,9 @@ Scanner.runRules = function(self)
 					number_of_unknown_characters = number_of_unknown_characters+1
 					-------------------------------------------------------------
 
-					local _,can_break = runRule(self,self.rules.Unknown,RuleCallback)
-					if can_break~=nil then
-						assert(type(can_break)=='boolean',"The result of the 'unknown' function must be a boolean.")
-					end
-					if can_break==nil then
+					local can_break = runRule(self,self.rules.Unknown,UnknownRuleCallback)
+					assert(can_break==true,"The result of the 'unknown' function must be a true.")
+					if stop_the_scanner==true then
 						break
 					end
 				else

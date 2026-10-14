@@ -23,6 +23,6 @@ return Rules.new({
             }
         })
         self.cursor:advance()
-        return true
+        return false
     end
 })
