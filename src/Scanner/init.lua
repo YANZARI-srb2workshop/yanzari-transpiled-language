@@ -185,12 +185,12 @@ local function runRule(base,rule,callback)
 	entered,token = rule:run(base)
 	assert(type(entered)=='boolean','this rule returned argument #1 must be a boolean')
 	if entered==true then
-		if token~=nil then
-			if token~=true and token~=false then
-				assert(getmetatable(token)==Token,'this rule returned argument #2 must be a Token')
-			end
-			callback({base=base,token=token})
+		if token~=true
+		and token~=false
+		and token~=nil then
+			assert(getmetatable(token)==Token,'this rule returned argument #2 must be a Token')
 		end
+		callback({base=base,token=token})
 		base.token = {}
 		return true
 	end
@@ -226,26 +226,32 @@ Scanner.runRules = function(self)
 		end
 		local number_of_tokens = 0
 		local number_of_unknown_characters = 0
-		---@type fun(options: {base: Scanner, token: Token}): nil
+		---@type fun(options: {base: Scanner, token: Token?}): nil
 		local RuleCallback = function(options)
-			number_of_tokens=number_of_tokens+1
-			coroutine.yield({
-				token=options.token,
-				ended=false
-			})
-			self:emitToken(options.token)
+			if options.token ~= nil then
+				assert(getmetatable(options.token)==Token,'options.token must be a Token')
+				--------------------------------------------------------------------------
+				
+				number_of_tokens=number_of_tokens+1
+				coroutine.yield({
+					token=options.token,
+					ended=false
+				})
+				self:emitToken(options.token)
+			end
 		end
 
 		-- This variable indicates whether the scanner should stop or not.
 		---@type boolean
 		local stop_the_scanner = false
 
-		---@type fun(options: {base: Scanner, token: boolean}): nil
+		---@type fun(options: {base: Scanner, token: boolean?}): nil
 		local UnknownRuleCallback = function(options)
 			if options.token~=nil then
 				assert(type(options.token)=='boolean','options.token must be a boolean')
 			end
-			if options.token==true or options.token==nil then
+			if options.token==true
+			or options.token==nil then
 				stop_the_scanner = true
 			else
 				stop_the_scanner = false
