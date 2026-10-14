@@ -1098,7 +1098,7 @@ exportable content.
 
 
 ```lua
-fun(base: Scanner):(Token|true)?
+fun(base: Scanner):(boolean|Token)?
 ```
 
 when the rule scan was accepted.
@@ -1123,7 +1123,7 @@ function ScannerRule.new(options: ScannerRuleInterface)
 ```lua
 (method) ScannerRule:run(base: Scanner)
   -> entered: boolean
-  2. token: (Token|true)?
+  2. token: (boolean|Token)?
 ```
 
  run the Rule
@@ -1135,12 +1135,6 @@ function ScannerRule.new(options: ScannerRuleInterface)
  is the token produced by the rule.
 
 @*param* `base` — an instance of the Scanner.
-
-```lua
---  a class that handles Scanner tokens.
-token:
-    | true
-```
 
 
 ---
@@ -1180,7 +1174,7 @@ exportable content.
 
 
 ```lua
-fun(base: Scanner):(Token|true)?
+fun(base: Scanner):(boolean|Token)?
 ```
 
 when the rule scan was accepted.
