@@ -3412,13 +3412,13 @@
                         {
                             "desc": "self",
                             "finish": [
-                                215,
+                                218,
                                 32
                             ],
                             "name": "self",
                             "rawdesc": "self",
                             "start": [
-                                215,
+                                218,
                                 28
                             ],
                             "type": "local",
@@ -3427,7 +3427,7 @@
                     ],
                     "desc": "@*param* `self` — self\n\n@*return* `thread` — A thread you can use to scan the text asynchronously.\n\n Run Scanner Rules\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
                     "finish": [
-                        275,
+                        280,
                         3
                     ],
                     "rawdesc": " Run Scanner Rules\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
@@ -3441,7 +3441,7 @@
                         }
                     ],
                     "start": [
-                        215,
+                        218,
                         19
                     ],
                     "type": "function",
@@ -3449,13 +3449,13 @@
                 },
                 "file": "src/Scanner/init.lua",
                 "finish": [
-                    215,
+                    218,
                     16
                 ],
                 "name": "runRules",
                 "rawdesc": " Run Scanner Rules\n\n You must run the returned thread without any arguments. <br>\n the thread returns:\n ```lua\n {\n   output?: Token[][] -- the final output, with the tokens produced by the scanner. This field only appears when the scanner finishes.\n   token?: Token -- the token produced by the scanner, while the scanner has not yet finished. This field only appears when the scanner has not yet finished.\n   number_of_tokens?: number -- number of tokens produced by the scanner. This field only appears when the scanner finishes.\n   number_of_unknown_characters?: number -- number of unknown characters found by the scanner. This field only appears when the scanner finishes.\n   ended: boolean -- if the scanner has finished producing the tokens.\n }\n ```",
                 "start": [
-                    215,
+                    218,
                     0
                 ],
                 "type": "setfield",
@@ -5818,7 +5818,7 @@
                 "extends": {
                     "finish": [
                         9,
-                        41
+                        46
                     ],
                     "start": [
                         9,
@@ -5858,14 +5858,14 @@
                             ],
                             "finish": [
                                 9,
-                                41
+                                46
                             ],
                             "returns": [
                                 {
                                     "desc": " a class that handles Scanner tokens.",
                                     "finish": [
                                         9,
-                                        41
+                                        46
                                     ],
                                     "rawdesc": " a class that handles Scanner tokens.",
                                     "start": [
@@ -5887,9 +5887,21 @@
                                             ],
                                             "type": "doc.type.name",
                                             "view": "Token"
+                                        },
+                                        {
+                                            "finish": [
+                                                9,
+                                                45
+                                            ],
+                                            "start": [
+                                                9,
+                                                41
+                                            ],
+                                            "type": "doc.type.boolean",
+                                            "view": "true"
                                         }
                                     ],
-                                    "view": "Token?"
+                                    "view": "(Token|true)?"
                                 }
                             ],
                             "start": [
@@ -5897,15 +5909,15 @@
                                 15
                             ],
                             "type": "doc.type.function",
-                            "view": "fun(base: Scanner):Token?"
+                            "view": "fun(base: Scanner):(Token|true)?"
                         }
                     ],
-                    "view": "fun(base: Scanner):Token?"
+                    "view": "fun(base: Scanner):(Token|true)?"
                 },
                 "file": "src/Scanner/utils/scanning/rules.lua",
                 "finish": [
                     9,
-                    41
+                    46
                 ],
                 "name": "loop",
                 "rawdesc": "when the rule scan was accepted.",
@@ -5914,7 +5926,7 @@
                     10
                 ],
                 "type": "doc.field",
-                "view": "fun(base: Scanner):Token?",
+                "view": "fun(base: Scanner):(Token|true)?",
                 "visible": "public"
             },
             {
@@ -5979,7 +5991,7 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": " run the Rule\n\n The first returned argument, `entered`\n indicates whether the rule found at least one match;\n \n the second returned argument, `token`\n is the token produced by the rule.\n\n@*param* `base` — an instance of the Scanner.",
+                "desc": " run the Rule\n\n The first returned argument, `entered`\n indicates whether the rule found at least one match;\n \n the second returned argument, `token`\n is the token produced by the rule.\n\n@*param* `base` — an instance of the Scanner.\n\n```lua\n--  a class that handles Scanner tokens.\ntoken:\n    | true\n```",
                 "extends": {
                     "args": [
                         {
@@ -6013,12 +6025,12 @@
                             "view": "Scanner"
                         }
                     ],
-                    "desc": " run the Rule\n\n The first returned argument, `entered`\n indicates whether the rule found at least one match;\n \n the second returned argument, `token`\n is the token produced by the rule.\n\n@*param* `base` — an instance of the Scanner.",
+                    "desc": " run the Rule\n\n The first returned argument, `entered`\n indicates whether the rule found at least one match;\n \n the second returned argument, `token`\n is the token produced by the rule.\n\n@*param* `base` — an instance of the Scanner.\n\n```lua\n--  a class that handles Scanner tokens.\ntoken:\n    | true\n```",
                     "finish": [
-                        70,
+                        73,
                         3
                     ],
-                    "rawdesc": " run the Rule\n\n The first returned argument, `entered`\n indicates whether the rule found at least one match;\n \n the second returned argument, `token`\n is the token produced by the rule.",
+                    "rawdesc": " run the Rule\n\n The first returned argument, `entered`\n indicates whether the rule found at least one match;\n \n the second returned argument, `token`\n is the token produced by the rule.\n\n```lua\n--  a class that handles Scanner tokens.\ntoken:\n    | true\n```",
                     "returns": [
                         {
                             "name": "entered",
@@ -6028,7 +6040,7 @@
                         {
                             "name": "token",
                             "type": "function.return",
-                            "view": "Token?"
+                            "view": "(Token|true)?"
                         }
                     ],
                     "start": [
@@ -6036,7 +6048,7 @@
                         0
                     ],
                     "type": "function",
-                    "view": "(method) ScannerRule:run(base: Scanner)\n  -> entered: boolean\n  2. token: Token?"
+                    "view": "(method) ScannerRule:run(base: Scanner)\n  -> entered: boolean\n  2. token: (Token|true)?"
                 },
                 "file": "src/Scanner/utils/scanning/rules.lua",
                 "finish": [
@@ -6044,7 +6056,7 @@
                     18
                 ],
                 "name": "run",
-                "rawdesc": " run the Rule\n\n The first returned argument, `entered`\n indicates whether the rule found at least one match;\n \n the second returned argument, `token`\n is the token produced by the rule.",
+                "rawdesc": " run the Rule\n\n The first returned argument, `entered`\n indicates whether the rule found at least one match;\n \n the second returned argument, `token`\n is the token produced by the rule.\n\n```lua\n--  a class that handles Scanner tokens.\ntoken:\n    | true\n```",
                 "start": [
                     53,
                     9
@@ -6338,7 +6350,7 @@
                 "extends": {
                     "finish": [
                         9,
-                        41
+                        46
                     ],
                     "start": [
                         9,
@@ -6378,14 +6390,14 @@
                             ],
                             "finish": [
                                 9,
-                                41
+                                46
                             ],
                             "returns": [
                                 {
                                     "desc": " a class that handles Scanner tokens.",
                                     "finish": [
                                         9,
-                                        41
+                                        46
                                     ],
                                     "rawdesc": " a class that handles Scanner tokens.",
                                     "start": [
@@ -6407,9 +6419,21 @@
                                             ],
                                             "type": "doc.type.name",
                                             "view": "Token"
+                                        },
+                                        {
+                                            "finish": [
+                                                9,
+                                                45
+                                            ],
+                                            "start": [
+                                                9,
+                                                41
+                                            ],
+                                            "type": "doc.type.boolean",
+                                            "view": "true"
                                         }
                                     ],
-                                    "view": "Token?"
+                                    "view": "(Token|true)?"
                                 }
                             ],
                             "start": [
@@ -6417,15 +6441,15 @@
                                 15
                             ],
                             "type": "doc.type.function",
-                            "view": "fun(base: Scanner):Token?"
+                            "view": "fun(base: Scanner):(Token|true)?"
                         }
                     ],
-                    "view": "fun(base: Scanner):Token?"
+                    "view": "fun(base: Scanner):(Token|true)?"
                 },
                 "file": "src/Scanner/utils/scanning/rules.lua",
                 "finish": [
                     9,
-                    41
+                    46
                 ],
                 "name": "loop",
                 "rawdesc": "when the rule scan was accepted.",
@@ -6434,7 +6458,7 @@
                     10
                 ],
                 "type": "doc.field",
-                "view": "fun(base: Scanner):Token?",
+                "view": "fun(base: Scanner):(Token|true)?",
                 "visible": "public"
             }
         ],
