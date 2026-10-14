@@ -24,11 +24,14 @@ end
 -- Let's add the rules to the rules table!
 AddRule('points.start','StartOfFile') -- start of file.
 AddRule('points.end','EndOfFile') -- end of file.
-AddRule('layout.indentation') -- indentation
-AddRule('layout.space') -- spaces/tabs
-AddRule('literal.identifier') -- identifier/keyword
+AddRule('points.unknown','Unknown') -- Unknown Character
+AddRule('layout.indentation') -- indentation.
+AddRule('layout.space') -- spaces/tabs.
+AddRule('layout.semicolon') -- semicolon.
+AddRule('literal.identifier') -- identifier/keyword.
 AddRule('literal.numeric.integer') -- an integer.
-AddRule('operator') -- operator
+AddRule('literal.wildcard') -- Wildcard.
+AddRule('operator') -- operator.
 
 -- Export
 return Rules

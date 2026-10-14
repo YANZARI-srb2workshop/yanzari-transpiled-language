@@ -7,7 +7,7 @@
 -- the interface for the `ScannerRule` to create a Rule.
 ---@class ScannerRuleInterface
 ---@field enter fun(base: Scanner): boolean when you call the rule's scanning function.
----@field loop fun(base: Scanner): Token? when the rule scan was accepted.
+---@field loop fun(base: Scanner): Token|true? when the rule scan was accepted.
 ---@field exit? fun(base: Scanner): nil when the rule scan is complete.
 ---@field exportable? table exportable content.
 
@@ -50,7 +50,7 @@ end
 --- is the token produced by the rule.
 ---@nodiscard
 ---@param base Scanner an instance of the Scanner.
----@return boolean entered,Token? token
+---@return boolean entered,Token|true? token
 function Rules:run(base)
 	local enter
 	local token
@@ -63,6 +63,9 @@ function Rules:run(base)
 	token = self.loop(base)
 	if token==nil then
 		return true,nil
+	end
+	if token==true then
+		return true,true
 	end
 	if self.exit~=nil then
 		self.exit(base)

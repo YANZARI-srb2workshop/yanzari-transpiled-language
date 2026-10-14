@@ -33,6 +33,7 @@ local TokenKinds = enum.new(
 	'Property', -- //$
 	'Documentation', -- //@
 	'Miscellaneous', -- Miscellaneous token category.
+	'WildCard', -- ?
 	'EndOfFile' -- EOF
 )
 

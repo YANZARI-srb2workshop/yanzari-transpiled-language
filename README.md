@@ -29,7 +29,7 @@ But this repository can use AI to find bugs, yet the corrected code is produced 
 	- [x] Keywords
 	- [x] Operators
 	- [ ] Comments
-	- [ ] WildCards
+	- [x] WildCards
 	- [x] Identifiers
 	- [x] Indents
 	- [ ] Directives

@@ -1,5 +1,5 @@
 -- Scanner's Rules
---- Identifier
+--- Start of File
 --- 
 --- 
 --- This module handles start rules.

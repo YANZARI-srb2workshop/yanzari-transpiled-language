@@ -1,5 +1,5 @@
 -- Scanner's Rules
---- Identifier
+--- End of File
 --- 
 --- 
 --- This module handles end rules.

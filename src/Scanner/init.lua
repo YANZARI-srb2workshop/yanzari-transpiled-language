@@ -173,18 +173,21 @@ Scanner.rules = require('src.Scanner.rules')
 ---@param base Scanner the class with the rules.
 ---@param rule ScannerRule the rule itself.
 ---@param callback fun(options: {base: Scanner, token: Token}): nil the callback for when a token is present.
----@return boolean passed Did it pass the rule?
+---@return boolean passed, boolean? token_is_true Did it pass the rule? Does the returned token correspond to the value true?
 local function runRule(base,rule,callback)
 	---@type boolean
 	local entered
 
 	-- Token returned by the rule
-	---@type Token?
+	---@type Token|true?
 	local token
 
 	entered,token = rule:run(base)
 	assert(type(entered)=='boolean','this rule returned argument #1 must be a boolean')
 	if entered==true then
+		if token==true then
+			return true,true
+		end
 		if token~=nil then
 			assert(getmetatable(token)==Token,'this rule returned argument #2 must be a Token')
 			
@@ -256,9 +259,11 @@ Scanner.runRules = function(self)
 					number_of_unknown_characters = number_of_unknown_characters+1
 					-------------------------------------------------------------
 
-					local can_break = runRule(self,self.rules.Unknown,RuleCallback)
-					assert(type(can_break)=='boolean',"The result of the 'unknown' function must be a boolean.")
-					if can_break==true then
+					local _,can_break = runRule(self,self.rules.Unknown,RuleCallback)
+					if can_break~=nil then
+						assert(type(can_break)=='boolean',"The result of the 'unknown' function must be a boolean.")
+					end
+					if can_break==nil then
 						break
 					end
 				else

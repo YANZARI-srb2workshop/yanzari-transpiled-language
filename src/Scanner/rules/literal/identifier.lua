@@ -14,10 +14,6 @@ local Token = require('src.Scanner.utils.token')
 -- Module that handles Scanner Enums
 local Enum = require('src.Scanner.utils.enum')
 
--- A module that can convert a string into a byte array
---- and also a byte array into a string.
-local Arrayizer = require('src.SourceCode.utils.Arrayizer')
-
 -- Trie of Keywords
 local Keywords = require('src.Scanner.utils.keyword_table').trie
 
