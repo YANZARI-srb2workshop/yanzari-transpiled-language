@@ -30,6 +30,7 @@ AddRule('layout.space') -- spaces/tabs.
 AddRule('layout.semicolon') -- semicolon.
 AddRule('literal.identifier') -- identifier/keyword.
 AddRule('literal.numeric.integer') -- an integer.
+AddRule('literal.parentesis') -- parentesis/curly bracket/square bracket.
 AddRule('literal.wildcard') -- Wildcard.
 AddRule('operator') -- operator.
 
