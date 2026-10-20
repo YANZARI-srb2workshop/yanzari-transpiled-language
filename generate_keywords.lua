@@ -181,6 +181,8 @@ local FileContent = {
     "return {",
     "\t".."-- a list of IDs for keywords",
     "\t".."list = ".. Serialize(Keywords,2) .. ",",
+	"\t".."-- a table mapping Keywords (Strings) to Integers.",
+    "\t".."keyword_to_int = ".. Serialize(ReverseTable(Keywords),2) .. ",",
     "\t".."-- a huge table full of combinations for each keyword",
     "\t".."trie = ".. Serialize(Trie(ReverseTable(Keywords)),2),
     "}"

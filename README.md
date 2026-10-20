@@ -29,13 +29,23 @@ But this repository can use AI to find bugs, yet the corrected code is produced 
 	- [x] Keywords
 	- [x] Operators
 	- [ ] Comments
+	- [ ] String
+		- [ ] Bit-String
+		- [ ] Template
+	- [ ] Numeric
+		- [x] Integer
+		- [x] Float
+		- [ ] Exponent
+		- [ ] Binary
+		- [ ] Hexadecimal
+		- [ ] Octal
 	- [x] WildCards
 	- [x] Identifiers
 	- [x] Indents
-	- [ ] Directives
-		- [ ] `//!nonstrict`
-		- [ ] `//!strict`
-		- [ ] `//!runtime-type-check`
+	- [x] Directives
+		- [x] `#define`
+		- [x] `#ifndef`
+		- [x] `#ifdef`
 - [ ] Module Resolution
 	- [ ] non-relative (`@`)
 	- [ ] relative

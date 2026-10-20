@@ -69,6 +69,15 @@ return Rules.new({
 			self:insertChar()
 			self.cursor:advance()
 		end
+        if self.cursor:matchAChar(nil,46) then
+            table.insert(self.states,{
+                id=2, -- id=2 means: the Numeric group
+                category=1, -- the category related to floats.
+                token=self.token, -- tokens to continue the token construction
+                start=Start -- The beginning of numerical digits.
+            })
+            return nil
+        end
         local End = self.cursor:newSpan()
         return Token.new({
             kind={
