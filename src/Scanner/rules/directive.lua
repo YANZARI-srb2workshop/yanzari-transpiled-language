@@ -92,7 +92,10 @@ return Rules.new({
                 while true do
                     if self.cursor:isEOF() then break end
                     if self.cursor:isEOL() then break end
-                    if not self.cursor:matchRangeAChar(nil,33,126) or not self.cursor:getCurrentCharacter()>127 then break end
+                    if not (self.cursor:matchRangeAChar(nil,33,126))
+                    or not (self.cursor:getCurrentCharacter()>127) then
+                        break
+                    end
                     arg_variable[#arg_variable+1] = self.cursor:getCurrentCharacter()
                     self:insertChar()
                     self.cursor:advance()

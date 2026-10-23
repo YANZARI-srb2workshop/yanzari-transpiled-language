@@ -100,6 +100,24 @@ with Inheritance:
 				}
 		}
 ```
+dataclass:
+```ytl
+    dataclass Span {
+      int x;
+      int y;
+    }
+
+		dataclass InventaryEntry {
+      int id;
+      string category;
+      Span position;
+      int number_of_items;
+    }
+
+    class Inventary {
+      InventaryEntry[] items;
+    }
+```
 
 ## Switch
 ```ytl

@@ -29,6 +29,7 @@ local Keywords = {
 	"char16_t",
 	"char32_t",
 	"class",
+	"dataclass",
 	"compl",
 	"concept",
 	"const",
