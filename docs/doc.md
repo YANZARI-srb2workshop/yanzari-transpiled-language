@@ -759,7 +759,7 @@ the current character the cursor is on.
 
 ```lua
 (method) ScannerCursor:getCharacter(line: number, column: number)
-  -> char: number
+  -> char: number?
 ```
 
  Return character based on the `line` and `column` parameters.

@@ -4045,7 +4045,7 @@
                     ],
                     "desc": " Return character based on the `line` and `column` parameters.\n\n If the `line` parameter is greater than 1: returns the character in the column specified by\n the `column` parameter + 1, where the line is the current line + `line` parameter.\n \n If the `line` parameter is 0: returns the character in the column is\n the `column` parameter + current column and the line is the\n current line.\n\n@*param* `line` — line relative to the current line.\n\n@*param* `column` — column relative to the current column.\n\n@*return* `char` — the line-related character.",
                     "finish": [
-                        177,
+                        183,
                         3
                     ],
                     "rawdesc": " Return character based on the `line` and `column` parameters.\n\n If the `line` parameter is greater than 1: returns the character in the column specified by\n the `column` parameter + 1, where the line is the current line + `line` parameter.\n \n If the `line` parameter is 0: returns the character in the column is\n the `column` parameter + current column and the line is the\n current line.",
@@ -4055,7 +4055,7 @@
                             "name": "char",
                             "rawdesc": "the line-related character.",
                             "type": "function.return",
-                            "view": "number"
+                            "view": "number?"
                         }
                     ],
                     "start": [
@@ -4063,7 +4063,7 @@
                         0
                     ],
                     "type": "function",
-                    "view": "(method) ScannerCursor:getCharacter(line: number, column: number)\n  -> char: number"
+                    "view": "(method) ScannerCursor:getCharacter(line: number, column: number)\n  -> char: number?"
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
@@ -4480,13 +4480,13 @@
                         {
                             "desc": " the cursor used by the Scanner to read the text and advance.",
                             "finish": [
-                                183,
+                                189,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " the cursor used by the Scanner to read the text and advance.",
                             "start": [
-                                183,
+                                189,
                                 8
                             ],
                             "type": "self",
@@ -4495,13 +4495,13 @@
                         {
                             "desc": "The Character Used For Matching",
                             "finish": [
-                                183,
+                                189,
                                 50
                             ],
                             "name": "the_char_used_for_match",
                             "rawdesc": "The Character Used For Matching",
                             "start": [
-                                183,
+                                189,
                                 27
                             ],
                             "type": "local",
@@ -4510,13 +4510,13 @@
                         {
                             "desc": "The Character to Matching",
                             "finish": [
-                                183,
+                                189,
                                 68
                             ],
                             "name": "the_char_to_match",
                             "rawdesc": "The Character to Matching",
                             "start": [
-                                183,
+                                189,
                                 51
                             ],
                             "type": "local",
@@ -4525,7 +4525,7 @@
                     ],
                     "desc": " tries to compare whether two characters are equal\n\n@*param* `the_char_used_for_match` — The Character Used For Matching\n\n@*param* `the_char_to_match` — The Character to Matching\n\n@*return* `result` — the result of the match.",
                     "finish": [
-                        198,
+                        204,
                         3
                     ],
                     "rawdesc": " tries to compare whether two characters are equal",
@@ -4539,7 +4539,7 @@
                         }
                     ],
                     "start": [
-                        183,
+                        189,
                         0
                     ],
                     "type": "function",
@@ -4547,13 +4547,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    183,
+                    189,
                     26
                 ],
                 "name": "matchAChar",
                 "rawdesc": " tries to compare whether two characters are equal",
                 "start": [
-                    183,
+                    189,
                     9
                 ],
                 "type": "setmethod",
@@ -4569,13 +4569,13 @@
                         {
                             "desc": " the cursor used by the Scanner to read the text and advance.",
                             "finish": [
-                                228,
+                                234,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " the cursor used by the Scanner to read the text and advance.",
                             "start": [
-                                228,
+                                234,
                                 8
                             ],
                             "type": "self",
@@ -4584,13 +4584,13 @@
                         {
                             "desc": "The Character Used For match",
                             "finish": [
-                                228,
+                                234,
                                 60
                             ],
                             "name": "the_char_used_for_match",
                             "rawdesc": "The Character Used For match",
                             "start": [
-                                228,
+                                234,
                                 37
                             ],
                             "type": "local",
@@ -4599,13 +4599,13 @@
                         {
                             "desc": "The start of the range",
                             "finish": [
-                                228,
+                                234,
                                 72
                             ],
                             "name": "start_range",
                             "rawdesc": "The start of the range",
                             "start": [
-                                228,
+                                234,
                                 61
                             ],
                             "type": "local",
@@ -4614,13 +4614,13 @@
                         {
                             "desc": "The end of the range",
                             "finish": [
-                                228,
+                                234,
                                 82
                             ],
                             "name": "end_range",
                             "rawdesc": "The end of the range",
                             "start": [
-                                228,
+                                234,
                                 73
                             ],
                             "type": "local",
@@ -4629,7 +4629,7 @@
                     ],
                     "desc": " tries to compare whether the character\n is outside the range between `start_range` and `end_range`\n\n@*param* `the_char_used_for_match` — The Character Used For match\n\n@*param* `start_range` — The start of the range\n\n@*param* `end_range` — The end of the range\n\n@*return* `result` — the result of the match.",
                     "finish": [
-                        242,
+                        248,
                         3
                     ],
                     "rawdesc": " tries to compare whether the character\n is outside the range between `start_range` and `end_range`",
@@ -4643,7 +4643,7 @@
                         }
                     ],
                     "start": [
-                        228,
+                        234,
                         0
                     ],
                     "type": "function",
@@ -4651,13 +4651,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    228,
+                    234,
                     36
                 ],
                 "name": "matchOutOfRangeAChar",
                 "rawdesc": " tries to compare whether the character\n is outside the range between `start_range` and `end_range`",
                 "start": [
-                    228,
+                    234,
                     9
                 ],
                 "type": "setmethod",
@@ -4673,13 +4673,13 @@
                         {
                             "desc": " the cursor used by the Scanner to read the text and advance.",
                             "finish": [
-                                206,
+                                212,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " the cursor used by the Scanner to read the text and advance.",
                             "start": [
-                                206,
+                                212,
                                 8
                             ],
                             "type": "self",
@@ -4688,13 +4688,13 @@
                         {
                             "desc": "The Character Used For match",
                             "finish": [
-                                206,
+                                212,
                                 55
                             ],
                             "name": "the_char_used_for_match",
                             "rawdesc": "The Character Used For match",
                             "start": [
-                                206,
+                                212,
                                 32
                             ],
                             "type": "local",
@@ -4703,13 +4703,13 @@
                         {
                             "desc": "The start of the range",
                             "finish": [
-                                206,
+                                212,
                                 67
                             ],
                             "name": "start_range",
                             "rawdesc": "The start of the range",
                             "start": [
-                                206,
+                                212,
                                 56
                             ],
                             "type": "local",
@@ -4718,13 +4718,13 @@
                         {
                             "desc": "The end of the range",
                             "finish": [
-                                206,
+                                212,
                                 77
                             ],
                             "name": "end_range",
                             "rawdesc": "The end of the range",
                             "start": [
-                                206,
+                                212,
                                 68
                             ],
                             "type": "local",
@@ -4733,7 +4733,7 @@
                     ],
                     "desc": " tries to compare whether the character\n is within the range between `start_range` and `end_range`\n\n@*param* `the_char_used_for_match` — The Character Used For match\n\n@*param* `start_range` — The start of the range\n\n@*param* `end_range` — The end of the range\n\n@*return* `result` — the result of the match.",
                     "finish": [
-                        220,
+                        226,
                         3
                     ],
                     "rawdesc": " tries to compare whether the character\n is within the range between `start_range` and `end_range`",
@@ -4747,7 +4747,7 @@
                         }
                     ],
                     "start": [
-                        206,
+                        212,
                         0
                     ],
                     "type": "function",
@@ -4755,13 +4755,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    206,
+                    212,
                     31
                 ],
                 "name": "matchRangeAChar",
                 "rawdesc": " tries to compare whether the character\n is within the range between `start_range` and `end_range`",
                 "start": [
-                    206,
+                    212,
                     9
                 ],
                 "type": "setmethod",
@@ -4836,13 +4836,13 @@
                         {
                             "desc": " the cursor used by the Scanner to read the text and advance.",
                             "finish": [
-                                245,
+                                251,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " the cursor used by the Scanner to read the text and advance.",
                             "start": [
-                                245,
+                                251,
                                 8
                             ],
                             "type": "self",
@@ -4851,7 +4851,7 @@
                     ],
                     "desc": " creates a Span based on the current Cursor location.",
                     "finish": [
-                        247,
+                        253,
                         3
                     ],
                     "rawdesc": " creates a Span based on the current Cursor location.",
@@ -4862,7 +4862,7 @@
                         }
                     ],
                     "start": [
-                        245,
+                        251,
                         0
                     ],
                     "type": "function",
@@ -4870,13 +4870,13 @@
                 },
                 "file": "src/Scanner/utils/scanning/cursor.lua",
                 "finish": [
-                    245,
+                    251,
                     23
                 ],
                 "name": "newSpan",
                 "rawdesc": " creates a Span based on the current Cursor location.",
                 "start": [
-                    245,
+                    251,
                     9
                 ],
                 "type": "setmethod",
