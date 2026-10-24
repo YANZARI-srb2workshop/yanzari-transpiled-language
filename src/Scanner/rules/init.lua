@@ -29,6 +29,7 @@ AddRule('layout.indentation') -- indentation.
 AddRule('layout.space') -- spaces/tabs.
 AddRule('layout.semicolon') -- semicolon.
 AddRule('literal.identifier') -- identifier/keyword.
+AddRule('literal.numeric.hexadecimal') -- an hexadecimal.
 AddRule('literal.numeric.integer') -- an integer.
 AddRule('literal.numeric.float') -- an float.
 AddRule('literal.parentesis') -- parentesis/curly bracket/square bracket.

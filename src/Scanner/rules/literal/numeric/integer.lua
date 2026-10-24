@@ -94,5 +94,7 @@ return Rules.new({
         })
     end,
     exportable = {
+        IsDigit=IsDigit,
+        Integer=Integer
     }
 })

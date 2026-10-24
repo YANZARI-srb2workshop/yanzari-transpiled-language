@@ -168,5 +168,7 @@ return Rules.new({
         })
     end,
     exportable = {
+        IsDigit=IsDigit,
+        Float=Float
     }
 })

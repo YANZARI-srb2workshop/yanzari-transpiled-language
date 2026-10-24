@@ -146,7 +146,7 @@ end
 --- current line.
 ---@param line number line relative to the current line.
 ---@param column number column relative to the current column.
----@return byte char the line-related character.
+---@return byte? char the line-related character.
 function Cursor:getCharacter(line,column)
 	if line==nil then
 		line = 0
@@ -162,18 +162,24 @@ function Cursor:getCharacter(line,column)
 	assert(column>=0,'column is negative')
 	-------------------------------------------------------
 	if line>=1 then
-		-- Type Checking
-		assert(self.location.line+line<=#self.source.content.normalized,'line is invalid')
-		assert(type(self.source.content.normalized[self.location.line+line])=='table','column is invalid')
-		assert(column+1<=#self.source.content.normalized[self.location.line+line],'column is invalid')
-		-------------------------------------
+		if not (self.location.line+line<=#self.source.content.normalized) then
+			return nil
+		end
+		if not (type(self.source.content.normalized[self.location.line+line])=='table') then
+			return nil
+		end
+		if not(column+1<=#self.source.content.normalized[self.location.line+line]) then
+			return nil
+		end
 		
 		return self.source.content.normalized[self.location.line+line][column+1]
 	end
-	-- Type Checking
-	assert(self.location.line<=#self.source.content.normalized,'line is invalid')
-	assert(self.location.col+column<=#self.source.content.normalized[self.location.line],'column is invalid')
-	---------------------------------------------------------------------------------------
+	if not (self.location.line<=#self.source.content.normalized) then
+		return nil
+	end
+	if not (self.location.col+column<=#self.source.content.normalized[self.location.line]) then
+		return nil
+	end
 	return self.source.content.normalized[self.location.line][self.location.col+column]
 end
 
