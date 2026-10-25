@@ -258,7 +258,7 @@ table?
 
 
 ```lua
-function Node.new(value: any, children?: table)
+function Node.new(value?: any, children?: table)
   -> self: Node
 ```
 
@@ -431,6 +431,8 @@ the Node type being the type corresponding to Program.
 # ParserCSTEnum
 
  the enum used by the Concrete Syntax Tree.
+ 1: Program
+ 2: Atom
 
 
 ---

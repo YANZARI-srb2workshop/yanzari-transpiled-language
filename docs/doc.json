@@ -1661,7 +1661,7 @@
                     ],
                     "desc": " Create a Node\n\n@*param* `value` — the value of the node.\n\n@*param* `children` — the children belonging to the node.\n\n@*return* `self` — a Node",
                     "finish": [
-                        29,
+                        28,
                         3
                     ],
                     "rawdesc": " Create a Node",
@@ -1679,7 +1679,7 @@
                         0
                     ],
                     "type": "function",
-                    "view": "function Node.new(value: any, children?: table)\n  -> self: Node"
+                    "view": "function Node.new(value?: any, children?: table)\n  -> self: Node"
                 },
                 "file": "src/libs/node.lua",
                 "finish": [
@@ -1702,7 +1702,7 @@
                 "extends": {
                     "finish": [
                         10,
-                        19
+                        20
                     ],
                     "start": [
                         10,
@@ -1728,7 +1728,7 @@
                 "file": "src/libs/node.lua",
                 "finish": [
                     10,
-                    19
+                    20
                 ],
                 "name": "value",
                 "start": [
@@ -2374,12 +2374,12 @@
                     {
                         "desc": " Parser nodes used in the CST.",
                         "finish": [
-                            21,
+                            23,
                             31
                         ],
                         "rawdesc": " Parser nodes used in the CST.",
                         "start": [
-                            21,
+                            23,
                             21
                         ],
                         "type": "doc.extends.name",
@@ -2388,12 +2388,12 @@
                 ],
                 "file": "src/Parser/types.lua",
                 "finish": [
-                    21,
+                    23,
                     31
                 ],
                 "rawdesc": " CST",
                 "start": [
-                    21,
+                    23,
                     10
                 ],
                 "type": "doc.class",
@@ -2409,22 +2409,22 @@
                 "desc": "the program statements.",
                 "extends": {
                     "finish": [
-                        23,
+                        25,
                         25
                     ],
                     "start": [
-                        23,
+                        25,
                         20
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                23,
+                                25,
                                 25
                             ],
                             "start": [
-                                23,
+                                25,
                                 20
                             ],
                             "type": "doc.type.array",
@@ -2435,13 +2435,13 @@
                 },
                 "file": "src/Parser/types.lua",
                 "finish": [
-                    23,
+                    25,
                     25
                 ],
                 "name": "childerns",
                 "rawdesc": "the program statements.",
                 "start": [
-                    23,
+                    25,
                     10
                 ],
                 "type": "doc.field",
@@ -2454,22 +2454,22 @@
                 "desc": "the Node type being the type corresponding to Program.",
                 "extends": {
                     "finish": [
-                        22,
+                        24,
                         16
                     ],
                     "start": [
-                        22,
+                        24,
                         15
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                22,
+                                24,
                                 16
                             ],
                             "start": [
-                                22,
+                                24,
                                 15
                             ],
                             "type": "doc.type.integer",
@@ -2480,13 +2480,13 @@
                 },
                 "file": "src/Parser/types.lua",
                 "finish": [
-                    22,
+                    24,
                     16
                 ],
                 "name": "kind",
                 "rawdesc": "the Node type being the type corresponding to Program.",
                 "start": [
-                    22,
+                    24,
                     10
                 ],
                 "type": "doc.field",
@@ -2502,25 +2502,25 @@
     {
         "defines": [
             {
-                "desc": "```lua\n--  the enum used by the Concrete Syntax Tree.\nParserCSTEnum:\n    | 1 -- Program\n    | 2 -- Atom\n```",
+                "desc": "```lua\n--  the enum used by the Concrete Syntax Tree.\n--  1: Program\n--  2: Atom\nParserCSTEnum:\n    | 1\n    | 2\n```",
                 "file": "src/Parser/types.lua",
                 "finish": [
-                    10,
+                    12,
                     6
                 ],
-                "rawdesc": "```lua\n--  the enum used by the Concrete Syntax Tree.\nParserCSTEnum:\n    | 1 -- Program\n    | 2 -- Atom\n```",
+                "rawdesc": "```lua\n--  the enum used by the Concrete Syntax Tree.\n--  1: Program\n--  2: Atom\nParserCSTEnum:\n    | 1\n    | 2\n```",
                 "start": [
-                    8,
+                    10,
                     10
                 ],
                 "type": "doc.alias",
                 "view": "1|2"
             }
         ],
-        "desc": " the enum used by the Concrete Syntax Tree.",
+        "desc": " the enum used by the Concrete Syntax Tree.\n 1: Program\n 2: Atom",
         "fields": [],
         "name": "ParserCSTEnum",
-        "rawdesc": " the enum used by the Concrete Syntax Tree.",
+        "rawdesc": " the enum used by the Concrete Syntax Tree.\n 1: Program\n 2: Atom",
         "type": "type",
         "view": "ParserCSTEnum"
     },
@@ -2532,12 +2532,12 @@
                 "desc": " Parser nodes used in the CST.",
                 "file": "src/Parser/types.lua",
                 "finish": [
-                    14,
+                    16,
                     20
                 ],
                 "rawdesc": " Parser nodes used in the CST.",
                 "start": [
-                    14,
+                    16,
                     10
                 ],
                 "type": "doc.class",
@@ -2553,22 +2553,22 @@
                 "desc": "the children of the node.",
                 "extends": {
                     "finish": [
-                        16,
+                        18,
                         25
                     ],
                     "start": [
-                        16,
+                        18,
                         20
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                16,
+                                18,
                                 25
                             ],
                             "start": [
-                                16,
+                                18,
                                 20
                             ],
                             "type": "doc.type.name",
@@ -2579,13 +2579,13 @@
                 },
                 "file": "src/Parser/types.lua",
                 "finish": [
-                    16,
+                    18,
                     25
                 ],
                 "name": "childerns",
                 "rawdesc": "the children of the node.",
                 "start": [
-                    16,
+                    18,
                     10
                 ],
                 "type": "doc.field",
@@ -2597,27 +2597,27 @@
                 "deprecated": false,
                 "desc": "the node type.",
                 "extends": {
-                    "desc": " the enum used by the Concrete Syntax Tree.",
+                    "desc": " the enum used by the Concrete Syntax Tree.\n 1: Program\n 2: Atom",
                     "finish": [
-                        15,
+                        17,
                         28
                     ],
-                    "rawdesc": " the enum used by the Concrete Syntax Tree.",
+                    "rawdesc": " the enum used by the Concrete Syntax Tree.\n 1: Program\n 2: Atom",
                     "start": [
-                        15,
+                        17,
                         15
                     ],
                     "type": "doc.type",
                     "types": [
                         {
-                            "desc": " the enum used by the Concrete Syntax Tree.",
+                            "desc": " the enum used by the Concrete Syntax Tree.\n 1: Program\n 2: Atom",
                             "finish": [
-                                15,
+                                17,
                                 28
                             ],
-                            "rawdesc": " the enum used by the Concrete Syntax Tree.",
+                            "rawdesc": " the enum used by the Concrete Syntax Tree.\n 1: Program\n 2: Atom",
                             "start": [
-                                15,
+                                17,
                                 15
                             ],
                             "type": "doc.type.name",
@@ -2628,13 +2628,13 @@
                 },
                 "file": "src/Parser/types.lua",
                 "finish": [
-                    15,
+                    17,
                     28
                 ],
                 "name": "kind",
                 "rawdesc": "the node type.",
                 "start": [
-                    15,
+                    17,
                     10
                 ],
                 "type": "doc.field",
