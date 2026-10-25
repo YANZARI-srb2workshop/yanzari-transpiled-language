@@ -14,6 +14,9 @@ local Token = require('src.Scanner.utils.token')
 -- Module that handles Scanner Enums
 local Enum = require('src.Scanner.utils.enum')
 
+-- Module that handles Hashs.
+local Hash = require('src.libs.hash')
+
 -- Trie of Keywords
 local Keywords = require('src.Scanner.utils.keyword_table').trie
 
@@ -70,17 +73,24 @@ return Rules.new({
     end,
     loop=function(self)
         local Start = self.cursor:newSpan()
+        local length = 0
+        local hash = Hash.Step(0,self.cursor:getCurrentCharacter())
+
         self:insertChar()
         self.cursor:advance()
         while true do
 			if self.cursor:isEOF() then break end
 			if self.cursor:isEOL() then break end
 			if not Identifier_Loop(self) then break end
+            hash = Hash.Step(hash,self.cursor:getCurrentCharacter())
+            length = length+1
+            
 			self:insertChar()
 			self.cursor:advance()
 		end
         local End = self.cursor:newSpan()
         local IsAKeyword,KeywordID = Is_A_Keyword(self.token)
+        hash = Hash.Finish(hash,length)
         if IsAKeyword==true then
             return Token.new({
                 kind={
@@ -91,6 +101,9 @@ return Rules.new({
                 location={
                     start=Start,
                     ['end']=End
+                },
+                extra={
+                    hash=hash
                 }
             })
         end
@@ -102,6 +115,9 @@ return Rules.new({
             location={
                 start=Start,
                 ['end']=End
+            },
+            extra={
+                hash=hash
             }
         })
     end,

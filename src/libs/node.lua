@@ -8,16 +8,15 @@
 -- Node
 ---@class Node
 ---@field children table?
----@field value any
+---@field value any?
 local Node = {}
 
 -- Create a Node
----@param value any the value of the node.
+---@param value any? the value of the node.
 ---@param children table? the children belonging to the node.
 ---@return Node self a Node
 function Node.new(value,children)
 	-- Type Checking
-	assert(type(value)~='nil','value is nil')
 	if children~=nil then
 		assert(type(children)=='table','value is not a table')
 	end

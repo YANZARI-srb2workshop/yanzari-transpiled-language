@@ -57,6 +57,8 @@ local OperatorsTokenKinds = enum.new(
 	'Plus Plus', -- ++
 	'Minus', -- -
 	'Minus Minus', -- --
+	'Minus GreaterThan', -- ->
+	'Minus GreaterThan Asterisk', -- ->*
 	'Asterisk', -- *
 	'Slash', -- /
 	'Percent', -- %
@@ -65,6 +67,7 @@ local OperatorsTokenKinds = enum.new(
 	'Colon Colon', -- ::
 	'Comma', -- ,
 	'Dot', -- .
+	'Dot Dot Dot', -- ...
 	'VerticalLine', -- |
 	'Ampersand', -- &
 	'Circumflex', -- ^

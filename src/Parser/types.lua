@@ -6,9 +6,11 @@
 --> By Yanzari
 
 -- the enum used by the Concrete Syntax Tree.
+--- 1: Program
+--- 2: Atom
 ---@alias ParserCSTEnum
----| 1 # Program
----| 2 # Atom
+---| 1
+---| 2
 
 -- Parser nodes used in the CST.
 ---@see ParserCSTEnum

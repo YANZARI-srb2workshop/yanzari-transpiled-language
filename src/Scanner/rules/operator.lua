@@ -53,15 +53,24 @@ local ListOfOperators = {
 		[62]=true, -- >
 		[60]=true, -- <
 		[61]=true, -- =
+		[46]=true, -- .
 	},
 	-- A set of two or more characters that form valid operators.
 	Set = {
+		[46]={ -- .
+			[46]=Node.new(nil,{ -- ..
+				[46] = Enum.OperatorsTokenKinds:getvalue('Dot Dot Dot') -- ...
+			})
+		},
 		[43] = { -- +
 			[43] = Enum.OperatorsTokenKinds:getvalue('Plus Plus'), -- ++
 			[61] = Enum.OperatorsTokenKinds:getvalue('Plus Equals'), -- +=
 		},
 		[45] = { -- -
 			[45] = Enum.OperatorsTokenKinds:getvalue('Minus Minus'), -- --
+			[62] = Node.new(Enum.OperatorsTokenKinds:getvalue('Minus GreaterThan'),{ -- ->
+				[42] = Enum.OperatorsTokenKinds:getvalue('Minus GreaterThan Asterisk') -- ->*
+			}),
 			[61] = Enum.OperatorsTokenKinds:getvalue('Minus Equals'), -- -=
 		},
 		[47] = { -- /
@@ -179,6 +188,32 @@ return Rules.new(
 							}
 						})
 					elseif getmetatable(SecondCharacterInTheSet)==Node then
+						if SecondCharacterInTheSet.value==nil
+						and #self.token == 2 then
+							local SingleCharacter = ListOfOperators.Single[self.token[1]]
+							self:emitToken(Token.new({
+								kind={
+									category=Operator,
+									operator=SingleCharacter
+								},
+								token={self.token[1]},
+								location={
+									start=Start,
+									['end']=Start
+								}
+							}))
+							return Token.new({
+								kind={
+									category=Operator,
+									operator=SingleCharacter
+								},
+								token={self.token[2]},
+								location={
+									start=End,
+									['end']=End
+								}
+							})
+						end
 						if #self.token == 2 then
 							return Token.new({
 								kind={
