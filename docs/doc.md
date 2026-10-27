@@ -317,10 +317,10 @@ Parser
 
 
 ```lua
-ParserCST
+ParserCST[]
 ```
 
-a Concrete Syntax Tree
+each ParserCST is more or less one line.
 
 ## current
 
@@ -486,7 +486,7 @@ Scanner
 number
 ```
 
-the output buffer position.
+the output buffer position. (maximum: 1 to 256)
 
 ## cursor
 
