@@ -10,7 +10,7 @@
 --- (WIP)
 ---@see ParserCST
 ---@class Parser
----@field cst ParserCST a Concrete Syntax Tree
+---@field cst ParserCST[] each ParserCST is more or less one line.
 ---@field tokenBuffer_pos number the current token buffer's position, in case you want to switch to another token buffer.
 ---@field source SourceCode the source code.
 ---@field tokens Token[][] the tokens produced by the scanner.
@@ -23,8 +23,10 @@ Parser.__index = Parser
 function Parser.new(options)
     local self = setmetatable({},Parser)
     self.cst = {
-        kind=1,
-        childerns={}
+        {
+            kind=1,
+            childerns={}
+        }
     }
     self.tokenBuffer_pos = 1
     self.source = options.Source

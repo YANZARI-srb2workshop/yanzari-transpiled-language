@@ -9,18 +9,19 @@ local Tester = require("tests")
 
 -- the Flags Table
 local function printTheAvailableFlags()
-	print("+----------------------------------------------------+")
-	print("|          Flag          |        Description        |")
-	print("+------------------------+---------------------------+")
-	print("|                        |                           |")
-	print("|--scanner               | tests only the scanner.   |")
-	print("|--full                  | runs all the tests.       |")
-	print("|--help                  | shows this help message.  |")
-	print("*----------------------------------------------------*")
+	print("╔════════════════════════╦═══════════════════════════╗")
+	print("║          Flag          ║        Description        ║")
+	print("╠════════════════════════╬═══════════════════════════╣")
+	print("║                        ║                           ║")
+	print("║--scanner               ║ tests only the scanner.   ║")
+	print("║--full                  ║ runs all the tests.       ║")
+	print("║--help                  ║ shows this help message.  ║")
+	print("╚════════════════════════╩═══════════════════════════╝")
 end
 
 -- Print the Help Message
 local function printTheHelpMessage()
+	print("")
 	print("test the Yanzari's Transpiled Language modules")
 	print("")
 	print("Here are the valid flags:")
@@ -47,7 +48,13 @@ end
 -- Only the Scanner
 if arg[1]=="--scanner" then
 	-- Just run the scanner test.
-	Tester.TestScanner()
+	local scanner = Tester.TestScanner()
+	if scanner.is_right==true
+	and scanner.invalid_chars==true then
+		print("All Right")
+	else
+		print("Something Went Wrong")
+	end
 elseif arg[1]=="--full" then
 	-- Make the full test.
 	Tester.Test()

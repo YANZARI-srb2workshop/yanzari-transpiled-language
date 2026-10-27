@@ -31,6 +31,7 @@ AddRule('layout.semicolon') -- semicolon.
 AddRule('layout.comment.long') -- long comment.
 AddRule('layout.comment.short') -- short comment.
 AddRule('literal.identifier') -- identifier/keyword.
+AddRule('literal.numeric.octal') -- an octal.
 AddRule('literal.numeric.binary') -- an binary.
 AddRule('literal.numeric.hexadecimal') -- an hexadecimal.
 AddRule('literal.numeric.integer') -- an integer.

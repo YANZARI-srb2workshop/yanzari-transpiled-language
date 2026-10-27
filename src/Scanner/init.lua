@@ -21,6 +21,12 @@ local SourceCode = require('src.SourceCode')
 -- a module that handles errors
 local Errors = require('src.Scanner.utils.handling.errors')
 
+-- maximum number of output positions for the Scanner
+local MAX_OUTPUT_POS = 256
+
+-- maximum value of a byte.
+local BYTE_MAX_VALUE = 255
+
 -- This class handles text tokenization.<br>
 --- It transforms the text into tokens so that the parser<br>
 --- can convert them into a Concrete Syntax Tree.
@@ -30,7 +36,7 @@ local Errors = require('src.Scanner.utils.handling.errors')
 ---@field token byte[]? The content of a token; it contains multiple bytes.
 ---@field cursor ScannerCursor The Scanner Cursor
 ---@field extra any? Expandable content in the Scanner.
----@field current_output_pos number the output buffer position.
+---@field current_output_pos number the output buffer position. (maximum: 1 to 256)
 ---@field states {[number]: string|table} The scanner states; they can be used to store state information.
 ---@field warnings ScannerErrorBucket a bucket that stores all the errors issued.
 ---@field errors ScannerErrorBucket a bucket that stores all the warnings issued.
@@ -73,7 +79,7 @@ function Scanner:insertChar(char)
 	-- Typing Check
 	assert(char~=nil,'char is nil')
 	assert(type(char)=='number','char must be a number')
-	assert(char <= 255 and char >= 0, "Invalid Byte")
+	assert(char <= BYTE_MAX_VALUE and char >= 0, "Invalid Byte")
 	-------------------------------------------------------
 	table.insert(self.token,char)
 end
@@ -100,7 +106,7 @@ end
 -- moves to the next output buffer.
 function Scanner:moveToTheNextOutputBuffer()
 	-- Type Checking
-	assert((self.current_output_pos+1)<=256,'buffer overflow')
+	assert((self.current_output_pos+1)<=MAX_OUTPUT_POS,'buffer overflow')
 	----------------------------------------------------------
 
 	self.current_output_pos = self.current_output_pos+1

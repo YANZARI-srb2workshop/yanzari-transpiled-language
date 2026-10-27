@@ -14,21 +14,24 @@ local Tests = {
 local Tester = {}
 
 -- Test Scanner
----@return nil nil returns nothing
+---@return ... returns nothing
 function Tester.TestScanner()
-	print(".")
-	print("| Scanner")
-
-	-- Check if it passed the test.
-	Tests.Scanner()
-
-	print("")
+	local is_right,invalid_chars,char1,char2,char3 = Tests.Scanner()
+	return {
+		is_right=is_right,
+		invalid_chars=invalid_chars,
+		char1=char1,
+		char2=char2,
+		char3=char3
+	}
 end
 
 -- Full Test
----@return nil nil returns nothing
+---@return {scanner: {is_right:boolean, invalid_chars:boolean, char1:byte|string, char2:byte|string, char3:byte|string}, [string]: ...} tests How did all the tests go?
 function Tester.Test()
-	Tester.TestScanner()
+	return {
+		scanner=Tester.TestScanner()
+	}
 end
 
 -- Export

@@ -13,6 +13,12 @@ local Marker = require('src.Scanner.utils.backtracking.marker')
 -- the module containing the object representation of the source code.
 local SourceCode = require('src.SourceCode')
 
+-- maximum value of a byte.
+local BYTE_MAX_VALUE = 255
+
+-- maximum value of a range.
+local RANGE_MAX_VALUE = 255
+
 -- the cursor used by the Scanner to read the text and advance.
 ---@class ScannerCursor
 ---@field source SourceCode the source code that allows the scanner cursor to advance and capture characters from it.
@@ -198,8 +204,8 @@ function Cursor:matchAChar(the_char_used_for_match,the_char_to_match)
 		return false
 	end
 	-- Type Checking
-	assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=255),'the_char_to_match must be a byte')
-	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match must be a byte')
+	assert(type(the_char_to_match)=='number' and (the_char_to_match>=0 and the_char_to_match<=BYTE_MAX_VALUE),'the_char_to_match must be a byte')
+	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=BYTE_MAX_VALUE),'the_char_used_for_match must be a byte')
 
 	return (the_char_to_match==the_char_used_for_match)
 end
@@ -219,9 +225,9 @@ function Cursor:matchRangeAChar(the_char_used_for_match,start_range,end_range)
 		return false
 	end
 
-	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match must be a byte')
-	assert(type(start_range)=='number' and (start_range>=0 and start_range<=255),'start_range must be a byte')
-	assert(type(end_range)=='number' and (end_range>=0 and end_range<=255),'end_range must be a byte')
+	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=BYTE_MAX_VALUE),'the_char_used_for_match must be a byte')
+	assert(type(start_range)=='number' and (start_range>=0 and start_range<=RANGE_MAX_VALUE),'start_range must be a byte')
+	assert(type(end_range)=='number' and (end_range>=0 and end_range<=RANGE_MAX_VALUE),'end_range must be a byte')
 
 	return (the_char_used_for_match>=start_range) and (the_char_used_for_match<=end_range)
 end
@@ -241,9 +247,9 @@ function Cursor:matchOutOfRangeAChar(the_char_used_for_match,start_range,end_ran
 		return false
 	end
 
-	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=255),'the_char_used_for_match must be a byte')
-	assert(type(start_range)=='number' and (start_range>=0 and start_range<=255),'start_range must be a byte')
-	assert(type(end_range)=='number' and (end_range>=0 and end_range<=255),'end_range must be a byte')
+	assert(type(the_char_used_for_match)=='number' and (the_char_used_for_match>=0 and the_char_used_for_match<=BYTE_MAX_VALUE),'the_char_used_for_match must be a byte')
+	assert(type(start_range)=='number' and (start_range>=0 and start_range<=RANGE_MAX_VALUE),'start_range must be a byte')
+	assert(type(end_range)=='number' and (end_range>=0 and end_range<=RANGE_MAX_VALUE),'end_range must be a byte')
 
 	return (the_char_used_for_match<start_range) or (the_char_used_for_match>end_range)
 end

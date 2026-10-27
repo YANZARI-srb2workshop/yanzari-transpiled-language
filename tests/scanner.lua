@@ -7,7 +7,7 @@
 -- creates a String named "YTL" and
 --- returns the 3 characters of the String
 --- to Tester check if everything is correct.
----@return nil nil returns nothing
+---@return boolean is_right,boolean invalid_chars,byte|string? char_or_byte_1,byte|string? char_or_byte_2,byte|string? char_or_byte_3 shows whether the test passed or not.
 return function()
 	-- Source
 	---@type string
@@ -57,16 +57,11 @@ return function()
 		and char2=="T"
 		and char3=="L" then
 			-- Passed the Test
-			print("+ Success")
-			return nil
+			return true,true
 		end
 		-- Didn't Pass the Test
-		print("- [Failed] Any of the 3 characters are the expected ones.")
-		print(char1,char2,char3)
-		return nil
+		return false,true,char1,char2,char3
 	end
 	-- Didn't Pass the Test
-	print("- [Failed] One of the 3 characters is not a byte:")
-	print(byte1,byte2,byte3)
-	return nil
+	return false,false,byte1,byte2,byte3
 end -- Export
