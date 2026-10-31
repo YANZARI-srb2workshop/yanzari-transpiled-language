@@ -83,7 +83,7 @@ return Rules.new({
             if self.cursor:matchAChar(nil,32) then
                 self:insertChar()
                 self.cursor:advance()
-            elseif self.cursor:matchRangeAChar(nil,33,126) or self.cursor:getCurrentCharacter()>127 then
+            else
                 args[#args+1] = {}
                 local arg_variable = args[#args]
                 arg_variable[#arg_variable+1] = self.cursor:getCurrentCharacter()
@@ -92,23 +92,13 @@ return Rules.new({
                 while true do
                     if self.cursor:isEOF() then break end
                     if self.cursor:isEOL() then break end
-                    if not (self.cursor:matchRangeAChar(nil,33,126))
-                    or not (self.cursor:getCurrentCharacter()>127) then
+                    if self.cursor:matchAChar(nil,32) then
                         break
                     end
                     arg_variable[#arg_variable+1] = self.cursor:getCurrentCharacter()
                     self:insertChar()
                     self.cursor:advance()
                 end
-            else
-                local currentPosition = self.cursor:newSpan()
-                self.errors:emit({
-                    text='Invalid Directive.',
-                    location={
-                        start=currentPosition,
-                        ['end']=currentPosition
-                    }
-                })
             end
         end
         local End = self.cursor:newSpan()
