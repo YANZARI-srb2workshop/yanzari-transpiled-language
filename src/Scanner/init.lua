@@ -61,7 +61,7 @@ function Scanner.new(source)
 	self.states = {}
 	self.extra = {}
 	self.errors = Errors.new()
-	self.warnings = Errors.new()
+	self.warnings = Errors.new("SyntaxWarning")
 	self.cursor = Cursor.new(self.source)
 	return self
 end
