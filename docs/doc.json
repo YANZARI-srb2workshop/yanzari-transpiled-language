@@ -528,11 +528,11 @@
                 "desc": "error span",
                 "extends": {
                     "finish": [
-                        13,
+                        14,
                         43
                     ],
                     "start": [
-                        13,
+                        14,
                         19
                     ],
                     "type": "doc.type",
@@ -542,17 +542,17 @@
                                 {
                                     "desc": " Span",
                                     "finish": [
-                                        13,
+                                        14,
                                         31
                                     ],
                                     "name": {
                                         "[1]": "start",
                                         "finish": [
-                                            13,
+                                            14,
                                             25
                                         ],
                                         "start": [
-                                            13,
+                                            14,
                                             20
                                         ],
                                         "type": "doc.field.name",
@@ -560,7 +560,7 @@
                                     },
                                     "rawdesc": " Span",
                                     "start": [
-                                        13,
+                                        14,
                                         20
                                     ],
                                     "type": "doc.type.field",
@@ -569,17 +569,17 @@
                                 {
                                     "desc": " Span",
                                     "finish": [
-                                        13,
+                                        14,
                                         42
                                     ],
                                     "name": {
                                         "[1]": "end",
                                         "finish": [
-                                            13,
+                                            14,
                                             36
                                         ],
                                         "start": [
-                                            13,
+                                            14,
                                             33
                                         ],
                                         "type": "doc.field.name",
@@ -587,7 +587,7 @@
                                     },
                                     "rawdesc": " Span",
                                     "start": [
-                                        13,
+                                        14,
                                         33
                                     ],
                                     "type": "doc.type.field",
@@ -595,11 +595,11 @@
                                 }
                             ],
                             "finish": [
-                                13,
+                                14,
                                 43
                             ],
                             "start": [
-                                13,
+                                14,
                                 19
                             ],
                             "type": "doc.type.table",
@@ -610,13 +610,13 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    13,
+                    14,
                     43
                 ],
                 "name": "location",
                 "rawdesc": "error span",
                 "start": [
-                    13,
+                    14,
                     10
                 ],
                 "type": "doc.field",
@@ -629,8 +629,53 @@
                 "desc": "error message",
                 "extends": {
                     "finish": [
-                        12,
+                        13,
                         21
+                    ],
+                    "start": [
+                        13,
+                        15
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                13,
+                                21
+                            ],
+                            "start": [
+                                13,
+                                15
+                            ],
+                            "type": "doc.type.name",
+                            "view": "string"
+                        }
+                    ],
+                    "view": "string"
+                },
+                "file": "src/Scanner/utils/handling/errors.lua",
+                "finish": [
+                    13,
+                    21
+                ],
+                "name": "text",
+                "rawdesc": "error message",
+                "start": [
+                    13,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "string",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "error type",
+                "extends": {
+                    "finish": [
+                        12,
+                        22
                     ],
                     "start": [
                         12,
@@ -651,21 +696,21 @@
                             "view": "string"
                         }
                     ],
-                    "view": "string"
+                    "view": "string?"
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
                     12,
-                    21
+                    22
                 ],
-                "name": "text",
-                "rawdesc": "error message",
+                "name": "type",
+                "rawdesc": "error type",
                 "start": [
                     12,
                     10
                 ],
                 "type": "doc.field",
-                "view": "string",
+                "view": "string?",
                 "visible": "public"
             }
         ],
@@ -5040,12 +5085,12 @@
                 "desc": " Scanner Error Bucket",
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    16,
+                    17,
                     28
                 ],
                 "rawdesc": " Scanner Error Bucket",
                 "start": [
-                    16,
+                    17,
                     10
                 ],
                 "type": "doc.class",
@@ -5062,12 +5107,12 @@
                 "extends": {
                     "desc": " Scanner Error Bucket",
                     "finish": [
-                        19,
+                        21,
                         23
                     ],
                     "rawdesc": " Scanner Error Bucket",
                     "start": [
-                        19,
+                        21,
                         17
                     ],
                     "type": "getlocal",
@@ -5075,13 +5120,13 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    19,
+                    21,
                     14
                 ],
                 "name": "__index",
                 "rawdesc": " Scanner Error Bucket",
                 "start": [
-                    19,
+                    21,
                     0
                 ],
                 "type": "setfield",
@@ -5094,22 +5139,22 @@
                 "desc": "a bucket that stores all the errors issued",
                 "extends": {
                     "finish": [
-                        17,
+                        18,
                         33
                     ],
                     "start": [
-                        17,
+                        18,
                         17
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                17,
+                                18,
                                 33
                             ],
                             "start": [
-                                17,
+                                18,
                                 17
                             ],
                             "type": "doc.type.array",
@@ -5120,17 +5165,62 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    17,
+                    18,
                     33
                 ],
                 "name": "bucket",
                 "rawdesc": "a bucket that stores all the errors issued",
                 "start": [
-                    17,
+                    18,
                     10
                 ],
                 "type": "doc.field",
                 "view": "ErrorInterface[]",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "default error type.",
+                "extends": {
+                    "finish": [
+                        19,
+                        30
+                    ],
+                    "start": [
+                        19,
+                        23
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                19,
+                                29
+                            ],
+                            "start": [
+                                19,
+                                23
+                            ],
+                            "type": "doc.type.name",
+                            "view": "string"
+                        }
+                    ],
+                    "view": "string?"
+                },
+                "file": "src/Scanner/utils/handling/errors.lua",
+                "finish": [
+                    19,
+                    30
+                ],
+                "name": "default_type",
+                "rawdesc": "default error type.",
+                "start": [
+                    19,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "string?",
                 "visible": "public"
             },
             {
@@ -5142,13 +5232,13 @@
                         {
                             "desc": " Scanner Error Bucket",
                             "finish": [
-                                31,
+                                41,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": " Scanner Error Bucket",
                             "start": [
-                                31,
+                                41,
                                 8
                             ],
                             "type": "self",
@@ -5157,13 +5247,13 @@
                         {
                             "desc": "a Error Interface",
                             "finish": [
-                                31,
+                                41,
                                 28
                             ],
                             "name": "options",
                             "rawdesc": "a Error Interface",
                             "start": [
-                                31,
+                                41,
                                 21
                             ],
                             "type": "local",
@@ -5172,12 +5262,12 @@
                     ],
                     "desc": " Emit a Error\n\n@*param* `options` — a Error Interface",
                     "finish": [
-                        44,
+                        58,
                         3
                     ],
                     "rawdesc": " Emit a Error",
                     "start": [
-                        31,
+                        41,
                         0
                     ],
                     "type": "function",
@@ -5185,13 +5275,13 @@
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    31,
+                    41,
                     20
                 ],
                 "name": "emit",
                 "rawdesc": " Emit a Error",
                 "start": [
-                    31,
+                    41,
                     9
                 ],
                 "type": "setmethod",
@@ -5201,12 +5291,28 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": " Create a Error Bucket",
+                "desc": " Create a Error Bucket\n\n@*param* `default_type` — default error type.",
                 "extends": {
-                    "args": [],
-                    "desc": " Create a Error Bucket",
+                    "args": [
+                        {
+                            "desc": "default error type.",
+                            "finish": [
+                                26,
+                                32
+                            ],
+                            "name": "default_type",
+                            "rawdesc": "default error type.",
+                            "start": [
+                                26,
+                                20
+                            ],
+                            "type": "local",
+                            "view": "string?"
+                        }
+                    ],
+                    "desc": " Create a Error Bucket\n\n@*param* `default_type` — default error type.",
                     "finish": [
-                        27,
+                        37,
                         3
                     ],
                     "rawdesc": " Create a Error Bucket",
@@ -5217,21 +5323,21 @@
                         }
                     ],
                     "start": [
-                        23,
+                        26,
                         0
                     ],
                     "type": "function",
-                    "view": "function ScannerErrorBucket.new()\n  -> ScannerErrorBucket"
+                    "view": "function ScannerErrorBucket.new(default_type?: string)\n  -> ScannerErrorBucket"
                 },
                 "file": "src/Scanner/utils/handling/errors.lua",
                 "finish": [
-                    23,
+                    26,
                     19
                 ],
                 "name": "new",
                 "rawdesc": " Create a Error Bucket",
                 "start": [
-                    23,
+                    26,
                     9
                 ],
                 "type": "setfield",

@@ -75,6 +75,15 @@ string
 
 error message
 
+## type
+
+
+```lua
+string?
+```
+
+error type
+
 
 ---
 
@@ -982,6 +991,15 @@ ErrorInterface[]
 
 a bucket that stores all the errors issued
 
+## default_type
+
+
+```lua
+string?
+```
+
+default error type.
+
 ## emit
 
 
@@ -997,11 +1015,13 @@ a bucket that stores all the errors issued
 
 
 ```lua
-function ScannerErrorBucket.new()
+function ScannerErrorBucket.new(default_type?: string)
   -> ScannerErrorBucket
 ```
 
  Create a Error Bucket
+
+@*param* `default_type` — default error type.
 
 
 ---
